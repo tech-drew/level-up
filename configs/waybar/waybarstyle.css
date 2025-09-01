@@ -1,0 +1,64 @@
+* {
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 20px;
+    font-weight: bold; /* Make text bold */
+    color: #ffffff;  /* White text/icons */
+}
+
+window#waybar {
+    background-color: #7b5cff;  /* 🎨 Your new bar color */
+    border-bottom: none;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    opacity: 1;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+button:hover {
+    background-color: #6a4ee0;  /* Slightly darker hover */
+    box-shadow: none;
+}
+
+#pulseaudio:hover {
+    background-color: #6a4ee0;
+}
+
+#workspaces, #clock, #battery, #pulseaudio, #network, .custom-module {
+    padding: 0 10px;
+}
+
+/* === ACTIVE WORKSPACE STYLING === */
+
+#workspaces button {
+    padding: 0 6px;
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: normal;
+    border: none;
+}
+
+#workspaces button.active {
+    background-color: #663399;   /* Deep purple for contrast */
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+#workspaces button:hover {
+    background-color: #6a4ee0;
+    color: #ffffff;
+}
+
+

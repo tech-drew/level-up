@@ -1,0 +1,25 @@
+# Example hyprland.conf
+
+# Find a way to set Caps lock as the super key.
+
+# Set the output (monitor). The below may not be true for your monitor. You need to find your monitor name and update the line with your monitor and resolution.
+monitor=card1-eDP-1, 1920x1200, 0x0, 1
+
+# General settings
+focus=new
+workspace=1
+
+# Borders and gaps
+border=2
+gap=2
+
+# Workspace settings
+workspace=1, 2, 3, 4
+
+# Keybindings (example: open terminal)
+bind=MOD,Return,exec,foot -a
+
+# Autostart applications (example: run picom compositor)
+exec-on-start=picom --experimental-backends &
+
+# Other settings can be added as needed

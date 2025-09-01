@@ -1,0 +1,37 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left":["clock"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["pulseaudio", "battery", "network"],
+
+  "clock": {
+    "format": "{:%a %d %b %H:%M}",
+    "on-click": "gnome-calendar"
+  },
+
+// The battery icon shows time to full or time to empty when you hover on it for charging/discharging.
+"battery": {
+  "format": "{capacity}% {icon}",
+  "format-full": "{capacity}% ",
+  "format-icons": ["", "", "", "", ""],
+  "on-click": "notify-send '🔋 Battery Info' \"$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'state|to full|to empty|percentage')\"",
+  "interval": 15 //Manually adjust the polling time. Default is 60 seconds if this line is not here.
+},
+
+  "network": {
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": " {ifname}",
+    "format-disconnected": "⚠ Disconnected",
+    "on-click": "nm-connection-editor"
+  },
+
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": "🔇",
+    "format-icons": ["🔈", "🔉", "🔊"],
+    "on-click": "pavucontrol"
+  }
+
+}
+

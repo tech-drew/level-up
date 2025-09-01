@@ -1,0 +1,24 @@
+﻿# ~/.config/alacritty/alacritty.toml
+[general]
+import = ["~/.config/alacritty/alacritty-colors.toml"]
+
+[window]
+decorations = "full"
+opacity = 0.95
+blur = true
+startup_mode = "Windowed"
+dynamic_padding = true
+dimensions = { columns = 100, lines = 30 }
+
+[font]
+normal = { family = "Noto Sans Mono", style = "Regular" }
+bold = { family = "Noto Sans Mono", style = "Bold" }
+italic = { family = "Noto Sans Mono", style = "Italic" }
+size = 11.0
+
+[terminal.shell]
+program = "/bin/bash"
+args = ["-l", "-c", "fastfetch; exec bash --rcfile <(echo 'PS1=\"\\[\\e[0;32m\\]\\u@\\h \\[\\e[0m\\]\\w\\$ \"')"]
+
+
+
