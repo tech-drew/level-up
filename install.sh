@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 echo "==> Starting Fedora Level-Up Hyprland installation..."
 
@@ -6,6 +6,16 @@ echo "==> Starting Fedora Level-Up Hyprland installation..."
 echo "--> Adding COPR repo and installing packages..."
 sudo dnf copr enable solopasha/hyprland -y
 sudo dnf install -y hyprland alacritty fastfetch swww waybar dolphin timeshift lxqt-policykit
+
+# [+] Installing power menu dependencies
+echo "[+] Installing power menu dependencies..."
+sudo dnf install -y wofi
+
+# [+] Setting up power menu script
+echo "[+] Setting up power menu script..."
+mkdir -p ~/.config/hypr/waybar/scripts
+cp ./scripts/power_menu.sh ~/.config/hypr/waybar/scripts/
+chmod +x ~/.config/hypr/waybar/scripts/power_menu.sh
 
 # 2. Create config directories
 echo "--> Creating config directories..."

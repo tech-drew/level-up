@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Show menu using wofi. This makes a basic power button to use on the waybar.
-chosen=$(printf "🔒 Lock\n↩ Logout\n🔁 Reboot\n⏻ Shutdown" | wofi --dmenu --width 250 --height 300 --prompt "Power Menu")
+chosen=$(printf "Lock\n Logout\n Reboot\n Shutdown" | wofi --dmenu --width 250 --height 300 --prompt "Power Menu")
 
 case "$chosen" in
-    "🔒 Lock")
+    "Lock")
         if command -v gdmflexiserver >/dev/null 2>&1; then
             gdmflexiserver --lock
         elif command -v loginctl >/dev/null 2>&1; then
@@ -13,7 +13,7 @@ case "$chosen" in
             notify-send "Power Menu" "No lock command found"
         fi
         ;;
-    "↩ Logout")
+    "Logout")
         if command -v gdmflexiserver >/dev/null 2>&1; then
             gdmflexiserver
         elif command -v hyprctl >/dev/null 2>&1; then
@@ -22,10 +22,10 @@ case "$chosen" in
             notify-send "Power Menu" "No logout command found"
         fi
         ;;
-    "🔁 Reboot")
+    "Reboot")
         systemctl reboot
         ;;
-    "⏻ Shutdown")
+    "Shutdown")
         systemctl poweroff
         ;;
     *)
