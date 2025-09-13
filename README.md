@@ -39,6 +39,10 @@ These resources are optional but recommended if you want to get the most out of 
 
 ---
 
+
+After saving, log out and back in (or reboot) to activate.
+Note: On laptops without a physical numpad, enabling Numlock may cause certain letter keys (like J, K, L) to act as a numeric keypad. If this behavior is unwanted, you can remove or comment out the above line.
+
 - Hyprland Wiki  
   https://wiki.hypr.land/  
   The official Hyprland documentation. Highly recommended for learning about configuration options, environment variables, animation settings, and troubleshooting.
@@ -76,4 +80,4 @@ If you are unsure about any part of the setup, seek assistance or more informati
 
 ---
 
-Please give full credit to the original creators and maintainers of the tools, scripts, themes, and documentation referenced or recommended in this project. There are too many contributors across the various packages and resources used here for me to list them all individually, but I want to express sincere thanks to the entire open source community. Your hard work made this project possible.e
+Please give full credit to the original creators and maintainers of the tools, scripts, themes, and documentation referenced or recommended in this project. There are too many contributors across the various packages and resources used here for me to list them all individually, but I want to express sincere thanks to the entire open source community. Your hard work made this project possible.

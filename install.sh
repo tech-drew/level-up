@@ -5,11 +5,29 @@ echo "==> Starting Fedora Level-Up Hyprland installation..."
 # 1. Install necessary packages
 echo "--> Adding COPR repo and installing packages..."
 sudo dnf copr enable solopasha/hyprland -y
-sudo dnf install -y hyprland alacritty fastfetch swww waybar dolphin timeshift lxqt-policykit
 
-# [+] Installing power menu dependencies
-echo "[+] Installing power menu dependencies..."
-sudo dnf install -y wofi
+echo "--> Installing packages..."
+sudo dnf install -y \
+    hyprland \
+    alacritty \
+    fastfetch \
+    swww \
+    waybar \
+    dolphin \
+    timeshift \
+    lxqt-policykit \
+    wofi \
+    firefox \
+    gnome-calendar \
+    galculator \
+    gimp \
+    virt-manager \
+    nm-connection-editor \
+    libreoffice \
+    cabextract  # for MS fonts installer
+
+# Install Microsoft core fonts
+sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 
 # [+] Setting up power menu script
 echo "[+] Setting up power menu script..."
@@ -52,3 +70,5 @@ if ! grep -q "$PROMPT" ~/.bashrc; then
 fi
 
 echo "==> Installation complete!"
+echo "==> Welcome to Level-Up!"
+echo "==> To get started, type 'hyprland' in the terminal and press Enter."
