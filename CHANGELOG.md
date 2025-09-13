@@ -5,8 +5,27 @@ Note: All timestamps are in Pacific Standard Time (PST).
 Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 I'm still learning GitHub and programming, so this changelog is evolving as I go.
 
+
 ------------------------------------------------------------
-2025-09-13 12:00
+
+2025-09-13 13:30 - Install Script Fixes and Improvements (v1.0.2)
+
+Added:
+- Added Microsoft Core Fonts installation using tar.gz method instead of broken RPM.
+- Added fallback check to skip power_menu.sh setup if the script is missing.
+- Added logic to rebuild font cache after installing Microsoft Fonts.
+
+Modified:
+- Replaced RPM-based Microsoft Fonts install with a reliable tar.gz-based method.
+- Fixed .bashrc prompt customization to prevent grep warnings and ensure correct escaping.
+- Improved output messages for clarity during installation.
+- Ensured config directories and wallpaper paths are handled more robustly.
+
+Removed:
+- Removed broken msttcore-fonts-installer RPM installation method.
+
+------------------------------------------------------------
+2025-09-13 12:00 Added missing software to the installation
 
 Added:
 - Installed Firefox, GNOME Calendar, Galculator, GIMP, Virt-Manager, NetworkManager Connection Editor, LibreOffice, and Microsoft Fonts in install.sh.
