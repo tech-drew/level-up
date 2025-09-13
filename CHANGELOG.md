@@ -1,9 +1,22 @@
 ﻿Changelog
-Last Updated: 2025-09-02 20:30 PST
+Last Updated: 2025-09-13 12:00 PST
 
 Note: All timestamps are in Pacific Standard Time (PST).
 Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 I'm still learning GitHub and programming, so this changelog is evolving as I go.
+
+------------------------------------------------------------
+2025-09-13 12:00
+
+Added:
+- Installed Firefox, GNOME Calendar, Galculator, GIMP, Virt-Manager, NetworkManager Connection Editor, LibreOffice, and Microsoft Fonts in install.sh.
+
+Modified:
+- Updated install.sh to group all package installations together for better readability.
+- Improved install completion messages for clarity.
+
+Removed:
+- None
 
 ------------------------------------------------------------
 
