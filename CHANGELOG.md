@@ -5,6 +5,38 @@ Note: All timestamps are in Pacific Standard Time (PST).
 Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 I'm still learning GitHub and programming, so this changelog is evolving as I go.
 
+------------------------------------------------------------
+
+2025-09-13 20:00 - Fixed install.sh hyprland.conf installation issue.
+
+Added:
+- None
+
+Modified:
+- Updated install.sh and hyprland.conf. The last update stopped the install.sh from correctly copying over the hyprland.conf to the new system. 
+- Updated README.md to indicate testing was done with Fedora 42 Server.
+
+Removed:
+- Removed some of LibreOffice files. The intention was to only install LibreOffice Writer.
+
+------------------------------------------------------------
+
+2025-09-13 17:00 - Merged feature/installed-apps into main
+
+Added:
+- Finalized install.sh script with improved app installation and setup.
+
+Modified:
+- CHANGELOG.md
+- hyprland.conf
+- power_menu.sh
+- install.sh
+
+Removed:
+- None
+
+Note:
+- Deleted feature/installed-apps branch after successful merge.
 
 ------------------------------------------------------------
 

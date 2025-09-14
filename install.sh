@@ -23,7 +23,7 @@ sudo dnf install -y \
     gimp \
     virt-manager \
     nm-connection-editor \
-    libreoffice \
+    libreoffice-writer \
     cabextract \
     curl \
     fontconfig \
@@ -54,22 +54,34 @@ fi
 
 # 4. Create config directories
 echo "--> Creating config directories..."
-mkdir -p ~/.config/alacritty
-mkdir -p ~/.config/fastfetch
-mkdir -p ~/.config/waybar
-mkdir -p ~/.config/hypr
-mkdir -p ~/Pictures
+mkdir -p "${HOME}/.config/alacritty"
+mkdir -p "${HOME}/.config/fastfetch"
+mkdir -p "${HOME}/.config/waybar"
+mkdir -p "${HOME}/.config/hypr"
+mkdir -p "${HOME}/Pictures"
 
 # 5. Copy config files
 echo "--> Copying configuration files..."
-cp -r ./configs/alacritty/* ~/.config/alacritty/
-cp -r ./configs/fastfetch/* ~/.config/fastfetch/
-cp -r ./configs/waybar/* ~/.config/waybar/
-cp -r ./configs/hypr/* ~/.config/hypr/
+
+cp -r "${HOME}/Level-Up/configs/alacritty/"* "${HOME}/.config/alacritty/"
+cp -r "${HOME}/Level-Up/configs/fastfetch/"* "${HOME}/.config/fastfetch/"
+cp -r "${HOME}/Level-Up/configs/waybar/"* "${HOME}/.config/waybar/"
+
+echo "--> Copying hyprland.conf..."
+
+HYPRLAND_CONF_SOURCE="${HOME}/Level-Up/configs/hypr/hyprland.conf"
+HYPRLAND_CONF_DEST="${HOME}/.config/hypr/hyprland.conf"
+
+if [ -f "$HYPRLAND_CONF_SOURCE" ]; then
+    cp "$HYPRLAND_CONF_SOURCE" "$HYPRLAND_CONF_DEST"
+    echo "    ✓ hyprland.conf copied to ~/.config/hypr/"
+else
+    echo "    [!] hyprland.conf not found at $HYPRLAND_CONF_SOURCE. Skipping."
+fi
 
 # 6. Set wallpaper
 echo "--> Copying default wallpaper..."
-cp ./wallpapers/end_4HyprlandWallpaper.png ~/Pictures/
+cp "${HOME}/Level-Up/wallpapers/end_4HyprlandWallpaper.png" "${HOME}/Pictures/"
 
 # 7. Generate Fastfetch default config
 echo "--> Generating Fastfetch config..."
@@ -77,14 +89,14 @@ fastfetch --gen-config
 
 # 8. Bash prompt customization
 echo "--> Updating .bashrc prompt..."
-if ! grep -q "Custom green prompt" ~/.bashrc; then
-    echo -e "\n# Custom green prompt" >> ~/.bashrc
-    echo 'GREEN="\[\e[38;5;38m\]"' >> ~/.bashrc
-    echo 'RESET="\[\e[0m\]"' >> ~/.bashrc
-    echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "' >> ~/.bashrc
+if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
+    echo -e "\n# Custom green prompt" >> "${HOME}/.bashrc"
+    echo 'GREEN="\[\e[38;5;38m\]"' >> "${HOME}/.bashrc"
+    echo 'RESET="\[\e[0m\]"' >> "${HOME}/.bashrc"
+    echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "' >> "${HOME}/.bashrc"
 fi
 
 # 9. Done!
 echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
-echo "==> To get started, type 'hyprland' in the terminal and press Enter."
+echo "==> To get started, type 'Hyprland' in the terminal and press Enter."

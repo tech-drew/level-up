@@ -63,7 +63,7 @@ These resources are optional but recommended if you want to get the most out of 
 
 ---
 
-All configurations and scripts in this project have been tested on a clean install of Fedora 42 with GDM.  
+All configurations and scripts in this project have been tested on a clean install of Fedora 42 Server.  
 
 ...
 
