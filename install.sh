@@ -8,26 +8,51 @@ sudo dnf copr enable solopasha/hyprland -y
 
 echo "--> Installing packages..."
 sudo dnf install -y \
-    hyprland \
     alacritty \
-    fastfetch \
-    swww \
-    waybar \
-    dolphin \
-    timeshift \
-    lxqt-policykit \
-    wofi \
-    firefox \
-    gnome-calendar \
-    galculator \
-    gimp \
-    virt-manager \
-    nm-connection-editor \
-    libreoffice-writer \
     cabextract \
     curl \
+    dolphin \
+    evince \
+    fastfetch \
+    firefox \
     fontconfig \
+    galculator \
+    gimp \
+    gnome-calendar \
+    hyprland \
+    hyprlock \
+    kate \
+    libreoffice-writer \
+    lxqt-policykit \
+    nm-connection-editor \
+    pipewire \
+    pipewire-pulse \
+    pipewire-alsa \
+    swww \
+    timeshift \
+    virt-manager \
+    waybar \
+    wireplumber \
+    wofi \
+    xdg-utils \
     xorg-x11-font-utils
+
+if ! command -v xdg-mime >/dev/null 2>&1; then
+    echo "[!] xdg-mime not found. File associations will not be configured."
+else
+    echo "--> Setting default file associations..."
+
+    # Text files → Kate
+    xdg-mime default org.kde.kate.desktop text/plain
+
+    # LibreOffice Writer
+    xdg-mime default libreoffice-writer.desktop application/vnd.oasis.opendocument.text   # .odt
+    xdg-mime default libreoffice-writer.desktop application/msword                        # .doc
+    xdg-mime default libreoffice-writer.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document  # .docx
+
+    # PDF files → Evince
+    xdg-mime default org.gnome.Evince.desktop application/pdf
+fi
 
 # 2. Install Microsoft Core Fonts manually
 echo "--> Installing Microsoft fonts..."
@@ -79,6 +104,18 @@ else
     echo "    [!] hyprland.conf not found at $HYPRLAND_CONF_SOURCE. Skipping."
 fi
 
+echo "--> Copying hyprlock.conf..."
+
+HYPRLOCK_CONF_SOURCE="${HOME}/Level-Up/configs/hypr/hyprlock.conf"
+HYPRLOCK_CONF_DEST="${HOME}/.config/hypr/hyprlock.conf"
+
+if [ -f "$HYPRLOCK_CONF_SOURCE" ]; then
+    cp "$HYPRLOCK_CONF_SOURCE" "$HYPRLOCK_CONF_DEST"
+    echo "    ✓ hyprlock.conf copied to ~/.config/hypr/"
+else
+    echo "    [!] hyprlock.conf not found at $HYPRLOCK_CONF_SOURCE. Skipping."
+fi
+
 # 6. Set wallpaper
 echo "--> Copying default wallpaper..."
 cp "${HOME}/Level-Up/wallpapers/end_4HyprlandWallpaper.png" "${HOME}/Pictures/"
@@ -96,7 +133,16 @@ if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
     echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "' >> "${HOME}/.bashrc"
 fi
 
-# 9. Done!
+# 9. Pipewire Audio Service
+
+if systemctl --user --quiet; then
+    echo "--> Enabling Pipewire Audio Service..."
+    systemctl --user enable --now pipewire-pulse.service
+else
+    echo "[!] systemctl --user not available. Skipping PipeWire PulseAudio service enable."
+fi
+
+# 10. Done!
 echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
 echo "==> To get started, type 'Hyprland' in the terminal and press Enter."

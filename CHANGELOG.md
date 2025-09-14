@@ -1,10 +1,25 @@
 ﻿Changelog
-Last Updated: 2025-09-13 12:00 PST
+Last Updated: 2025-09-14 15:00 PST
 
 Note: All timestamps are in Pacific Standard Time (PST).
 Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 I'm still learning GitHub and programming, so this changelog is evolving as I go.
 
+------------------------------------------------------------
+
+2025-09-14 15:00 - Test Branch - Enhanced install.sh with Pipewire audio setup and improved dolphin file associations
+Added:
+- Hyprlock
+- Installed Pipewire packages (pipewire, pipewire-pulse, pipewire-alsa, wireplumber) during installation.
+- Enabled pipewire-pulse.service using systemctl --user in the install script.
+Modified:
+- Added a check to see if xdg-mime is available before setting file associations.
+- Added copying of hyprlock.conf along with hyprland.conf to the config directory.
+- Improved messages and flow in install.sh.
+- Added file associations for basic file types to dolphin
+- Updated README.md to give a more accurate description of the project.
+Removed:
+- None
 ------------------------------------------------------------
 
 2025-09-13 20:00 - Fixed install.sh hyprland.conf installation issue.
