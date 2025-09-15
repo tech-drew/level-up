@@ -37,6 +37,9 @@ sudo dnf install -y \
     xdg-utils \
     xorg-x11-font-utils
 
+mkdir -p ~/.config
+touch ~/.config/mimeapps.list
+
 if ! command -v xdg-mime >/dev/null 2>&1; then
     echo "[!] xdg-mime not found. File associations will not be configured."
 else
@@ -54,28 +57,35 @@ else
     xdg-mime default org.gnome.Evince.desktop application/pdf
 fi
 
-# 2. Install Microsoft Core Fonts manually
-echo "--> Installing Microsoft fonts..."
-mkdir -p /tmp/msttfonts
-cd /tmp/msttfonts || exit
-curl -LO https://downloads.sourceforge.net/corefonts/msttcorefonts.tar.gz
-sudo tar -C /usr/share/fonts -xzf msttcorefonts.tar.gz
-sudo fc-cache -fv
-cd ~ || exit
-rm -rf /tmp/msttfonts
 
-# 3. Set up power menu script
-echo "[+] Setting up power menu script..."
-POWER_MENU_SOURCE="${HOME}/Level-Up/configs/waybar/scripts/power_menu.sh"
-POWER_MENU_DEST="${HOME}/.config/hypr/waybar/scripts"
+# 2. Install Microsoft Core Fonts (without RPM Fusion)
+echo "--> Installing Microsoft Core Fonts (arial, etc)..."
 
-if [ -f "$POWER_MENU_SOURCE" ]; then
-    mkdir -p "$POWER_MENU_DEST"
-    cp "$POWER_MENU_SOURCE" "$POWER_MENU_DEST/"
-    chmod +x "$POWER_MENU_DEST/power_menu.sh"
-else
-    echo "[!] Warning: power_menu.sh not found at $POWER_MENU_SOURCE. Skipping power menu setup."
-fi
+# Download and install fonts from SourceForge
+FONT_TEMP_DIR="/tmp/msfonts"
+mkdir -p "$FONT_TEMP_DIR"
+cd "$FONT_TEMP_DIR" || exit
+
+echo "--> Downloading Arial32.exe..."
+curl -LO "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/arial32.exe"
+
+echo "--> Extracting and installing fonts..."
+cabextract arial32.exe
+
+# Create fonts directory if needed
+mkdir -p ~/.local/share/fonts
+
+# Move extracted TTF fonts to user's font directory
+mv *.ttf ~/.local/share/fonts/
+
+# Refresh font cache
+fc-cache -fv
+
+# Clean up
+cd ~
+rm -rf "$FONT_TEMP_DIR"
+
+echo " Microsoft Core Fonts installed successfully."
 
 # 4. Create config directories
 echo "--> Creating config directories..."

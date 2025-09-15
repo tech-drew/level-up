@@ -1,9 +1,23 @@
 ﻿Changelog
-Last Updated: 2025-09-14 15:00 PST
+Last Updated: 2025-09-14 21:00 PST
 
 Note: All timestamps are in Pacific Standard Time (PST).
 Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 I'm still learning GitHub and programming, so this changelog is evolving as I go.
+
+------------------------------------------------------------
+
+2025-09-14 21:00 - Test Branch - Worked on broken fonts install.sh. 
+
+Added:
+- None
+
+Modified:
+- install.sh 
+- hyprland.conf added hyprlock keybinding
+
+Removed:
+- None
 
 ------------------------------------------------------------
 
