@@ -19,6 +19,8 @@ sudo dnf install -y \
     gnome-calendar \
     hyprland \
     kate \
+    kde-cli-tools
+    kde-runtime
     libreoffice-writer \
     lxqt-policykit \
     nm-connection-editor \
@@ -45,6 +47,7 @@ sudo dnf copr enable solopasha/hyprland -y
 sudo dnf install --setopt=install_weak_deps=False -y \
   fastfetch \
   hyprlock \
+  hyprland-qtutils \
   swww
 
 
@@ -63,11 +66,15 @@ application/pdf=org.gnome.Evince.desktop
 application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
 application/msword=libreoffice-writer.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+application/json=org.kde.kate.desktop
 EOF
 
 # Reinforce file associations using xdg-mime (useful for non-KDE sessions)
 xdg-mime default org.kde.kate.desktop text/plain
 xdg-mime default org.gnome.Evince.desktop application/pdf
+xdg-mime default org.kde.kate.desktop application/json
+
+update-desktop-database ~/.local/share/applications
 
 # 3. Install Microsoft Core Fonts (without RPM Fusion)
 echo "--> Installing Microsoft Core Fonts (arial, etc)..."
@@ -157,7 +164,7 @@ fi
 # 9. Pipewire Audio Service
 if systemctl --user --quiet; then
     echo "--> Enabling Pipewire Audio Service..."
-    systemctl --user --no-pager enable --now pipewire-pulse.service
+    SYSTEMD_PAGER=cat systemctl --user --no-pager enable --now pipewire-pulse.service
 else
     echo "[!] systemctl --user not available. Skipping PipeWire PulseAudio service enable."
 fi
