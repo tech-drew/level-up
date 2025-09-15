@@ -14,14 +14,12 @@ sudo dnf install -y \
     curl \
     dolphin \
     evince \
-    fastfetch \
     firefox \
     fontconfig \
     galculator \
     gimp \
     gnome-calendar \
     hyprland \
-    hyprlock \
     kate \
     libreoffice-writer \
     lxqt-policykit \
@@ -29,7 +27,6 @@ sudo dnf install -y \
     pipewire \
     pipewire-pulse \
     pipewire-alsa \
-    swww \
     timeshift \
     virt-manager \
     waybar \
@@ -37,6 +34,16 @@ sudo dnf install -y \
     wofi \
     xdg-utils \
     xorg-x11-font-utils
+
+
+# Install packages not in main repo.
+#Explicitly block weak dependencies to cut down on bloat
+sudo dnf copr enable solopasha/hyprland -y
+sudo dnf install --setopt=install_weak_deps=False -y \
+  fastfetch \
+  hyprlock \
+  swww
+
 
 # 2. Set default file associations
 echo "--> Setting default file associations..."
