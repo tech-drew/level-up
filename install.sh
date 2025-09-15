@@ -4,11 +4,9 @@ echo "==> Starting Fedora Level-Up Hyprland installation..."
 
 # 1. Install necessary packages
 echo "--> Installing packages..."
-# Testing without the below repo to cut bloat
-# sudo dnf copr enable solopasha/hyprland -y
 
 sudo dnf clean all
-sudo dnf install --setopt=install_weak_deps=False -y \
+sudo dnf install -y \
     alacritty \
     cabextract \
     curl \
@@ -35,21 +33,13 @@ sudo dnf install --setopt=install_weak_deps=False -y \
     xdg-utils \
     xorg-x11-font-utils
 
-# Adding some weak dependencies from the above
-
-sudo dnf install --setopt=install_weak_deps=False -y \
-  ffmpeg-free \
-  gstreamer1-plugins-bad-free \
-  gstreamer1-plugins-good \
-  vlc-plugin-ffmpeg \
-  vlc-plugin-pipewire \
-  xdg-desktop-portal-gtk \
-  xdg-desktop-portal-hyprland \
-  pipewire-plugin-libcamera \
-  gegl04-matting-levin \
-  switcheroo-control
+sudo dnf remove -y \
+    kitty \
+    nwg-panel
 
 # Install packages not in main repo.
+echo "--> Adding solopasha/hyprland repo for packages not in main repo..."
+
 #Explicitly block weak dependencies to cut down on bloat
 sudo dnf copr enable solopasha/hyprland -y
 sudo dnf install --setopt=install_weak_deps=False -y \
@@ -61,7 +51,7 @@ sudo dnf install --setopt=install_weak_deps=False -y \
 # 2. Set default file associations
 echo "--> Setting default file associations..."
 
-MIME_FILE="$HOME/.config/mimeapps.list"
+MIME_FILE="$HOME/.local/share/applications/mimeapps.list"
 
 mkdir -p "$(dirname "$MIME_FILE")"
 
@@ -75,6 +65,9 @@ application/msword=libreoffice-writer.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
 EOF
 
+# Reinforce file associations using xdg-mime (useful for non-KDE sessions)
+xdg-mime default org.kde.kate.desktop text/plain
+xdg-mime default org.gnome.Evince.desktop application/pdf
 
 # 3. Install Microsoft Core Fonts (without RPM Fusion)
 echo "--> Installing Microsoft Core Fonts (arial, etc)..."
@@ -164,7 +157,7 @@ fi
 # 9. Pipewire Audio Service
 if systemctl --user --quiet; then
     echo "--> Enabling Pipewire Audio Service..."
-    SYSTEMD_PAGER= systemctl --user enable --now pipewire-pulse.service
+    systemctl --user --no-pager enable --now pipewire-pulse.service
 else
     echo "[!] systemctl --user not available. Skipping PipeWire PulseAudio service enable."
 fi
