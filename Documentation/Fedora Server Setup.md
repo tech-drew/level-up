@@ -18,6 +18,3 @@ Basic Installation Guide for Fedora Server
 
 7. Complete the installation.
 
-8. Install Simple Calendar for easy integration with Waybar:
-   sudo dnf install gsimplecal
-
