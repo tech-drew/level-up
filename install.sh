@@ -7,8 +7,8 @@ echo "--> Installing packages..."
 # Testing without the below repo to cut bloat
 # sudo dnf copr enable solopasha/hyprland -y
 
-echo "--> Installing packages..."
-sudo dnf install -y \
+sudo dnf clean all
+sudo dnf install --setopt=install_weak_deps=False -y \
     alacritty \
     cabextract \
     curl \
@@ -35,6 +35,19 @@ sudo dnf install -y \
     xdg-utils \
     xorg-x11-font-utils
 
+# Adding some weak dependencies from the above
+
+sudo dnf install --setopt=install_weak_deps=False -y \
+  ffmpeg-free \
+  gstreamer1-plugins-bad-free \
+  gstreamer1-plugins-good \
+  vlc-plugin-ffmpeg \
+  vlc-plugin-pipewire \
+  xdg-desktop-portal-gtk \
+  xdg-desktop-portal-hyprland \
+  pipewire-plugin-libcamera \
+  gegl04-matting-levin \
+  switcheroo-control
 
 # Install packages not in main repo.
 #Explicitly block weak dependencies to cut down on bloat
