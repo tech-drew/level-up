@@ -1,4 +1,4 @@
-# Level-Up
+﻿# Level-Up
 
 **Level-Up** is a customizable desktop environment built on **Fedora Server 42**, featuring **Hyprland** as the dynamic window manager. It comes preconfigured with a curated set of tools and aesthetic customizations, including **Waybar**, **Alacritty**, **Fastfetch**, **Dolphin**, and more.
 
@@ -16,7 +16,12 @@ Expect updates and improvements over time as I continue to explore and grow. Fee
 
 ## Install Instructions
 
-These steps will clone the repo and run the install script:
+If Git is not already installed, install it using the following command:
+
+```bash
+sudo dnf install git -y
+```
+Next, clone the repository and run the installation script:
 
 ```bash
 git clone https://github.com/Always-Growing/Level-Up.git

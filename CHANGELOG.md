@@ -1,9 +1,22 @@
 ﻿Changelog
-Last Updated: 2025-09-14 23:00 PST
+Last Updated: 2025-09-14 23:30 PST
 
 Note: All timestamps are in Pacific Standard Time (PST).
 Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 I'm still learning GitHub and programming, so this changelog is evolving as I go.
+
+------------------------------------------------------------
+
+2025-09-14 23:30 - Main Branch - Added Documentation folder to repo
+
+Added:
+- Documentation/ folder containing VPN setup, GitHub SSH access, and boot optimization guides
+
+Modified:
+- None
+
+Removed:
+- None
 
 ------------------------------------------------------------
 
