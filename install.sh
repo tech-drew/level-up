@@ -3,8 +3,9 @@
 echo "==> Starting Fedora Level-Up Hyprland installation..."
 
 # 1. Install necessary packages
-echo "--> Adding COPR repo and installing packages..."
-sudo dnf copr enable solopasha/hyprland -y
+echo "--> Installing packages..."
+# Testing without the below repo to cut bloat
+# sudo dnf copr enable solopasha/hyprland -y
 
 echo "--> Installing packages..."
 sudo dnf install -y \
@@ -37,28 +38,25 @@ sudo dnf install -y \
     xdg-utils \
     xorg-x11-font-utils
 
-mkdir -p ~/.config
-touch ~/.config/mimeapps.list
+# 2. Set default file associations
+echo "--> Setting default file associations..."
 
-if ! command -v xdg-mime >/dev/null 2>&1; then
-    echo "[!] xdg-mime not found. File associations will not be configured."
-else
-    echo "--> Setting default file associations..."
+MIME_FILE="$HOME/.config/mimeapps.list"
 
-    # Text files → Kate
-    xdg-mime default org.kde.kate.desktop text/plain
+mkdir -p "$(dirname "$MIME_FILE")"
 
-    # LibreOffice Writer
-    xdg-mime default libreoffice-writer.desktop application/vnd.oasis.opendocument.text   # .odt
-    xdg-mime default libreoffice-writer.desktop application/msword                        # .doc
-    xdg-mime default libreoffice-writer.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document  # .docx
-
-    # PDF files → Evince
-    xdg-mime default org.gnome.Evince.desktop application/pdf
-fi
+# Write default apps using proper [Default Applications] section
+cat > "$MIME_FILE" <<EOF
+[Default Applications]
+text/plain=org.kde.kate.desktop
+application/pdf=org.gnome.Evince.desktop
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
+application/msword=libreoffice-writer.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+EOF
 
 
-# 2. Install Microsoft Core Fonts (without RPM Fusion)
+# 3. Install Microsoft Core Fonts (without RPM Fusion)
 echo "--> Installing Microsoft Core Fonts (arial, etc)..."
 
 # Download and install fonts from SourceForge
@@ -144,10 +142,9 @@ if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
 fi
 
 # 9. Pipewire Audio Service
-
 if systemctl --user --quiet; then
     echo "--> Enabling Pipewire Audio Service..."
-    systemctl --user enable --now pipewire-pulse.service
+    SYSTEMD_PAGER= systemctl --user enable --now pipewire-pulse.service
 else
     echo "[!] systemctl --user not available. Skipping PipeWire PulseAudio service enable."
 fi
