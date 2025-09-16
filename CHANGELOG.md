@@ -1,9 +1,25 @@
 ﻿Changelog
-Last Updated: 2025-09-15 12:30 PST
+Last Updated: 2025-09-16 7:00 PST
 
-Note: All timestamps are in Pacific Standard Time (PST).
-Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
-I'm still learning GitHub and programming, so this changelog is evolving as I go.
+Notes: 
+- All timestamps are in Pacific Standard Time (PST).
+- Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
+- I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
+
+------------------------------------------------------------
+
+2025-09-16 7:00 - Main Branch - Added Documentation folder to repo
+
+Added:
+- None
+
+Modified:
+- Modified install.sh to add a missing backslash after the kde packages.
+
+Removed:
+- None
+
+------------------------------------------------------------
 
 2025-09-15 12:30 - Main Branch - Added Documentation folder to repo
 

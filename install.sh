@@ -19,8 +19,8 @@ sudo dnf install -y \
     gnome-calendar \
     hyprland \
     kate \
-    kde-cli-tools
-    kde-runtime
+    kde-cli-tools \
+    kde-runtime \
     libreoffice-writer \
     lxqt-policykit \
     nm-connection-editor \
