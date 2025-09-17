@@ -30,6 +30,7 @@ sudo dnf install -y \
     timeshift \
     virt-manager \
     waybar \
+    wayland-utils wl-clipboard \
     wireplumber \
     wofi \
     xdg-utils \
