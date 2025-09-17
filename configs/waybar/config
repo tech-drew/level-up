@@ -33,8 +33,8 @@
 
   "pulseaudio": {
     "format": "{volume}% {icon}",
-    "format-muted": "🔇",
-    "format-icons": ["🔈", "🔉", "🔊"],
+    "format-muted": "{volume}%🔇",
+    "format-icons": ["🔈","🔊"],
     "on-click": "pavucontrol"
   }
 }

@@ -1,5 +1,5 @@
 ﻿Changelog
-Last Updated: 2025-09-16 7:00 PST
+Last Updated: 2025-09-16 22:30 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
@@ -8,7 +8,32 @@ Notes:
 
 ------------------------------------------------------------
 
-2025-09-16 7:00 - Main Branch - Added Documentation folder to repo
+2025-09-16 22:30 - Main Branch - Added Documentation folder to repo
+
+Added:
+- None
+
+Modified:
+- Modified Level-Up/configs/waybar/config. Remove two bad icons. Changed sound percentage to remain while the device is muted.
+
+Removed:
+- None
+
+------------------------------------------------------------
+
+2025-09-16 22:00 - Main Branch - Added Documentation folder to repo
+
+Added:
+- None
+
+Modified:
+- Modified install.sh to add wayland-utils wl-clipboard.This package is needed to save clip art when you select some of the screen top copy for screenshots.
+
+Removed:
+- None
+------------------------------------------------------------
+
+2025-09-16 07:00 - Main Branch - Added Documentation folder to repo
 
 Added:
 - None
