@@ -9,12 +9,16 @@
 
 ## Work in Progress
 
+---
+
 I'm still new to Linux and learning as I go. This setup is the result of tinkering, curiosity, and a desire to build something that feels right.  
 Expect updates and improvements over time as I continue to explore and grow. Feedback and suggestions are always welcome.
 
 ---
 
 ## Install Instructions
+
+---
 
 If Git is not already installed, install it using the following command:
 
@@ -29,6 +33,29 @@ cd Level-Up
 chmod +x install.sh
 ./install.sh
 ```
+---
+
+## Compatibility Notice
+
+---
+
+**Level-Up is only supported on a clean installation of Fedora Server 42.**
+
+Do **not** install this configuration on Fedora KDE, Fedora GNOME, or any other Fedora spin that includes a preinstalled desktop environment.
+
+Installing Level-Up on top of an existing desktop environment will likely **break the system**, may result in **data loss**, and could require a **full system reimage**.
+
+### Supported:
+- Fedora Server 42 (clean install only)
+
+### Not Supported:
+- Fedora KDE Plasma
+- Fedora GNOME
+- Any system with an existing window manager or desktop environment
+
+**Note:** Hyprland does not function properly in virtual machines. This setup requires a physical GPU and should only be installed on real hardware.
+
+---
 
 ## Post-Install Resources
 
@@ -36,12 +63,11 @@ chmod +x install.sh
 
 After installing Level-Up, you may want to enhance your system with additional drivers, codecs, and tools. Below are some trusted resources to help you improve and personalize your Fedora + Hyprland setup:
 
-...
+---
 
 These resources are optional but recommended if you want to get the most out of your Fedora + Hyprland environment.
 
 ---
-
 
 After saving, log out and back in (or reboot) to activate.
 Note: On laptops without a physical numpad, enabling Numlock may cause certain letter keys (like J, K, L) to act as a numeric keypad. If this behavior is unwanted, you can remove or comment out the above line.
@@ -62,6 +88,8 @@ Note: On laptops without a physical numpad, enabling Numlock may cause certain l
 
 These resources are optional but recommended if you want to get the most out of your Fedora + Hyprland environment.
 
+---
+
 ## Security and Compatibility Disclaimer
 
 ---
@@ -78,6 +106,8 @@ Please review all scripts and configurations carefully before applying them, and
 
 It is recommended to back up your data and understand the changes before proceeding.  
 If you are unsure about any part of the setup, seek assistance or more information.
+
+---
 
 ## Acknowledgments
 
