@@ -53,7 +53,7 @@ Installing Level-Up on top of an existing desktop environment will likely **brea
 - Fedora GNOME
 - Any system with an existing window manager or desktop environment
 
-**Note:** Hyprland does not function properly in virtual machines. This setup requires a physical GPU and should only be installed on real hardware.
+**Note:** Hyprland is not optimized for use in virtual machines and may not function properly without direct access to a physical GPU. Virtual machines typically use virtualized graphics, which do not provide the same performance or compatibility required by Wayland compositors like Hyprland. While it may be possible to run Hyprland in a VM with GPU passthrough, this is an advanced configuration and is not recommended for general use. For optimal performance, this setup should only be installed on real hardware with direct access to a physical GPU.
 
 ---
 
