@@ -1,0 +1,78 @@
+window {
+    background-color: #1d1d20;  /* Dark background */
+    color: #ffffff;             /* White text for contrast */
+    font-family: 'Noto Sans Mono', monospace;     /* Monospace font */
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 0px;         /* No rounded corners */
+    border: none;
+    padding: 0;
+}
+
+#search {
+background-color: #1d1d20;  /* Matching gray background */
+color: #ffffff;             /* White text for search */
+border: none;
+padding: 6px 10px;
+border-radius: 0px;         /* Ensure no rounding on search */
+}
+
+#search:focus {
+background-color: #1d1d20;  /* Keep gray background on focus */
+}
+
+#search_icon {
+color: #ffffff;            /* White icon color */
+background-color: #1d1d20; /* Matching background */
+border-radius: 0px;         /* Ensure no rounding on icon */
+}
+
+#input {
+margin: 5px;
+border: none;
+color: #f8f8f2;             /* Light text color */
+background-color: rgba(55, 59, 65, 0.95); /* Slightly darker gray */
+border-radius: 0px;         /* Ensure no rounding on input */
+}
+
+#inner-box, #outer-box {
+margin: 5px;
+border: none;
+background-color: transparent; /* Transparent background */
+border-radius: 0px;             /* No rounding on these boxes */
+}
+
+#scroll {
+margin: 0px;
+border: none;
+border-radius: 0px;             /* Ensure no rounding on scroll */
+}
+
+#text {
+margin: 5px;
+border: none;
+color: #c5c8c6; /* Light gray text for readability */
+border-radius: 0px;             /* Ensure no rounding on text */
+}
+
+#entry {
+padding: 6px 10px;
+margin: 0;
+border: none;
+border-radius: 0px;             /* Ensure no rounding on entry */
+}
+
+#entry:focus {
+border: none; /* No border on focus */
+}
+
+#entry:selected {
+background-color: #7b5cff; /* Purple for selected item */
+color: #1d1d20;             /* Dark text color for selected */
+border-radius: 0px;         /* Remove rounded corners from selected entry */
+border: none;
+}
+
+#entry:hover {
+background-color: #5b39b8; /* Lighter purple when hovering */
+}

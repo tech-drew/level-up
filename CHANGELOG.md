@@ -1,5 +1,5 @@
 ﻿Changelog
-Last Updated: 2025-09-16 22:30 PST
+Last Updated: 2025-09-18 22:00 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
@@ -8,7 +8,33 @@ Notes:
 
 ------------------------------------------------------------
 
-2025-09-16 22:30 - Main Branch - Added Documentation folder to repo
+2025-09-18 22:00 - Added Wofi folder and style.css
+
+Added:
+- Wofi folder and wofi style.css
+
+Modified:
+- Added a keybinding for kate in Level-Up/configs/hypr/hyprland.conf 
+
+Removed:
+- None
+
+------------------------------------------------------------
+
+2025-09-17 23:00 - Main Branch - Modified README to fix technical inaccuracies and to add an explicit warning to only install this configuration on a fresh Fedora Server install. 
+
+Added:
+- None
+
+Modified:
+- Modified Level-Up/README.md to have a more clear and technically accurate reason for why you should avoid running this configuration in a virtual machine.
+- Modified Level-Up/README.md to have an explicit warning do not install this on anything other than a fresh install of Fedora Server
+
+Removed:
+- None
+------------------------------------------------------------
+
+2025-09-16 22:30 - Main Branch - Modified Level-Up/configs/waybar/conf removing bad icons.
 
 Added:
 - None
@@ -18,10 +44,9 @@ Modified:
 
 Removed:
 - None
-
 ------------------------------------------------------------
 
-2025-09-16 22:00 - Main Branch - Added Documentation folder to repo
+2025-09-16 22:00 - Main Branch - Added wayland-utils wl-clipboard to install.sh
 
 Added:
 - None
@@ -33,7 +58,7 @@ Removed:
 - None
 ------------------------------------------------------------
 
-2025-09-16 07:00 - Main Branch - Added Documentation folder to repo
+2025-09-16 07:00 - Main Branch - Modified install.sh to fix a typo
 
 Added:
 - None
@@ -46,7 +71,7 @@ Removed:
 
 ------------------------------------------------------------
 
-2025-09-15 12:30 - Main Branch - Added Documentation folder to repo
+2025-09-15 12:30 - Fixed inconsistent syntax is hyprland.conf
 
 Added:
 - None
