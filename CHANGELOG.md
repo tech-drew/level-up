@@ -1,10 +1,23 @@
 ﻿Changelog
-Last Updated: 2025-09-19 22:30 PST
+Last Updated: 2025-09-19 23:00 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
 - Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
+
+------------------------------------------------------------
+
+2025-09-19 23:00 - Updated install.sh to create user wofi directory and copy over the wofi configurations
+
+Added:
+- None
+
+Modified:
+- Level-Up/install.sh
+
+Removed:
+- None
 
 ------------------------------------------------------------
 

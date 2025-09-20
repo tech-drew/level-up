@@ -110,9 +110,10 @@ echo " Microsoft Core Fonts installed successfully."
 echo "--> Creating config directories..."
 mkdir -p "${HOME}/.config/alacritty"
 mkdir -p "${HOME}/.config/fastfetch"
-mkdir -p "${HOME}/.config/waybar"
 mkdir -p "${HOME}/.config/hypr"
 mkdir -p "${HOME}/Pictures"
+mkdir -p "${HOME}/.config/waybar"
+mkdir -p "${HOME}/.config/wofi"
 
 # 5. Copy config files
 echo "--> Copying configuration files..."
@@ -120,6 +121,7 @@ echo "--> Copying configuration files..."
 cp -r "${HOME}/Level-Up/configs/alacritty/"* "${HOME}/.config/alacritty/"
 cp -r "${HOME}/Level-Up/configs/fastfetch/"* "${HOME}/.config/fastfetch/"
 cp -r "${HOME}/Level-Up/configs/waybar/"* "${HOME}/.config/waybar/"
+cp -r "${HOME}/Level-Up/configs/wofi/"* "${HOME}/.config/wofi/"
 
 echo "--> Copying hyprland.conf..."
 
