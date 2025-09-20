@@ -1,10 +1,25 @@
 ﻿Changelog
-Last Updated: 2025-09-18 22:00 PST
+Last Updated: 2025-09-19 22:30 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
 - Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
+
+------------------------------------------------------------
+
+2025-09-19 22:30 - Updated Waybar and Power Menu.sh. Power menu now attached to waybar button.
+
+Added:
+- None
+
+Modified:
+- Level-Up/configs/waybar/config
+- Level-Up/configs/waybar/style.css
+- Level-Up/configs/waybar/scripts/power_menu.sh
+
+Removed:
+- None
 
 ------------------------------------------------------------
 

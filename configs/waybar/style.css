@@ -1,64 +1,111 @@
+/*
+ * Global Styles for Waybar
+ */
 * {
-    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Free Solid', 'Font Awesome 6 Brands', monospace;
     font-size: 20px;
-    font-weight: bold; /* Make text bold */
-    color: #ffffff;  /* White text/icons */
+    font-weight: bold;
+    color: #ffffff;
 }
 
+/* More specific styling to override the global padding on modules */
+#pulseaudio, #battery, #network {
+padding: 0px 5px; /* Reduced padding for a tighter look on these modules */
+}
+
+#pulseaudio .muted {
+font-family: "Font Awesome Free 6";
+font-size: 20px;
+font-weight: bold;
+color: #ffffff;
+}
+
+/*
+ * Waybar Window Styling
+ */
 window#waybar {
-    background-color: #7b5cff;  /* 🎨 Your new bar color */
+    background-color: #7b5cff;
     border-bottom: none;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: 0.5s;
     opacity: 1;
+    padding: 0 10px;
 }
 
+/* Hidden state for Waybar */
 window#waybar.hidden {
     opacity: 0.2;
 }
 
+/*
+ * Button Styling
+ */
 button {
     box-shadow: none;
     border: none;
     border-radius: 0;
     background-color: transparent;
     color: #ffffff;
+    padding: 6px 10px;
 }
 
 button:hover {
-    background-color: #6a4ee0;  /* Slightly darker hover */
+    background-color: #6a4ee0;
     box-shadow: none;
 }
 
-#pulseaudio:hover {
-    background-color: #6a4ee0;
-}
-
-#workspaces, #clock, #battery, #pulseaudio, #network, .custom-module {
-    padding: 0 10px;
-}
-
-/* === ACTIVE WORKSPACE STYLING === */
-
+/*
+ * Workspaces Styling
+ */
 #workspaces button {
-    padding: 0 6px;
-    background-color: transparent;
-    color: #ffffff;
-    font-weight: normal;
-    border: none;
+padding: 6px 10px;
+background-color: transparent;
+color: #ffffff;
+font-weight: normal;
+border: none;
+border-radius: 0px;
 }
 
 #workspaces button.active {
-    background-color: #663399;   /* Deep purple for contrast */
-    color: #ffffff;
-    font-weight: bold;
-    border-radius: 4px;
+background-color: #663399;
+color: #ffffff;
+font-weight: bold;
+border-radius: 0px;
 }
 
 #workspaces button:hover {
-    background-color: #6a4ee0;
-    color: #ffffff;
+background-color: #6a4ee0;
+color: #ffffff;
 }
 
+/*
+ * Tray Styling
+ */
+#tray {
+background-color: #1d1d20;
+color: #ffffff;
+padding: 4px 6px;
+border: none;
+border-radius: 0px;
+}
 
+#tray .tray-icon {
+background-color: transparent;
+padding: 2px;
+margin: 0 4px;
+border-radius: 0px;
+}
+
+#tray .tray-icon:hover {
+background-color: #6a4ee0;
+}
+
+/*
+ * Custom Module Styling (if any)
+ */
+.custom-module {
+    padding: 0 10px;
+    background-color: transparent;
+    color: #ffffff;
+}

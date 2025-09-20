@@ -3,7 +3,7 @@
   "position": "top",
   "modules-left": ["custom/power_button", "clock"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "battery", "network"],
+  "modules-right": ["tray", "pulseaudio", "battery", "network"],
 
   "clock": {
     "format": "{:%a %d %b %H:%M}",
@@ -13,7 +13,7 @@
   "custom/power_button": {
     "format": " ⏻ ",
     "tooltip": false,
-    "on-click": "$HOME/.config/waybar/scripts/power_menu.sh"
+    "on-click": "$HOME/.config/waybar/scripts/power_menu.sh %x %y"
   },
 
   "battery": {
@@ -25,9 +25,9 @@
   },
 
   "network": {
-    "format-wifi": " {essid} ({signalStrength}%)",
-    "format-ethernet": " {ifname}",
-    "format-disconnected": "⚠ Disconnected",
+    "format-wifi": "{essid}  ({signalStrength}%)",
+    "format-ethernet": "{ifname}  ",
+    "format-disconnected": "Disconnected ⚠",
     "on-click": "nm-connection-editor"
   },
 

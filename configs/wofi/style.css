@@ -1,111 +1,78 @@
-/*
- * Global Styles for Waybar
- */
-* {
-    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Free Solid', 'Font Awesome 6 Brands', monospace;
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-/* More specific styling to override the global padding on modules */
-#pulseaudio, #battery, #network {
-padding: 0px 5px; /* Reduced padding for a tighter look on these modules */
-}
-
-#pulseaudio .muted {
-font-family: "Font Awesome Free 6";
-font-size: 20px;
-font-weight: bold;
-color: #ffffff;
-}
-
-/*
- * Waybar Window Styling
- */
-window#waybar {
-    background-color: #7b5cff;
-    border-bottom: none;
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-    opacity: 1;
-    padding: 0 10px;
-}
-
-/* Hidden state for Waybar */
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-/*
- * Button Styling
- */
-button {
-    box-shadow: none;
+window {
+    background-color: #1d1d20;  /* Dark background */
+    color: #ffffff;             /* White text for contrast */
+    font-family: 'Noto Sans Mono', monospace;     /* Monospace font */
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 0px;         /* No rounded corners */
     border: none;
-    border-radius: 0;
-    background-color: transparent;
-    color: #ffffff;
-    padding: 6px 10px;
+    padding: 0;
 }
 
-button:hover {
-    background-color: #6a4ee0;
-    box-shadow: none;
-}
-
-/*
- * Workspaces Styling
- */
-#workspaces button {
+#search {
+background-color: #1d1d20;  /* Matching gray background */
+color: #ffffff;             /* White text for search */
+border: none;
 padding: 6px 10px;
-background-color: transparent;
-color: #ffffff;
-font-weight: normal;
+border-radius: 0px;         /* Ensure no rounding on search */
+}
+
+#search:focus {
+background-color: #1d1d20;  /* Keep gray background on focus */
+}
+
+#search_icon {
+color: #ffffff;            /* White icon color */
+background-color: #1d1d20; /* Matching background */
+border-radius: 0px;         /* Ensure no rounding on icon */
+}
+
+#input {
+margin: 5px;
 border: none;
-border-radius: 0px;
+color: #f8f8f2;             /* Light text color */
+background-color: rgba(55, 59, 65, 0.95); /* Slightly darker gray */
+border-radius: 0px;         /* Ensure no rounding on input */
 }
 
-#workspaces button.active {
-background-color: #663399;
-color: #ffffff;
-font-weight: bold;
-border-radius: 0px;
-}
-
-#workspaces button:hover {
-background-color: #6a4ee0;
-color: #ffffff;
-}
-
-/*
- * Tray Styling
- */
-#tray {
-background-color: #1d1d20;
-color: #ffffff;
-padding: 4px 6px;
+#inner-box, #outer-box {
+margin: 5px;
 border: none;
-border-radius: 0px;
+background-color: transparent; /* Transparent background */
+border-radius: 0px;             /* No rounding on these boxes */
 }
 
-#tray .tray-icon {
-background-color: transparent;
-padding: 2px;
-margin: 0 4px;
-border-radius: 0px;
+#scroll {
+margin: 0px;
+border: none;
+border-radius: 0px;             /* Ensure no rounding on scroll */
 }
 
-#tray .tray-icon:hover {
-background-color: #6a4ee0;
+#text {
+margin: 5px;
+border: none;
+color: #c5c8c6; /* Light gray text for readability */
+border-radius: 0px;             /* Ensure no rounding on text */
 }
 
-/*
- * Custom Module Styling (if any)
- */
-.custom-module {
-    padding: 0 10px;
-    background-color: transparent;
-    color: #ffffff;
+#entry {
+padding: 6px 10px;
+margin: 0;
+border: none;
+border-radius: 0px;             /* Ensure no rounding on entry */
+}
+
+#entry:focus {
+border: none; /* No border on focus */
+}
+
+#entry:selected {
+background-color: #7b5cff; /* Purple for selected item */
+color: #1d1d20;             /* Dark text color for selected */
+border-radius: 0px;         /* Remove rounded corners from selected entry */
+border: none;
+}
+
+#entry:hover {
+background-color: #5b39b8; /* Lighter purple when hovering */
 }
