@@ -2,7 +2,7 @@
 
 # Power menu for Waybar on Hyprland using wofi
 
-chosen=$(printf "Lock\nLogout\nReboot\nShutdown" | wofi --dmenu --width 250 --height 300 --prompt "Power Menu")
+chosen=$( | wofi --dmenu --width 250 --height 300 --prompt "Power Menu")
 
 case "$chosen" in
 
