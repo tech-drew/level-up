@@ -109,6 +109,22 @@ If you are unsure about any part of the setup, seek assistance or more informati
 
 ---
 
+## Licensing
+
+---
+
+**Level-Up** is licensed under the **Level-Up License**, which grants you the freedom to use, modify, and distribute the project. However, certain conditions must be met for redistribution and modification. Please refer to the full **Level-Up License** in the [Level-Up License.txt](Level-Up%20License.txt) file for the complete terms.
+
+This project also incorporates third-party software with their respective licenses. Please refer to the [LICENSES/](LICENSES/) directory for the licenses of third-party software used in this project.
+
+For more details on the Level-Up License, please see the full [Level-Up License.txt](Level-Up%20License.txt) file.
+
+---
+
+If you believe any licensing is missed or not properly acknowledged in this project, please reach out to me directly so I can update the licensing to remedy any issues. Your help in ensuring proper licensing is greatly appreciated.
+
+---
+
 ## Acknowledgments
 
 ---

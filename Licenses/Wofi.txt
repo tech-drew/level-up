@@ -1,0 +1,2 @@
+Wofi is licensed under the GNU General Public License v3.0.
+https://hg.sr.ht/~scoopta/wofi/browse/LICENSE

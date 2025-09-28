@@ -1,0 +1,4 @@
+Hyprland - Copyright (c) 2021-2025 Vaxry
+
+Licensed under the GNU General Public License v3.0.
+https://github.com/hyprwm/Hyprland/blob/main/LICENSE

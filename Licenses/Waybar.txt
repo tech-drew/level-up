@@ -1,0 +1,2 @@
+Waybar is licensed under the MIT License.
+https://github.com/Alexays/Waybar/blob/master/LICENSE

@@ -1,10 +1,25 @@
 ﻿Changelog
-Last Updated: 2025-09-19 23:00 PST
+Last Updated: 2025-09-28 14:30 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
 - Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
+
+
+------------------------------------------------------------
+
+2025-09-28 14:30 - Added a Licenses folder and created Licensing information for this project. The licensing information in this project is best effort. If anything is missing or incorrect please message me and I will work to fix the errors.
+
+Added:
+- Level-Up/Licenses
+- Level-Up/Level-Up License.txt
+
+Modified:
+- Level-Up/README.md
+
+Removed:
+- None
 
 ------------------------------------------------------------
 
