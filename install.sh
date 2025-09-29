@@ -27,23 +27,19 @@ sudo dnf install -y \
     pipewire \
     pipewire-pulse \
     pipewire-alsa \
-    timeshift \
     virt-manager \
-    waybar \
     wayland-utils wl-clipboard \
     wireplumber \
-    wofi \
     xdg-utils \
-    xorg-x11-font-utils
+    xorg-x11-font-utils \
+    timeshift  # Added Timeshift here
 
-sudo dnf remove -y \
-    kitty \
-    nwg-panel
+# Install Waybar/Wofi (important for Wayland setups)
+echo "--> Installing Waybar and Wofi for Wayland..."
+sudo dnf install -y waybar wofi
 
 # Install packages not in main repo.
 echo "--> Adding solopasha/hyprland repo for packages not in main repo..."
-
-#Explicitly block weak dependencies to cut down on bloat
 sudo dnf copr enable solopasha/hyprland -y
 sudo dnf install --setopt=install_weak_deps=False -y \
   fastfetch \
@@ -51,62 +47,21 @@ sudo dnf install --setopt=install_weak_deps=False -y \
   hyprland-qtutils \
   swww
 
-
-# 2. Set default file associations
-echo "--> Setting default file associations..."
-
-MIME_FILE="$HOME/.local/share/applications/mimeapps.list"
-
-mkdir -p "$(dirname "$MIME_FILE")"
-
-# Write default apps using proper [Default Applications] section
-cat > "$MIME_FILE" <<EOF
-[Default Applications]
-text/plain=org.kde.kate.desktop
-application/pdf=org.gnome.Evince.desktop
-application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
-application/msword=libreoffice-writer.desktop
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
-application/json=org.kde.kate.desktop
-EOF
-
-# Reinforce file associations using xdg-mime (useful for non-KDE sessions)
-xdg-mime default org.kde.kate.desktop text/plain
-xdg-mime default org.gnome.Evince.desktop application/pdf
-xdg-mime default org.kde.kate.desktop application/json
-
-update-desktop-database ~/.local/share/applications
-
-# 3. Install Microsoft Core Fonts (without RPM Fusion)
-echo "--> Installing Microsoft Core Fonts (arial, etc)..."
-
-# Download and install fonts from SourceForge
+# 2. Microsoft Fonts installation
+echo "--> Installing Microsoft Core Fonts (arial, etc.)..."
 FONT_TEMP_DIR="/tmp/msfonts"
 mkdir -p "$FONT_TEMP_DIR"
 cd "$FONT_TEMP_DIR" || exit
-
-echo "--> Downloading Arial32.exe..."
 curl -LO "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/arial32.exe"
-
-echo "--> Extracting and installing fonts..."
 cabextract arial32.exe
-
-# Create fonts directory if needed
 mkdir -p ~/.local/share/fonts
-
-# Move extracted TTF fonts to user's font directory
 mv *.ttf ~/.local/share/fonts/
-
-# Refresh font cache
 fc-cache -fv
-
-# Clean up
 cd ~
 rm -rf "$FONT_TEMP_DIR"
-
 echo " Microsoft Core Fonts installed successfully."
 
-# 4. Create config directories
+# 3. Create config directories
 echo "--> Creating config directories..."
 mkdir -p "${HOME}/.config/alacritty"
 mkdir -p "${HOME}/.config/fastfetch"
@@ -114,20 +69,20 @@ mkdir -p "${HOME}/.config/hypr"
 mkdir -p "${HOME}/Pictures"
 mkdir -p "${HOME}/.config/waybar"
 mkdir -p "${HOME}/.config/wofi"
+mkdir -p "${HOME}/.config/timeshift"  # Added Timeshift config directory
 
-# 5. Copy config files
+# 4. Copy config files
 echo "--> Copying configuration files..."
-
 cp -r "${HOME}/Level-Up/configs/alacritty/"* "${HOME}/.config/alacritty/"
 cp -r "${HOME}/Level-Up/configs/fastfetch/"* "${HOME}/.config/fastfetch/"
 cp -r "${HOME}/Level-Up/configs/waybar/"* "${HOME}/.config/waybar/"
 cp -r "${HOME}/Level-Up/configs/wofi/"* "${HOME}/.config/wofi/"
+cp -r "${HOME}/Level-Up/configs/timeshift/"* "${HOME}/.config/timeshift/"  # Copy Timeshift configs
 
-echo "--> Copying hyprland.conf..."
-
+# 5. Copy hyprland configuration files
+echo "--> Copying hyprland and hyprlock config..."
 HYPRLAND_CONF_SOURCE="${HOME}/Level-Up/configs/hypr/hyprland.conf"
 HYPRLAND_CONF_DEST="${HOME}/.config/hypr/hyprland.conf"
-
 if [ -f "$HYPRLAND_CONF_SOURCE" ]; then
     cp "$HYPRLAND_CONF_SOURCE" "$HYPRLAND_CONF_DEST"
     echo "    ✓ hyprland.conf copied to ~/.config/hypr/"
@@ -135,11 +90,8 @@ else
     echo "    [!] hyprland.conf not found at $HYPRLAND_CONF_SOURCE. Skipping."
 fi
 
-echo "--> Copying hyprlock.conf..."
-
 HYPRLOCK_CONF_SOURCE="${HOME}/Level-Up/configs/hypr/hyprlock.conf"
 HYPRLOCK_CONF_DEST="${HOME}/.config/hypr/hyprlock.conf"
-
 if [ -f "$HYPRLOCK_CONF_SOURCE" ]; then
     cp "$HYPRLOCK_CONF_SOURCE" "$HYPRLOCK_CONF_DEST"
     echo "    ✓ hyprlock.conf copied to ~/.config/hypr/"
@@ -155,16 +107,20 @@ cp "${HOME}/Level-Up/wallpapers/end_4HyprlandWallpaper.png" "${HOME}/Pictures/"
 echo "--> Generating Fastfetch config..."
 fastfetch --gen-config
 
-# 8. Bash prompt customization
-echo "--> Updating .bashrc prompt..."
-if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
-    echo -e "\n# Custom green prompt" >> "${HOME}/.bashrc"
-    echo 'GREEN="\[\e[38;5;38m\]"' >> "${HOME}/.bashrc"
-    echo 'RESET="\[\e[0m\]"' >> "${HOME}/.bashrc"
-    echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "' >> "${HOME}/.bashrc"
+# 8. Optional: Bash prompt customization
+echo "Do you want to customize your terminal prompt? (y/n)"
+read change_prompt
+if [ "$change_prompt" == "y" ]; then
+    echo "--> Updating .bashrc with a custom green prompt..."
+    if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
+        echo -e "\n# Custom green prompt" >> "${HOME}/.bashrc"
+        echo 'GREEN="\[\e[38;5;38m\]"' >> "${HOME}/.bashrc"
+        echo 'RESET="\[\e[0m\]"' >> "${HOME}/.bashrc"
+        echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "' >> "${HOME}/.bashrc"
+    fi
 fi
 
-# 9. Pipewire Audio Service
+# 9. Pipewire Audio Service (skip if already present)
 if systemctl --user --quiet; then
     echo "--> Enabling Pipewire Audio Service..."
     SYSTEMD_PAGER=cat systemctl --user --no-pager enable --now pipewire-pulse.service
