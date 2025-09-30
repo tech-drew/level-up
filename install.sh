@@ -120,6 +120,22 @@ if [ "$change_prompt" == "y" ]; then
     fi
 fi
 
-#  "==> Installation complete!"
+# 9. Creating file for Display manager to allow logging into hyprland.
+
+echo "Creating Hyprland session file..."
+
+sudo mkdir -p /usr/share/wayland-sessions
+
+sudo tee /usr/share/wayland-sessions/hyprland.desktop > /dev/null <<EOF
+[Desktop Entry]
+Name=Hyprland
+Comment=An intelligent dynamic tiling Wayland compositor
+Exec=Hyprland
+Type=Application
+DesktopNames=Hyprland
+EOF
+
+echo "Hyprland session file created."
+complete!"
 echo "==> Welcome to Level-Up!"
 echo "==> To get started, type 'Hyprland' in the terminal and press Enter."
