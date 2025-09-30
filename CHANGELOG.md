@@ -1,11 +1,23 @@
-﻿Changelog
-Last Updated: 2025-09-28 14:30 PST
+﻿/Changelog
+Last Updated: 2025-09-29 22:30 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
 - Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
 
+------------------------------------------------------------
+
+2025-09-29 22:30 - Added a keybinding to enable floating on some windows
+
+Added:
+- Keybinding to enable floating on windows
+
+Modified:
+- Level-Up/configs/hypr/hyprland.conf
+
+Removed:
+- None
 
 ------------------------------------------------------------
 
