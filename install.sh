@@ -1,132 +1,136 @@
 ﻿#!/bin/bash
 
+# Exit on error
+set -e
+
+# Get script's directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "==> Starting Fedora Level-Up Hyprland installation..."
 
-# 1. Install necessary packages
-echo "--> Installing packages..."
+# 0. Check for sudo
+if ! command -v sudo &>/dev/null; then
+  echo "[!] sudo is not installed. Please install sudo first."
+  exit 1
+fi
+
+# 1. Install Hyprland-related and other needed packages (no KDE defaults)
+echo "--> Installing required packages..."
 
 sudo dnf clean all
 sudo dnf install -y \
     alacritty \
     cabextract \
     curl \
-    dolphin \
-    evince \
-    firefox \
-    fontconfig \
+    fastfetch \
     galculator \
     gimp \
-    gnome-calendar \
     hyprland \
-    kate \
-    kde-cli-tools \
-    kde-runtime \
+    hyprlock \
+    hyprland-qtutils \
+    korganizer \
     libreoffice-writer \
-    lxqt-policykit \
-    nm-connection-editor \
-    pipewire \
-    pipewire-pulse \
-    pipewire-alsa \
-    virt-manager \
-    wayland-utils wl-clipboard \
-    wireplumber \
-    xdg-utils \
-    xorg-x11-font-utils \
-    timeshift  # Added Timeshift here
+    swww \
+    waybar \
+    wofi \
+    wl-clipboard \
+    timeshift
 
-# Install Waybar/Wofi (important for Wayland setups)
-echo "--> Installing Waybar and Wofi for Wayland..."
-sudo dnf install -y waybar wofi
-
-# Install packages not in main repo.
-echo "--> Adding solopasha/hyprland repo for packages not in main repo..."
+# 2. Add Hyprland Copr repo (to ensure up-to-date packages)
+echo "--> Enabling Hyprland Copr repo..."
 sudo dnf copr enable solopasha/hyprland -y
-sudo dnf install --setopt=install_weak_deps=False -y \
-  fastfetch \
-  hyprlock \
-  hyprland-qtutils \
-  swww
 
-# 2. Microsoft Fonts installation
-echo "--> Installing Microsoft Core Fonts (arial, etc.)..."
+# 3. Install Microsoft Fonts
+echo "--> Installing Microsoft Core Fonts..."
 FONT_TEMP_DIR="/tmp/msfonts"
+FONT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fonts"
 mkdir -p "$FONT_TEMP_DIR"
-cd "$FONT_TEMP_DIR" || exit
+cd "$FONT_TEMP_DIR"
 curl -LO "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/arial32.exe"
 cabextract arial32.exe
-mkdir -p ~/.local/share/fonts
-mv *.ttf ~/.local/share/fonts/
+mkdir -p "$FONT_DIR"
+mv *.ttf "$FONT_DIR"
 fc-cache -fv
 cd ~
 rm -rf "$FONT_TEMP_DIR"
-echo " Microsoft Core Fonts installed successfully."
+echo "    ✓ Microsoft Core Fonts installed."
 
-# 3. Create config directories
+# 4. Create config directories
 echo "--> Creating config directories..."
 mkdir -p "${HOME}/.config/alacritty"
 mkdir -p "${HOME}/.config/fastfetch"
 mkdir -p "${HOME}/.config/hypr"
-mkdir -p "${HOME}/Pictures"
 mkdir -p "${HOME}/.config/waybar"
 mkdir -p "${HOME}/.config/wofi"
-mkdir -p "${HOME}/.config/timeshift"  # Added Timeshift config directory
+mkdir -p "${HOME}/.config/timeshift"
+mkdir -p "${HOME}/Pictures"
 
-# 4. Copy config files
+# 5. Copy configs
 echo "--> Copying configuration files..."
-cp -r "${HOME}/Level-Up/configs/alacritty/"* "${HOME}/.config/alacritty/"
-cp -r "${HOME}/Level-Up/configs/fastfetch/"* "${HOME}/.config/fastfetch/"
-cp -r "${HOME}/Level-Up/configs/waybar/"* "${HOME}/.config/waybar/"
-cp -r "${HOME}/Level-Up/configs/wofi/"* "${HOME}/.config/wofi/"
-cp -r "${HOME}/Level-Up/configs/timeshift/"* "${HOME}/.config/timeshift/"  # Copy Timeshift configs
+cp -r "${SCRIPT_DIR}/configs/alacritty/"* "${HOME}/.config/alacritty/" 2>/dev/null || true
+cp -r "${SCRIPT_DIR}/configs/fastfetch/"* "${HOME}/.config/fastfetch/" 2>/dev/null || true
+cp -r "${SCRIPT_DIR}/configs/waybar/"* "${HOME}/.config/waybar/" 2>/dev/null || true
+cp -r "${SCRIPT_DIR}/configs/wofi/"* "${HOME}/.config/wofi/" 2>/dev/null || true
+cp -r "${SCRIPT_DIR}/configs/timeshift/"* "${HOME}/.config/timeshift/" 2>/dev/null || true
 
-# 5. Copy hyprland configuration files
-echo "--> Copying hyprland and hyprlock config..."
-HYPRLAND_CONF_SOURCE="${HOME}/Level-Up/configs/hypr/hyprland.conf"
-HYPRLAND_CONF_DEST="${HOME}/.config/hypr/hyprland.conf"
+# 6. Copy Hyprland/Hyprlock configs
+echo "--> Copying Hyprland and Hyprlock configs..."
+HYPRLAND_CONF_SOURCE="${SCRIPT_DIR}/configs/hypr/hyprland.conf"
+HYPRLOCK_CONF_SOURCE="${SCRIPT_DIR}/configs/hypr/hyprlock.conf"
+
 if [ -f "$HYPRLAND_CONF_SOURCE" ]; then
-    cp "$HYPRLAND_CONF_SOURCE" "$HYPRLAND_CONF_DEST"
-    echo "    ✓ hyprland.conf copied to ~/.config/hypr/"
+    cp "$HYPRLAND_CONF_SOURCE" "${HOME}/.config/hypr/hyprland.conf"
+    echo "    ✓ hyprland.conf copied."
 else
-    echo "    [!] hyprland.conf not found at $HYPRLAND_CONF_SOURCE. Skipping."
+    echo "    [!] hyprland.conf not found. Skipping."
 fi
 
-HYPRLOCK_CONF_SOURCE="${HOME}/Level-Up/configs/hypr/hyprlock.conf"
-HYPRLOCK_CONF_DEST="${HOME}/.config/hypr/hyprlock.conf"
 if [ -f "$HYPRLOCK_CONF_SOURCE" ]; then
-    cp "$HYPRLOCK_CONF_SOURCE" "$HYPRLOCK_CONF_DEST"
-    echo "    ✓ hyprlock.conf copied to ~/.config/hypr/"
+    cp "$HYPRLOCK_CONF_SOURCE" "${HOME}/.config/hypr/hyprlock.conf"
+    echo "    ✓ hyprlock.conf copied."
 else
-    echo "    [!] hyprlock.conf not found at $HYPRLOCK_CONF_SOURCE. Skipping."
+    echo "    [!] hyprlock.conf not found. Skipping."
 fi
 
-# 6. Set wallpaper
+# 7. Set wallpaper
 echo "--> Copying default wallpaper..."
-cp "${HOME}/Level-Up/wallpapers/end_4HyprlandWallpaper.png" "${HOME}/Pictures/"
+WALLPAPER_SOURCE="${SCRIPT_DIR}/wallpapers/end_4HyprlandWallpaper.png"
+if [ -f "$WALLPAPER_SOURCE" ]; then
+    cp "$WALLPAPER_SOURCE" "${HOME}/Pictures/"
+    echo "    ✓ Wallpaper copied."
+else
+    echo "    [!] Wallpaper not found. Skipping."
+fi
 
-# 7. Generate Fastfetch default config
+# 8. Generate Fastfetch config
 echo "--> Generating Fastfetch config..."
-fastfetch --gen-config
+fastfetch --gen-config || echo "    [!] Fastfetch not found or failed to generate config."
 
-# 8. Optional: Bash prompt customization
+# 9. Optional terminal prompt customization
 echo "Do you want to customize your terminal prompt? (y/n)"
-read change_prompt
+read -r change_prompt
 if [ "$change_prompt" == "y" ]; then
     echo "--> Updating .bashrc with a custom green prompt..."
     if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
-        echo -e "\n# Custom green prompt" >> "${HOME}/.bashrc"
-        echo 'GREEN="\[\e[38;5;38m\]"' >> "${HOME}/.bashrc"
-        echo 'RESET="\[\e[0m\]"' >> "${HOME}/.bashrc"
-        echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "' >> "${HOME}/.bashrc"
+        {
+            echo -e "\n# Custom green prompt"
+            echo 'GREEN="\[\e[38;5;38m\]"'
+            echo 'RESET="\[\e[0m\]"'
+            echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "'
+        } >> "${HOME}/.bashrc"
+        echo "    ✓ Custom prompt added."
+    else
+        echo "    ✓ Custom prompt already exists."
     fi
 fi
 
-# 9. Creating file for Display manager to allow logging into hyprland.
-
-echo "Creating Hyprland session file..."
-
-sudo mkdir -p /usr/share/wayland-sessions
-
-sudo tee /usr/share/wayland-sessions/hyprland.desktop > /dev/null <<EOF
+# 10. Create Hyprland session file (only if it doesn't exist)
+SESSION_FILE="/usr/share/wayland-sessions/hyprland.desktop"
+echo "--> Ensuring Hyprland session file exists..."
+if [ ! -f "$SESSION_FILE" ]; then
+    echo "    Creating Hyprland session file..."
+    sudo mkdir -p /usr/share/wayland-sessions
+    sudo tee "$SESSION_FILE" > /dev/null <<EOF
 [Desktop Entry]
 Name=Hyprland
 Comment=An intelligent dynamic tiling Wayland compositor
@@ -134,8 +138,12 @@ Exec=Hyprland
 Type=Application
 DesktopNames=Hyprland
 EOF
+    echo "    ✓ Hyprland session file created."
+else
+    echo "    ✓ Session file already exists. Skipping."
+fi
 
-echo "Hyprland session file created."
-complete!"
+# Done
+echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
-echo "==> To get started, type 'Hyprland' in the terminal and press Enter."
+echo "==> You can now log into Hyprland from your display manager, or type 'Hyprland' in a TTY."

@@ -7,7 +7,7 @@
 
   "clock": {
     "format": "{:%a %d %b %H:%M}",
-    "on-click": "gnome-calendar"
+    "on-click": "korganizer"
   },
 
   "custom/power_button": {
