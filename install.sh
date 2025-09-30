@@ -120,15 +120,6 @@ if [ "$change_prompt" == "y" ]; then
     fi
 fi
 
-# 9. Pipewire Audio Service (skip if already present)
-if systemctl --user --quiet; then
-    echo "--> Enabling Pipewire Audio Service..."
-    SYSTEMD_PAGER=cat systemctl --user --no-pager enable --now pipewire-pulse.service
-else
-    echo "[!] systemctl --user not available. Skipping PipeWire PulseAudio service enable."
-fi
-
-# 10. Done!
-echo "==> Installation complete!"
+#  "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
 echo "==> To get started, type 'Hyprland' in the terminal and press Enter."

@@ -1,11 +1,23 @@
 ﻿Changelog
-Last Updated: 2025-09-28 14:30 PST
+Last Updated: 2025-09-29 21:00 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
 - Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
 
+------------------------------------------------------------
+
+2025-09-29 21:00 - Removed Pipewire config from install.sh to test if it was breaking things.
+
+Added:
+- None
+
+Modified:
+- Level-Up/install.sh
+
+Removed:
+- Pipewire configuration in install.sh. I believe it breaks installing this config ontop of Fedora KDE Plasma.
 
 ------------------------------------------------------------
 
