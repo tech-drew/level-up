@@ -1,18 +1,9 @@
 ﻿#!/bin/bash
 
-# Exit on error
-set -e
-
 # Get script's directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "==> Starting Fedora Level-Up Hyprland installation..."
-
-# 0. Check for sudo
-if ! command -v sudo &>/dev/null; then
-  echo "[!] sudo is not installed. Please install sudo first."
-  exit 1
-fi
 
 # 1. Install Hyprland-related and other needed packages (no KDE defaults)
 echo "--> Installing required packages..."
@@ -21,41 +12,32 @@ sudo dnf clean all
 sudo dnf install -y \
     alacritty \
     cabextract \
-    curl \
     fastfetch \
-    galculator \
     gimp \
     hyprland \
     hyprlock \
     hyprland-qtutils \
-    korganizer \
-    libreoffice-writer \
     swww \
     waybar \
     wofi \
     wl-clipboard \
     timeshift
 
-# 2. Add Hyprland Copr repo (to ensure up-to-date packages)
-echo "--> Enabling Hyprland Copr repo..."
+# 2. Enable COPR and install extra packages
+echo "--> Enabling solopasha/hyprland COPR repo..."
 sudo dnf copr enable solopasha/hyprland -y
 
-# 3. Install Microsoft Fonts
-echo "--> Installing Microsoft Core Fonts..."
-FONT_TEMP_DIR="/tmp/msfonts"
-FONT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fonts"
-mkdir -p "$FONT_TEMP_DIR"
-cd "$FONT_TEMP_DIR"
-curl -LO "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/arial32.exe"
-cabextract arial32.exe
-mkdir -p "$FONT_DIR"
-mv *.ttf "$FONT_DIR"
-fc-cache -fv
-cd ~
-rm -rf "$FONT_TEMP_DIR"
-echo "    ✓ Microsoft Core Fonts installed."
+echo "--> Installing COPR packages (if available)..."
+for pkg in fastfetch hyprlock hyprland-qtutils swww; do
+    if dnf list --available "$pkg" &> /dev/null; then
+        echo "    Installing $pkg..."
+        sudo dnf install -y "$pkg"
+    else
+        echo "    Package '$pkg' not found in repos. Skipping."
+    fi
+done
 
-# 4. Create config directories
+# 3. Create config directories
 echo "--> Creating config directories..."
 mkdir -p "${HOME}/.config/alacritty"
 mkdir -p "${HOME}/.config/fastfetch"
@@ -65,7 +47,7 @@ mkdir -p "${HOME}/.config/wofi"
 mkdir -p "${HOME}/.config/timeshift"
 mkdir -p "${HOME}/Pictures"
 
-# 5. Copy configs
+# 4. Copy config files
 echo "--> Copying configuration files..."
 cp -r "${SCRIPT_DIR}/configs/alacritty/"* "${HOME}/.config/alacritty/" 2>/dev/null || true
 cp -r "${SCRIPT_DIR}/configs/fastfetch/"* "${HOME}/.config/fastfetch/" 2>/dev/null || true
@@ -73,7 +55,7 @@ cp -r "${SCRIPT_DIR}/configs/waybar/"* "${HOME}/.config/waybar/" 2>/dev/null || 
 cp -r "${SCRIPT_DIR}/configs/wofi/"* "${HOME}/.config/wofi/" 2>/dev/null || true
 cp -r "${SCRIPT_DIR}/configs/timeshift/"* "${HOME}/.config/timeshift/" 2>/dev/null || true
 
-# 6. Copy Hyprland/Hyprlock configs
+# 5. Copy Hyprland/Hyprlock configs
 echo "--> Copying Hyprland and Hyprlock configs..."
 HYPRLAND_CONF_SOURCE="${SCRIPT_DIR}/configs/hypr/hyprland.conf"
 HYPRLOCK_CONF_SOURCE="${SCRIPT_DIR}/configs/hypr/hyprlock.conf"
@@ -92,7 +74,7 @@ else
     echo "    [!] hyprlock.conf not found. Skipping."
 fi
 
-# 7. Set wallpaper
+# 6. Copy wallpaper
 echo "--> Copying default wallpaper..."
 WALLPAPER_SOURCE="${SCRIPT_DIR}/wallpapers/end_4HyprlandWallpaper.png"
 if [ -f "$WALLPAPER_SOURCE" ]; then
@@ -102,14 +84,13 @@ else
     echo "    [!] Wallpaper not found. Skipping."
 fi
 
-# 8. Generate Fastfetch config
+# 7. Generate Fastfetch config
 echo "--> Generating Fastfetch config..."
 fastfetch --gen-config || echo "    [!] Fastfetch not found or failed to generate config."
 
-# 9. Optional terminal prompt customization
-echo "Do you want to customize your terminal prompt? (y/n)"
-read -r change_prompt
-if [ "$change_prompt" == "y" ]; then
+# 8. Optional terminal prompt customization
+read -p "Do you want to customize your terminal prompt with a green username? (y/N): " -r
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "--> Updating .bashrc with a custom green prompt..."
     if ! grep -q "Custom green prompt" "${HOME}/.bashrc"; then
         {
@@ -122,9 +103,11 @@ if [ "$change_prompt" == "y" ]; then
     else
         echo "    ✓ Custom prompt already exists."
     fi
+else
+    echo "    Skipping terminal prompt customization."
 fi
 
-# 10. Create Hyprland session file (only if it doesn't exist)
+# 9. Create Hyprland session file (if it doesn't exist)
 SESSION_FILE="/usr/share/wayland-sessions/hyprland.desktop"
 echo "--> Ensuring Hyprland session file exists..."
 if [ ! -f "$SESSION_FILE" ]; then

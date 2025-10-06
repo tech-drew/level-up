@@ -1,14 +1,27 @@
-﻿Changelog
-Last Updated: 2025-09-29 21:00 PST
+Changelog
+Last Updated: 2025-10-05 21:30 PST
 
 Notes: 
 - All timestamps are in Pacific Standard Time (PST).
-- Note: Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
+- Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
 
 ------------------------------------------------------------
 
-2025-09-29 21:00 - Removed Pipewire config from install.sh to test if it was breaking things.
+2025-10-05 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma
+
+Added:
+- None
+
+Modified:
+- Level-Up/install.sh
+
+Removed:
+- None
+
+------------------------------------------------------------
+
+2025-09-29 22:30 - Added a keybinding to enable floating on some windows
 
 Added:
 - None
@@ -87,6 +100,7 @@ Modified:
 
 Removed:
 - None
+
 ------------------------------------------------------------
 
 2025-09-16 22:30 - Main Branch - Modified Level-Up/configs/waybar/conf removing bad icons.
@@ -95,10 +109,11 @@ Added:
 - None
 
 Modified:
-- Modified Level-Up/configs/waybar/config. Remove two bad icons. Changed sound percentage to remain while the device is muted.
+- Modified Level-Up/configs/waybar/config. Removed two bad icons. Changed sound percentage to remain while the device is muted.
 
 Removed:
 - None
+
 ------------------------------------------------------------
 
 2025-09-16 22:00 - Main Branch - Added wayland-utils wl-clipboard to install.sh
@@ -107,10 +122,11 @@ Added:
 - None
 
 Modified:
-- Modified install.sh to add wayland-utils wl-clipboard.This package is needed to save clip art when you select some of the screen top copy for screenshots.
+- Modified install.sh to add wayland-utils wl-clipboard. This package is needed to save clip art when you select some of the screen top copy for screenshots.
 
 Removed:
 - None
+
 ------------------------------------------------------------
 
 2025-09-16 07:00 - Main Branch - Modified install.sh to fix a typo
@@ -126,7 +142,7 @@ Removed:
 
 ------------------------------------------------------------
 
-2025-09-15 12:30 - Fixed inconsistent syntax is hyprland.conf
+2025-09-15 12:30 - Fixed inconsistent syntax in hyprland.conf
 
 Added:
 - None
@@ -165,10 +181,9 @@ Modified:
 Removed:
 - None
 
-
 ------------------------------------------------------------
 
-2025-09-14 21:00 - Test Branch - Worked on broken fonts install.sh. 
+2025-09-14 21:00 - Test Branch - Worked on broken fonts install.sh.
 
 Added:
 - None
@@ -183,18 +198,21 @@ Removed:
 ------------------------------------------------------------
 
 2025-09-14 15:00 - Test Branch - Enhanced install.sh with Pipewire audio setup and improved dolphin file associations
+
 Added:
 - Hyprlock
 - Installed Pipewire packages (pipewire, pipewire-pulse, pipewire-alsa, wireplumber) during installation.
-- Enabled pipewire-pulse.service using systemctl --user in the install script.
+
 Modified:
 - Added a check to see if xdg-mime is available before setting file associations.
 - Added copying of hyprlock.conf along with hyprland.conf to the config directory.
 - Improved messages and flow in install.sh.
 - Added file associations for basic file types to dolphin
 - Updated README.md to give a more accurate description of the project.
+
 Removed:
 - None
+
 ------------------------------------------------------------
 
 2025-09-13 20:00 - Fixed install.sh hyprland.conf installation issue.
@@ -203,7 +221,7 @@ Added:
 - None
 
 Modified:
-- Updated install.sh and hyprland.conf. The last update stopped the install.sh from correctly copying over the hyprland.conf to the new system. 
+- Updated install.sh and hyprland.conf. The last update stopped the install.sh from correctly copying over the hyprland.conf to the new system.
 - Updated README.md to indicate testing was done with Fedora 42 Server.
 
 Removed:
@@ -247,7 +265,8 @@ Removed:
 - Removed broken msttcore-fonts-installer RPM installation method.
 
 ------------------------------------------------------------
-2025-09-13 12:00 Added missing software to the installation
+
+2025-09-13 12:00 - Added missing software to the installation
 
 Added:
 - Installed Firefox, GNOME Calendar, Galculator, GIMP, Virt-Manager, NetworkManager Connection Editor, LibreOffice, and Microsoft Fonts in install.sh.
