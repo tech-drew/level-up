@@ -11,7 +11,6 @@ echo "--> Installing required packages..."
 sudo dnf clean all
 sudo dnf install -y \
     alacritty \
-    cabextract \
     fastfetch \
     gimp \
     hyprland \
