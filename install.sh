@@ -28,7 +28,7 @@ echo "--> Enabling solopasha/hyprland COPR repo..."
 sudo dnf copr enable solopasha/hyprland -y
 
 echo "--> Installing COPR packages (if available)..."
-for pkg in fastfetch hyprlock hyprland-qtutils swww; do
+for pkg in hyprlock hyprland-qtutils swww; do
     if dnf list --available "$pkg" &> /dev/null; then
         echo "    Installing $pkg..."
         sudo dnf install -y "$pkg"
@@ -62,14 +62,14 @@ HYPRLOCK_CONF_SOURCE="${SCRIPT_DIR}/configs/hypr/hyprlock.conf"
 
 if [ -f "$HYPRLAND_CONF_SOURCE" ]; then
     cp "$HYPRLAND_CONF_SOURCE" "${HOME}/.config/hypr/hyprland.conf"
-    echo "    ✓ hyprland.conf copied."
+    echo "    hyprland.conf copied."
 else
     echo "    [!] hyprland.conf not found. Skipping."
 fi
 
 if [ -f "$HYPRLOCK_CONF_SOURCE" ]; then
     cp "$HYPRLOCK_CONF_SOURCE" "${HOME}/.config/hypr/hyprlock.conf"
-    echo "    ✓ hyprlock.conf copied."
+    echo "    hyprlock.conf copied."
 else
     echo "    [!] hyprlock.conf not found. Skipping."
 fi
@@ -79,7 +79,7 @@ echo "--> Copying default wallpaper..."
 WALLPAPER_SOURCE="${SCRIPT_DIR}/wallpapers/end_4HyprlandWallpaper.png"
 if [ -f "$WALLPAPER_SOURCE" ]; then
     cp "$WALLPAPER_SOURCE" "${HOME}/Pictures/"
-    echo "    ✓ Wallpaper copied."
+    echo "    Wallpaper copied."
 else
     echo "    [!] Wallpaper not found. Skipping."
 fi
@@ -99,31 +99,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
             echo 'RESET="\[\e[0m\]"'
             echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "'
         } >> "${HOME}/.bashrc"
-        echo "    ✓ Custom prompt added."
+        echo "    Custom prompt added."
     else
-        echo "    ✓ Custom prompt already exists."
+        echo "    Custom prompt already exists."
     fi
 else
     echo "    Skipping terminal prompt customization."
-fi
-
-# 9. Create Hyprland session file (if it doesn't exist)
-SESSION_FILE="/usr/share/wayland-sessions/hyprland.desktop"
-echo "--> Ensuring Hyprland session file exists..."
-if [ ! -f "$SESSION_FILE" ]; then
-    echo "    Creating Hyprland session file..."
-    sudo mkdir -p /usr/share/wayland-sessions
-    sudo tee "$SESSION_FILE" > /dev/null <<EOF
-[Desktop Entry]
-Name=Hyprland
-Comment=An intelligent dynamic tiling Wayland compositor
-Exec=Hyprland
-Type=Application
-DesktopNames=Hyprland
-EOF
-    echo "    ✓ Hyprland session file created."
-else
-    echo "    ✓ Session file already exists. Skipping."
 fi
 
 # Done
