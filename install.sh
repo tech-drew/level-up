@@ -19,6 +19,7 @@ sudo dnf install -y \
     hyprland \
     hyprlock \
     hyprland-qtutils \
+    pavucontrol \
     swww \
     waybar \
     wofi \
