@@ -8,6 +8,32 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-10-12 21:30 - Adjusted Waybar Widget Tray Background Color
+
+Added:
+- None
+
+Modified:
+- Level-Up/config/waybar/style.css changed the waybar tray background color to purple to match the waybar.
+
+Removed:
+- None
+
+------------------------------------------------------------
+
+2025-10-11 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma. 
+
+Added:
+- Level-Up/install.sh Pavucontrol was added back in to use with hyprland
+
+Modified:
+- Level-Up/install.sh removed a bunch of stuff from the installer that does not work with Fedora KDE Plasma
+
+Removed:
+- Level-Up/install.sh removed cabextract. Cabextract is needed for ms fonts but the rebuild is using the KDE Plasma fonts
+
+------------------------------------------------------------
+
 2025-10-05 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma
 
 Added:
