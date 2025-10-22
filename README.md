@@ -1,6 +1,6 @@
 ﻿# Level-Up
 
-**Level-Up** is a customizable desktop environment built on **Fedora Server 42**, featuring **Hyprland** as the dynamic window manager. It comes preconfigured with a curated set of tools and aesthetic customizations, including **Waybar**, **Alacritty**, **Fastfetch**, **Dolphin**, and more.
+**Level-Up** is a customizable desktop environment built on **Fedora 42 KDE Plasma Desktop Edition**, featuring **Hyprland** as the dynamic window manager. It comes preconfigured with a curated set of tools and aesthetic customizations, including **Waybar**, **Alacritty**, **Fastfetch**, **Dolphin**, and more.
 
 > Linux is about making your computer work for you.  
 > This configuration is meant to be a starting point, not a final product. Feel free to try it out, tweak it, and make Level-Up your own.
