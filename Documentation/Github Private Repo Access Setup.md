@@ -49,7 +49,7 @@ On your test system:
    chmod +x install.sh
 
 5. Run the install script:  
-   sudo ./install.sh
+   ./install.sh
 
 Accessing a Test Branch
 
