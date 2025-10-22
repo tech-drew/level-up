@@ -39,14 +39,14 @@ chmod +x install.sh
 
 ---
 
-**Level-Up is only supported on a clean installation of Fedora Server 42.**
+**Level-Up is only supported on a clean installation of Fedora 42 KDE Plasma Desktop Edition.**
 
 Do **not** install this configuration on Fedora KDE, Fedora GNOME, or any other Fedora spin that includes a preinstalled desktop environment.
 
 Installing Level-Up on top of an existing desktop environment will likely **break the system**, may result in **data loss**, and could require a **full system reimage**.
 
 ### Supported:
-- Fedora Server 42 (clean install only)
+- Fedora 42 KDE Plasma Desktop Edition (clean install only)
 
 ### Not Supported:
 - Fedora KDE Plasma
