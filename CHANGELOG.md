@@ -8,6 +8,20 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-10-22 12:30 - Renamed named branches to use Semantic Versioning for the naming.
+
+Added:
+- None
+
+Modified:
+- Renamed main branch to v1.0.0-alpha-fedora-server-deprecated
+- Renamed fedora-kde-plasma-rebuild branch to v2.0.0-beta-fedora-kde
+- Changed the main branch from v1.0.0-alpha-fedora-server-deprecated to v2.0.0-beta-fedora-kde
+
+Removed:
+- None
+------------------------------------------------------------
+
 2025-10-21 21:30 - Added the floating keybinding from main to this branch to enable floating on some windows. Added virtual machine manager to install.sh
 
 Added:
