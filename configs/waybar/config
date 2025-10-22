@@ -34,7 +34,7 @@
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-muted": "{volume}% \uf6a9",
-    "format-icons": ["🔈","🔊"],
+    "format-icons": ["", ""],  // Font Awesome mute and high volume icons
     "on-click": "pavucontrol"
   }
 }
