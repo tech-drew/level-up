@@ -8,6 +8,18 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-10-21 21:00 - Fixed broken install.sh for Fedora KDE Plasma
+
+Added:
+- None
+
+Modified:
+- Level-Up/install.sh 
+
+Removed:
+- None
+------------------------------------------------------------
+
 2025-10-12 21:30 - Adjusted Waybar Widget Tray Background Color
 
 Added:

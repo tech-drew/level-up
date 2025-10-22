@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 set -euo pipefail
 
@@ -16,11 +16,7 @@ sudo dnf install -y \
     alacritty \
     fastfetch \
     gimp \
-    hyprland \
-    hyprlock \
-    hyprland-qtutils \
     pavucontrol \
-    swww \
     waybar \
     wofi \
     wl-clipboard \
@@ -31,14 +27,12 @@ echo "--> Enabling solopasha/hyprland COPR repo..."
 sudo dnf copr enable solopasha/hyprland -y
 
 echo "--> Installing COPR packages (if available)..."
-for pkg in hyprlock hyprland-qtutils swww; do
-    if sudo dnf list --available "$pkg" &> /dev/null; then
-        echo "    Installing $pkg..."
-        sudo dnf install -y "$pkg"
-    else
-        echo "    Package '$pkg' not found in repos. Skipping."
-    fi
-done
+sudo dnf install -y \
+    hyprland \
+    hyprlock \
+    hyprland-qtutils \
+    swww \
+    --enablerepo=copr:copr.fedorainfracloud.org:solopasha:hyprland
 
 # 3. Create config directories
 echo "--> Creating config directories..."
