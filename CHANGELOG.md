@@ -8,6 +8,18 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-10-21 21:30 - Added the floating keybinding from main to this branch to enable floating on some windows
+
+Added:
+- Keybinding to enable floating on windows
+
+Modified:
+- Level-Up/configs/hypr/hyprland.conf
+
+Removed:
+- None
+------------------------------------------------------------
+
 2025-10-21 21:00 - Fixed broken install.sh for Fedora KDE Plasma
 
 Added:
