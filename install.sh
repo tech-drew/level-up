@@ -20,7 +20,8 @@ sudo dnf install -y \
     waybar \
     wofi \
     wl-clipboard \
-    timeshift
+    timeshift \
+    virt-manager
 
 # 2. Enable COPR and install extra packages
 echo "--> Enabling solopasha/hyprland COPR repo..."
@@ -107,6 +108,18 @@ else
     echo "    Skipping terminal prompt customization."
 fi
 
+# 9. Set up libvirt for virt-manager
+echo "--> Setting up libvirt and virtualization support..."
+
+# Start and enable the libvirtd service
+echo "    Starting and enabling libvirtd..."
+sudo systemctl enable --now libvirtd
+
+# Add the current user to the libvirt group
+echo "    Adding user '$USER' to libvirt group..."
+sudo usermod -aG libvirt "$USER"
+
+echo "    [!] You may need to log out and log back in for group changes to take effect."
 echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
 echo "==> You can now log into Hyprland from your display manager, or type 'Hyprland' in a TTY."

@@ -8,10 +8,11 @@ Notes:
 
 ------------------------------------------------------------
 
-2025-10-21 21:30 - Added the floating keybinding from main to this branch to enable floating on some windows
+2025-10-21 21:30 - Added the floating keybinding from main to this branch to enable floating on some windows. Added virtual machine manager to install.sh
 
 Added:
 - Keybinding to enable floating on windows
+- virt-manager added to install.sh and a section was created to enable the correct service.
 
 Modified:
 - Level-Up/configs/hypr/hyprland.conf
