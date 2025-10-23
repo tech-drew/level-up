@@ -7,6 +7,14 @@
 
 ---
 
+## Work in Progress
+
+---
+
+I started learning Linux in June 2024, and this project has been my hands-on way to deepen that knowledge while studying for the RHCSA. With no prior experience in GitHub, scripting, or programming, this project has been a fun experiment in learning outside my comfort zone. The project is constantly evolving as I learn new things, and I’m always open to feedback and suggestions!
+
+---
+
 ## Project Screenshots
 
 Below are some screenshots showcasing **Level-Up** in action:
@@ -22,15 +30,6 @@ _A view of the Wofi application launcher on this system._
 
 ![Screenshot 5](Project%20Screenshots/Screenshot5.png)  
 _A layout with a few applications open in a tiled setup. Dolphin is using the Breeze Dark theme, configured through the KDE Settings._
-
----
-
-## Work in Progress
-
----
-
-I'm still new to Linux and learning as I go. This setup is the result of tinkering, curiosity, and a desire to build something that feels right.  
-Expect updates and improvements over time as I continue to explore and grow. Feedback and suggestions are always welcome.
 
 ---
 
