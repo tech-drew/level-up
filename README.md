@@ -74,8 +74,6 @@ These resources are optional but recommended if you want to get the most out of 
 
   Note: Some of the recommendations in the linked guide involve installing proprietary multimedia codecs (such as MP3, AAC, and H.264) that may be restricted by software patents in certain countries, including the United States. These steps are not included in this configuration by default. Please research the software laws in your region before installing third-party codecs.
 
-These resources are optional but recommended if you want to get the most out of your Fedora + Hyprland environment.
-
 ---
 
 ## Security and Compatibility Disclaimer
