@@ -41,17 +41,8 @@ chmod +x install.sh
 
 **Level-Up is only supported on a clean installation of Fedora 42 KDE Plasma Desktop Edition.**
 
-Do **not** install this configuration on Fedora KDE, Fedora GNOME, or any other Fedora spin that includes a preinstalled desktop environment.
-
-Installing Level-Up on top of an existing desktop environment will likely **break the system**, may result in **data loss**, and could require a **full system reimage**.
-
 ### Supported:
 - Fedora 42 KDE Plasma Desktop Edition (clean install only)
-
-### Not Supported:
-- Fedora KDE Plasma
-- Fedora GNOME
-- Any system with an existing window manager or desktop environment
 
 **Note:** Hyprland is not optimized for use in virtual machines and may not function properly without direct access to a physical GPU. Virtual machines typically use virtualized graphics, which do not provide the same performance or compatibility required by Wayland compositors like Hyprland. While it may be possible to run Hyprland in a VM with GPU passthrough, this is an advanced configuration and is not recommended for general use. For optimal performance, this setup should only be installed on real hardware with direct access to a physical GPU.
 
@@ -69,9 +60,6 @@ These resources are optional but recommended if you want to get the most out of 
 
 ---
 
-After saving, log out and back in (or reboot) to activate.
-Note: On laptops without a physical numpad, enabling Numlock may cause certain letter keys (like J, K, L) to act as a numeric keypad. If this behavior is unwanted, you can remove or comment out the above line.
-
 - Hyprland Wiki  
   https://wiki.hypr.land/  
   The official Hyprland documentation. Highly recommended for learning about configuration options, environment variables, animation settings, and troubleshooting.
@@ -86,15 +74,13 @@ Note: On laptops without a physical numpad, enabling Numlock may cause certain l
 
   Note: Some of the recommendations in the linked guide involve installing proprietary multimedia codecs (such as MP3, AAC, and H.264) that may be restricted by software patents in certain countries, including the United States. These steps are not included in this configuration by default. Please research the software laws in your region before installing third-party codecs.
 
-These resources are optional but recommended if you want to get the most out of your Fedora + Hyprland environment.
-
 ---
 
 ## Security and Compatibility Disclaimer
 
 ---
 
-All configurations and scripts in this project have been tested on a clean install of Fedora 42 Server.  
+All configurations and scripts in this project have been tested on a clean install of Fedora 42 KDE Plasma Desktop Edition.  
 
 ...
 
@@ -105,7 +91,6 @@ By using Level-Up, you accept full responsibility for any changes made to your s
 Please review all scripts and configurations carefully before applying them, and use at your own risk.
 
 It is recommended to back up your data and understand the changes before proceeding.  
-If you are unsure about any part of the setup, seek assistance or more information.
 
 ---
 
