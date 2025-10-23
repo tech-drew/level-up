@@ -7,6 +7,24 @@
 
 ---
 
+## Project Screenshots
+
+Below are some screenshots showcasing **Level-Up** in action:
+
+![Screenshot 1](Project%20Screenshots/Screenshot1.png)  
+_An example of the main user interface._
+
+![Screenshot 2](Project%20Screenshots/Screenshot2.png)  
+_The Fastfetch and Alacritty customizations in action._
+
+![Screenshot 3](Project%20Screenshots/Screenshot3.png)  
+_A view of the Wofi application launcher on this system._
+
+![Screenshot 5](Project%20Screenshots/Screenshot5.png)  
+_A layout with several applications open in a tiled setup. Dolphin is using the Breeze Dark theme, configured through the KDE Settings._
+
+---
+
 ## Work in Progress
 
 ---
