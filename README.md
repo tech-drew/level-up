@@ -60,9 +60,6 @@ These resources are optional but recommended if you want to get the most out of 
 
 ---
 
-After saving, log out and back in (or reboot) to activate.
-Note: On laptops without a physical numpad, enabling Numlock may cause certain letter keys (like J, K, L) to act as a numeric keypad. If this behavior is unwanted, you can remove or comment out the above line.
-
 - Hyprland Wiki  
   https://wiki.hypr.land/  
   The official Hyprland documentation. Highly recommended for learning about configuration options, environment variables, animation settings, and troubleshooting.
