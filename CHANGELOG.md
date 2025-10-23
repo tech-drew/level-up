@@ -8,6 +8,18 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-10-22 22:30 - Added a Project Screenshots folder with some example screenshots of the project
+
+Added:
+- Level-Up\Project Screenshots
+
+Modified:
+- None
+
+Removed:
+- None
+------------------------------------------------------------
+
 2025-10-22 12:30 - Renamed named branches to use Semantic Versioning for the naming.
 
 Added:
