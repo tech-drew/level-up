@@ -80,7 +80,7 @@ These resources are optional but recommended if you want to get the most out of 
 
 ---
 
-All configurations and scripts in this project have been tested on a clean install of Fedora 42 Server.  
+All configurations and scripts in this project have been tested on a clean install of Fedora 42 KDE Plasma Desktop Edition.  
 
 ...
 
@@ -91,7 +91,6 @@ By using Level-Up, you accept full responsibility for any changes made to your s
 Please review all scripts and configurations carefully before applying them, and use at your own risk.
 
 It is recommended to back up your data and understand the changes before proceeding.  
-If you are unsure about any part of the setup, seek assistance or more information.
 
 ---
 
