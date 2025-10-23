@@ -41,17 +41,8 @@ chmod +x install.sh
 
 **Level-Up is only supported on a clean installation of Fedora 42 KDE Plasma Desktop Edition.**
 
-Do **not** install this configuration on Fedora KDE, Fedora GNOME, or any other Fedora spin that includes a preinstalled desktop environment.
-
-Installing Level-Up on top of an existing desktop environment will likely **break the system**, may result in **data loss**, and could require a **full system reimage**.
-
 ### Supported:
 - Fedora 42 KDE Plasma Desktop Edition (clean install only)
-
-### Not Supported:
-- Fedora KDE Plasma
-- Fedora GNOME
-- Any system with an existing window manager or desktop environment
 
 **Note:** Hyprland is not optimized for use in virtual machines and may not function properly without direct access to a physical GPU. Virtual machines typically use virtualized graphics, which do not provide the same performance or compatibility required by Wayland compositors like Hyprland. While it may be possible to run Hyprland in a VM with GPU passthrough, this is an advanced configuration and is not recommended for general use. For optimal performance, this setup should only be installed on real hardware with direct access to a physical GPU.
 
