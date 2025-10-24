@@ -50,9 +50,7 @@ cd Level-Up
 chmod +x install.sh
 ./install.sh
 ```
-Important Note on Installation Context
-
-The install.sh script copies configuration files into the home directory of the user who runs it.
+**Note:** The install.sh script copies configuration files into the home directory of the user who runs it.
 If you run the script with sudo or as root, those files will be placed in the root user’s home directory (/root) instead of your normal user’s profile.
 
 To ensure the configuration is applied to your user account, run the "./install.sh" command as your regular user (without sudo):
