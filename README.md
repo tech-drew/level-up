@@ -104,8 +104,6 @@ These resources are optional but recommended if you want to get the most out of 
 
 All configurations and scripts in this project have been tested on a clean install of Fedora 42 KDE Plasma Desktop Edition.  
 
-...
-
 There are no guarantees that these configurations will work correctly on existing installations or on systems missing required dependencies.
 
 This configuration and included scripts are provided as-is, without any support.  
