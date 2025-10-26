@@ -32,4 +32,4 @@ To automatically launch the PIA client frontend when logging into Hyprland:
 Edit your Hyprland config:
 vi $HOME/.config/hypr/hyprland.conf
 Add the following line:
-exec-once = /opt/piavpn/bin/pia-client  # Autostart VPN client on login
+exec-once = sleep 1 && /opt/piavpn/bin/pia-client  # Autostart VPN client on login. Sleep 1 delays the start of the pia application until after the waybar is loaded. Without this the pia application may start before waybar and the waybar tray icon for pia will be missing.
