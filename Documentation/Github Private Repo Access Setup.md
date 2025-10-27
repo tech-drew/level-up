@@ -32,14 +32,16 @@ Copy the entire output line — this is your public key.
 ## Notes for Headless Systems
 If your test system does not have a GUI:
 
-1. Find your system’s IP address:  
-   ip a  
+1. Find your system’s IP address:
+```bash
+   ip a
+``` 
    Look for an address under interfaces beginning with "enp" (wired) or "wlp" (wireless).
 
-2. From another device with a GUI, SSH into your test system:  
+3. From another device with a GUI, SSH into your test system:  
    ssh username@ip_address  
 
-3. Use Ctrl+Shift+C and Ctrl+Shift+V to copy and paste between terminals.
+4. Use Ctrl+Shift+C and Ctrl+Shift+V to copy and paste between terminals.
 
 ## Part 2: Clone and Install the Private Repository
 
