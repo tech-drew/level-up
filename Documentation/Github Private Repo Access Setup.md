@@ -38,10 +38,10 @@ If your test system does not have a GUI:
 ``` 
    Look for an address under interfaces beginning with "enp" (wired) or "wlp" (wireless).
 
-3. From another device with a GUI, SSH into your test system:  
+2. From another device with a GUI, SSH into your test system:  
    ssh username@ip_address  
 
-4. Use Ctrl+Shift+C and Ctrl+Shift+V to copy and paste between terminals.
+3. Use Ctrl+Shift+C and Ctrl+Shift+V to copy and paste between terminals.
 
 ## Part 2: Clone and Install the Private Repository
 
