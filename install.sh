@@ -89,7 +89,7 @@ else
 fi
 
 # 8. Optional terminal prompt customization
-read -r -p "Do you want to customize your terminal prompt with a green username? (y/N): " REPLY
+read -r -p "Do you want to customize your terminal prompt with a green username? (y/n): " REPLY
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "--> Updating .bashrc with a custom green prompt..."
     if ! grep -q "Custom green prompt" "$HOME/.bashrc"; then
