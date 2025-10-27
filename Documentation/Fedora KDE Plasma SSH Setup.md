@@ -12,12 +12,10 @@ sudo dnf install openssh-server
 ```bash
 sudo systemctl enable sshd
 ```
-
 ## 3. Start the SSH service immediately
 ```bash
 sudo systemctl start sshd
 ```
-
 ## 4. Verify that the SSH service is running
 ```bash
 sudo systemctl status sshd
@@ -35,7 +33,6 @@ sudo firewall-cmd --reload
 ```bash
 sudo firewall-cmd --list-all
 ```
-
 (Check that "ssh" appears under the services list.)
 
 Your Fedora system is now ready to accept SSH connections.
@@ -43,7 +40,8 @@ Test it from another device using:
 ```bash
 ssh username@your-fedora-ip
 ```
-
 Replace "username" with your Fedora account name and "your-fedora-ip" with the system's IP address.
-# (Find it with: ip a)
-# ============================================================
+(Find your ip address with the following command: 
+```bash
+ip a
+```
