@@ -11,7 +11,7 @@ pia-linux-3.6.2-08398.run
 
 ## Part 2: Make the Installer Executable
 
-Open a terminal and navigate to your Downloads folder. Or navigate to the directory where you saved the file you just downloaded.:  
+Open a terminal and navigate to your Downloads folder. Or navigate to the directory where you saved the file you just downloaded. 
 ```bash
 cd ~/Downloads  
 ```
@@ -61,5 +61,4 @@ vi $HOME/.config/hypr/hyprland.conf
 ```bash
 exec-once = sleep 1 && /opt/piavpn/bin/pia-client  
 ```
-> **Note:** The `sleep 1` delays the start of the PIA client until after the Waybar loads. Without this, the PIA tray icon may not appear correctly in Waybar.
 > **Note:** The `sleep 1` delays the start of the PIA client until after the Waybar loads. Without this, the PIA tray icon may not appear correctly in Waybar.
