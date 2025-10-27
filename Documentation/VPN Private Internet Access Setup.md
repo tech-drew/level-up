@@ -1,4 +1,4 @@
-# Private Internet Access Fedora 42 Hyprland Setup
+# Private Internet Access Fedora Hyprland Setup
 This guide explains how to install and configure Private Internet Access (PIA) on Fedora 42 with Hyprland, ensuring the VPN service starts automatically and integrates with your workflow.
 
 ## Part 1: Download the VPN Installer
