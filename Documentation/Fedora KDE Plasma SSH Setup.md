@@ -40,8 +40,7 @@ Test it from another device using:
 ```bash
 ssh username@your-fedora-ip
 ```
-Replace "username" with your Fedora account name and "your-fedora-ip" with the system's IP address.
-(Find your ip address with the following command: 
+Replace "username" with your Fedora account name and "your-fedora-ip" with the system's IP address. Find your ip address with the following command: 
 ```bash
 ip a
 ```
