@@ -75,8 +75,11 @@ chmod +x install.sh
 If you want to switch to a specific test branch, use the following commands (replace "examplebranch" with your branch name):
 ```bash
 git checkout -b feature/examplebranch origin/feature/examplebranch  
-chmod +x install.sh  
-./install.sh
 ```
-
 Your system is now configured to securely access and install your private GitHub repository using SSH.
+
+### Run the test branch installer if you want to.
+```bash
+chmod +x install.sh  
+./install
+```
