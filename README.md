@@ -19,16 +19,16 @@ I started learning Linux in June 2024, and this project has been my hands-on way
 
 Below are some screenshots showcasing **Level-Up** in action:
 
-![Screenshot 1](Project%20Screenshots/Screenshot1.png)  
+![Screenshot 1](Project%20screenshots/screenshot1.png)  
 _An example of the main user interface._
 
-![Screenshot 2](Project%20Screenshots/Screenshot2.png)  
+![Screenshot 2](Project%20screenshots/screenshot2.png)  
 _The Fastfetch and Alacritty customizations in action._
 
-![Screenshot 3](Project%20Screenshots/Screenshot3.png)  
+![Screenshot 3](Project%20screenshots/screenshot3.png)  
 _A view of the Wofi application launcher on this system._
 
-![Screenshot 5](Project%20Screenshots/Screenshot5.png)  
+![Screenshot 5](Project%20screenshots/screenshot5.png)  
 _A layout with a few applications open in a tiled setup. Dolphin is using the Breeze Dark theme, configured through the KDE Settings._
 
 ---
@@ -59,7 +59,7 @@ To ensure the configuration is applied to your user account, run the "./install.
 
 ## Compatibility & Disclaimer
 
-For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer](Documentation/Compatibility-and-Disclaimer.md).
+For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer](documentation/compatibility-and-disclaimer.md).
 
 
 ---
@@ -68,24 +68,24 @@ For important system requirements, compatibility notes, and disclaimers, please 
 
 Optional guides and resources are available in the [Documentation](Documentation/) folder, including:
 
-- [Acknowledgments](Documentation/Acknowledgments.md) – Credits for referenced open-source projects.
-- [CHANGELOG](Documentation/CHANGELOG.md) – Project version history and updates.
-- [Fedora KDE Plasma SSH Setup](Documentation/Fedora-KDE-Plasma-SSH-Setup.md) – Optional SSH configuration tips.
-- [Github Private Repo Access Setup](Documentation/Github-Private-Repo-Access-Setup.md) – Optional setup guide for private repo access.
-- [Linux Boot Time Optimizations](Documentation/Linux-Boot-Time-Optimizations.md) – Tips for faster boot times.
-- [Post-Install Resources](Documentation/Post-Install-Resources.md) – Optional tools, drivers, and tweaks.
-- [VPN Private Internet Access Setup](Documentation/VPN-Private-Internet-Access-Setup.md) – Optional VPN configuration guide.
+- [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
+- [CHANGELOG](documentation/CHANGELOG.md) – Project version history and updates.
+- [Fedora KDE Plasma SSH Setup](documentation/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
+- [Github Private Repo Access Setup](documentation/github-private-repo-access-setup.md) – Optional setup guide for private repo access.
+- [Linux Boot Time Optimizations](documentation/linux-boot-time-optimizations.md) – Tips for faster boot times.
+- [Post-Install Resources](documentation/post-install-resources.md) – Optional tools, drivers, and tweaks.
+- [VPN Private Internet Access Setup](documentation/vpn-private-internet-access-setup.md) – Optional VPN configuration guide.
 
 
 ## Licensing
 
 ---
 
-**Level-Up** is licensed under the **Level-Up License**, which grants you the freedom to use, modify, and distribute the project. However, certain conditions must be met for redistribution and modification. Please refer to the full **Level-Up License** in the [Level-Up License.txt](Level-Up%20License.txt) file for the complete terms.
+**Level-Up** is licensed under the **Level-Up License**, which grants you the freedom to use, modify, and distribute the project. However, certain conditions must be met for redistribution and modification. Please refer to the full **Level-Up License** in the [Level-Up License.txt](Level-Up%20license.txt) file for the complete terms.
 
-This project also incorporates third-party software with their respective licenses. Please refer to the [LICENSES/](LICENSES/) directory for the licenses of third-party software used in this project.
+This project also incorporates third-party software with their respective licenses. Please refer to the [LICENSES/](lICENSES/) directory for the licenses of third-party software used in this project.
 
-For more details on the Level-Up License, please see the full [Level-Up License.txt](Level-Up%20License.txt) file.
+For more details on the Level-Up License, please see the full [Level-Up License.txt](Level-Up%20license.txt) file.
 
 ---
 
