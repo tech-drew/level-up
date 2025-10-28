@@ -1,11 +1,28 @@
 Changelog
-Last Updated: 2025-10-05 21:30 PST
+Last Updated: 2025-10-27 19:30 PST
 
-Notes: 
+Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
-- I'm new to GitHub and programming, so this changelog is evolving as I learn new things.
+- Initial development began around July 2025.
+- I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+------------------------------------------------------------
+
+2025-10-27 19:30 - Adjusted the formatting of documentation to use consistent formatting.
+
+Added:
+- None
+
+Modified:
+- Level-Up/Fedora Kde Plasma SSH Setup.md
+- Level-Up/Github Private Repo Access Setup.md
+- Level-Up/Linux Boot Time Optimizations.md
+- Level-Up/VPN Private Internet Access Setup.md
+
+Removed:
+- Fedora Server Install documentation
+  
 ------------------------------------------------------------
 
 2025-10-22 22:30 - Added a Project Screenshots folder with some example screenshots of the project
@@ -325,7 +342,7 @@ Note:
 
 ------------------------------------------------------------
 
-2025-09-13 13:30 - Install Script Fixes and Improvements (v1.0.2)
+2025-09-13 13:30 - Install Script Fixes and Improvements 
 
 Added:
 - Added Microsoft Core Fonts installation using tar.gz method instead of broken RPM.
@@ -357,7 +374,7 @@ Removed:
 
 ------------------------------------------------------------
 
-2025-09-02 20:30 - Power Menu Integration (v1.0.1)
+2025-09-02 20:30 - Power Menu Integration 
 
 Added:
 - Installed wofi as a dependency for the power menu.
@@ -376,7 +393,7 @@ Removed:
 
 ------------------------------------------------------------
 
-2025-09-02 12:00 - Initial Fedora 42 Hyprland Setup (v1.0.0)
+2025-09-02 12:00 - Fedora 42 Hyprland Setup
 
 Added:
 - Installed Hyprland using the COPR repository.
@@ -387,6 +404,10 @@ Added:
 
 Modified:
 - None
+
+------------------------------------------------------------
+
+- Initial development began around July 2025.
 
 Removed:
 - None
