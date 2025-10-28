@@ -131,9 +131,3 @@ For more details on the Level-Up License, please see the full [Level-Up License.
 If you believe any licensing is missed or not properly acknowledged in this project, please reach out to me directly so I can update the licensing to remedy any issues. Your help in ensuring proper licensing is greatly appreciated.
 
 ---
-
-## Acknowledgments
-
----
-
-Please give full credit to the original creators and maintainers of the tools, scripts, themes, and documentation referenced or recommended in this project. There are too many contributors across the various packages and resources used here for me to list them all individually, but I want to express sincere thanks to the entire open source community. Your hard work made this project possible.
