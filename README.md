@@ -46,7 +46,7 @@ Next, clone the repository and run the installation script:
 
 ```bash
 git clone https://github.com/Always-Growing/Level-Up.git
-cd Level-Up
+cd level-up
 chmod +x install.sh
 ./install.sh
 ```
