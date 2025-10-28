@@ -7,7 +7,7 @@
 
 ---
 
-## Work in Progress
+## Project Status: Work in Progress
 
 ---
 
@@ -54,49 +54,6 @@ chmod +x install.sh
 If you run the script with sudo or as root, those files will be placed in the root user’s home directory (/root) instead of your normal user’s profile.
 
 To ensure the configuration is applied to your user account, run the "./install.sh" command as your regular user (without sudo):
-
----
-
-## Compatibility Notice
-
----
-
-**Level-Up is only supported on a clean installation of Fedora 42 KDE Plasma Desktop Edition.**
-
-### Supported:
-- Fedora 42 KDE Plasma Desktop Edition (clean install only)
-
-It is strongly recommended to create a bootable Fedora 42 KDE Plasma USB using Fedora Media Writer. While other tools such as Rufus, Etcher, or UNetbootin can sometimes work, they may not properly write Fedora’s hybrid ISO image format. As a result, USBs created with these tools might not boot or install Fedora correctly. Fedora Media Writer is the officially supported tool and ensures reliable image verification and compatibility.
-
-**Note:** Hyprland is not optimized for use in virtual machines and may not function properly without direct access to a physical GPU. Virtual machines typically use virtualized graphics, which do not provide the same performance or compatibility required by Wayland compositors like Hyprland. While it may be possible to run Hyprland in a VM with GPU passthrough, this is an advanced configuration and is not recommended for general use. For optimal performance, this setup should only be installed on real hardware with direct access to a physical GPU.
-
----
-
-## Post-Install Resources
-
----
-
-After installing Level-Up, you may want to enhance your system with additional drivers, codecs, and tools. Below are some trusted resources to help you improve and personalize your Fedora + Hyprland setup:
-
----
-
-These resources are optional but recommended if you want to get the most out of your Fedora + Hyprland environment.
-
----
-
-- Hyprland Wiki  
-  https://wiki.hypr.land/  
-  The official Hyprland documentation. Highly recommended for learning about configuration options, environment variables, animation settings, and troubleshooting.
-
-- NVIDIA Driver Installation Guide for Fedora  
-  https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#11-check-is-your-nvidia-card-supported  
-  A well-maintained guide for installing proprietary NVIDIA drivers on Fedora. Use this if you're running an NVIDIA GPU and need reliable Wayland support.
-
-- Fedora Noble Setup Guide (by wz790)  
-  https://github.com/wz790/Fedora-Noble-Setup?tab=readme-ov-file#terra-repository-if-youre-feeling-adventurous  
-  A community guide with post-install tips for Fedora users, including multimedia codecs, RPM Fusion setup, and other useful tweaks.
-
-**Note:** Some of the recommendations in the linked guide involve installing proprietary multimedia codecs (such as MP3, AAC, and H.264) that may be restricted by software patents in certain countries, including the United States. These steps are not included in this configuration by default. Please research the software laws in your region before installing third-party codecs.
 
 ---
 
