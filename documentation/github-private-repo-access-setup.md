@@ -52,7 +52,7 @@ sudo dnf install git -y
 
 ### 2. Clone the Repository Using SSH
 ```bash
-git clone git@github.com:Always-Growing/Level-Up.git  
+git clone git@github.com:Always-Growing/level-up.git  
 ```
 Replace this URL with your own private repository’s SSH clone URL.
 
