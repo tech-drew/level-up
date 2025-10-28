@@ -59,7 +59,7 @@ To ensure the configuration is applied to your user account, run the "./install.
 
 ## Compatibility & Disclaimer
 
-For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer guide](Documentation/Compatibility-and-Disclaimer.md).
+For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer](Documentation/Compatibility-and-Disclaimer.md).
 
 
 ---
