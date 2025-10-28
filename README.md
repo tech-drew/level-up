@@ -57,6 +57,26 @@ To ensure the configuration is applied to your user account, run the "./install.
 
 ---
 
+## Compatibility & Disclaimer
+
+For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer guide](Documentation/Compatibility-and-Disclaimer.md).
+
+
+---
+
+## Documentation
+
+Optional guides and resources are available in the [Documentation](Documentation/) folder, including:
+
+- [Acknowledgments](Documentation/Acknowledgments.md) – Credits for referenced open-source projects.
+- [CHANGELOG](Documentation/CHANGELOG.md) – Project version history and updates.
+- [Fedora KDE Plasma SSH Setup](Documentation/Fedora-KDE-Plasma-SSH-Setup.md) – Optional SSH configuration tips.
+- [Github Private Repo Access Setup](Documentation/Github-Private-Repo-Access-Setup.md) – Optional setup guide for private repo access.
+- [Linux Boot Time Optimizations](Documentation/Linux-Boot-Time-Optimizations.md) – Tips for faster boot times.
+- [Post-Install Resources](Documentation/Post-Install-Resources.md) – Optional tools, drivers, and tweaks.
+- [VPN Private Internet Access Setup](Documentation/VPN-Private-Internet-Access-Setup.md) – Optional VPN configuration guide.
+
+
 ## Licensing
 
 ---
