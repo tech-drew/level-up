@@ -57,22 +57,6 @@ To ensure the configuration is applied to your user account, run the "./install.
 
 ---
 
-## Security and Compatibility Disclaimer
-
----
-
-All configurations and scripts in this project have been tested on a clean install of Fedora 42 KDE Plasma Desktop Edition.  
-
-There are no guarantees that these configurations will work correctly on existing installations or on systems missing required dependencies.
-
-This configuration and included scripts are provided as-is, without any support.  
-By using Level-Up, you accept full responsibility for any changes made to your system.  
-Please review all scripts and configurations carefully before applying them, and use at your own risk.
-
-It is recommended to back up your data and understand the changes before proceeding.  
-
----
-
 ## Licensing
 
 ---
