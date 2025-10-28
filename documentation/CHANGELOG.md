@@ -1,11 +1,25 @@
 Changelog
-Last Updated: 2025-10-27 19:30 PST
+Last Updated: 2025-10-27 23:00 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+------------------------------------------------------------
+
+2025-10-27 23:00 - Renamed all files and directories to lowercase to follow programming best practices and replaced spaces with hyphens in file and folder names.
+
+Added:
+- None
+
+Modified:
+- /Level-Up/ was renamed to /level-up/
+
+Removed:
+- None
+  
 
 ------------------------------------------------------------
 
