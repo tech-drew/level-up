@@ -66,7 +66,7 @@ For important system requirements, compatibility notes, and disclaimers, please 
 
 ## Documentation
 
-Optional guides and resources are available in the [Documentation](Documentation/) folder, including:
+Optional guides and resources are available in the [Documentation](documentation/) folder, including:
 
 - [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
 - [CHANGELOG](documentation/CHANGELOG.md) – Project version history and updates.
