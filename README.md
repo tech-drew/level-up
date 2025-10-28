@@ -19,16 +19,16 @@ I started learning Linux in June 2024, and this project has been my hands-on way
 
 Below are some screenshots showcasing **Level-Up** in action:
 
-![screenshot 1](Project%20screenshots/screenshot1.png)  
+![screenshot 1](project%20screenshots/screenshot1.png)  
 _An example of the main user interface._
 
-![screenshot 2](Project%20screenshots/screenshot2.png)  
+![screenshot 2](project%20screenshots/screenshot2.png)  
 _The Fastfetch and Alacritty customizations in action._
 
-![screenshot 3](Project%20screenshots/screenshot3.png)  
+![screenshot 3](project%20screenshots/screenshot3.png)  
 _A view of the Wofi application launcher on this system._
 
-![screenshot 5](Project%20screenshots/screenshot5.png)  
+![screenshot 4](project%20screenshots/screenshot4.png)  
 _A layout with a few applications open in a tiled setup. Dolphin is using the Breeze Dark theme, configured through the KDE Settings._
 
 ---
