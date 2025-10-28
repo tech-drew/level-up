@@ -1,4 +1,4 @@
-# 📋 Credits and Acknowledgments
+# Credits and Acknowledgments
 
 This project includes or references configurations and tools from the following open-source projects:
 
