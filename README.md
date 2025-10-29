@@ -56,7 +56,7 @@ For important system requirements, compatibility notes, and disclaimers, please 
 Optional guides and resources are available in the [Documentation](documentation/) folder, including:
 
 - [CHANGELOG](documentation/CHANGELOG.md) – Project version history and updates.
-- [Logging-Locations-and-Troubleshooting](documentation/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, `hyprland.conf`, Waybar, and troubleshooting tips.
+- [Logging-Locations-and-Troubleshooting](documentation/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
 - [Branches Overview](documentation/branches.md) – Overview of branches, including their purposes, changes, and related issues.
 - [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
 - [Fedora KDE Plasma SSH Setup](documentation/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
