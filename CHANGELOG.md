@@ -7,6 +7,26 @@ Notes:
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+------------------------------------------------------------
+
+2025-10-28 - Move CHANGELOG.md to Root & Create Separate install.sh
+
+Added:
+
+- CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
+
+- INSTALL.md created as a separate file the installation process.
+
+Modified:
+
+- CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
+
+Removed:
+
+- None
+
+------------------------------------------------------------
+
 2025-10-28 20:30 - Added logging, dry-run support, and security disclaimer to install.sh
 
 Added:
@@ -36,7 +56,6 @@ Modified:
 Removed:
 - None
   
-
 ------------------------------------------------------------
 
 2025-10-27 19:30 - Adjusted the formatting of documentation to use consistent formatting.
