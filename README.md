@@ -76,6 +76,24 @@ Optional guides and resources are available in the [Documentation](documentation
 - [Post-Install Resources](documentation/post-install-resources.md) – Optional tools, drivers, and tweaks.
 - [VPN Private Internet Access Setup](documentation/vpn-private-internet-access-setup.md) – Optional VPN configuration guide.
 
+---
+
+## Feedback & Suggestions
+
+---
+
+This project is part of my ongoing Linux learning journey.  
+I welcome constructive feedback, ideas, and suggestions that can help me improve and refine **Level-Up**.
+
+While I’m not currently accepting direct code contributions or pull requests, I appreciate hearing different perspectives and learning from community input.  
+
+If you’d like to share thoughts or recommendations, please:
+- Open an [issue](../../issues) to provide feedback or suggest improvements  
+- Or leave a comment in the Discussions tab
+
+Thank you for taking the time to look through this project and for helping me grow through your insights.
+
+---
 
 ## Licensing
 
