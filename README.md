@@ -11,7 +11,10 @@
 
 ---
 
-I started learning Linux in June 2024, and this project has been my hands-on way to deepen that knowledge while studying for the RHCSA. With no prior experience in GitHub, scripting, or programming, this project has been a fun experiment in learning outside my comfort zone. The project is constantly evolving as I learn new things, and I’m always open to feedback and suggestions!
+I began learning Linux in June 2024, and this project has been a hands-on way to deepen that knowledge while preparing for the RHCSA. With no prior experience in GitHub, scripting, or programming, it has been a fun experiment pushing me outside my comfort zone. The project is constantly evolving as I learn, and I welcome feedback and suggestions.  
+
+For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](documentation/lessons-learned.md) document.
+
 
 ---
 
