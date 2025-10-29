@@ -1,11 +1,31 @@
 Changelog
-Last Updated: 2025-10-28 21:00 PST
+Last Updated: 2025-10-28 21:30 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+------------------------------------------------------------
+
+2025-10-28 21:30 - Added Logging for Hyprland, Waybar, and Documentation Update
+
+Added:
+
+- Logging enabled for Hyprland: Configured verbose logging in hyprland.conf to capture detailed debug information.
+
+- Logging enabled for Waybar: Configured Waybar’s built-in logging functionality to capture detailed logs with the highest verbosity for troubleshooting.
+
+- logging-and-troubleshooting.md: Created a new documentation file explaining where to find logs for the installation process, hyprland.conf, and Waybar for easier debugging and troubleshooting.
+
+Modified:
+
+- Logging configuration: Updated install.sh, hyprland.conf, and waybar configurations to ensure logs are correctly captured for key system components.
+
+Removed:
+
+- None
 
 ------------------------------------------------------------
 
