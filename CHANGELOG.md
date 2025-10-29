@@ -9,6 +9,22 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-10-28 22:30 - Created branches.md documentation for branch changes.
+
+Added:
+
+- branches.md documenation
+
+Modified:
+
+- updated README.md to include a link to the branches.md documentation
+
+Removed:
+
+- None
+
+------------------------------------------------------------
+
 2025-10-28 21:30 - Added Logging for Hyprland, Waybar, and Documentation Update
 
 Added:
