@@ -69,11 +69,12 @@ To ensure the configuration is applied to your user account, run the "./install.
 ./install.sh --dry-run
 ```
 All actions will be logged and printed, but no files will be copied or packages installed.
-Dry-run logs are saved to: $HOME/.local/share/level-up/level-up-install-dryrun.log
 
-Normal Logging – All regular runs are automatically logged to: $HOME/.local/share/level-up/level-up-install.log
+**Logs for Dry-Run Mode** are saved to:  
+`$HOME/.local/share/level-up/level-up-install-dryrun.log`
 
-
+**Normal Logging** (for regular installations) is saved to:  
+`$HOME/.local/share/level-up/level-up-install.log`
 
 ---
 
