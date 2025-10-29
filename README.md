@@ -55,13 +55,15 @@ For important system requirements, compatibility notes, and disclaimers, please 
 
 Optional guides and resources are available in the [Documentation](documentation/) folder, including:
 
-- [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
 - [CHANGELOG](documentation/CHANGELOG.md) – Project version history and updates.
+- [Logging-Locations-and-Troubleshooting](documentation/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, `hyprland.conf`, Waybar, and troubleshooting tips.
+- [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
 - [Fedora KDE Plasma SSH Setup](documentation/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
 - [Github Private Repo Access Setup](documentation/github-private-repo-access-setup.md) – Optional setup guide for private repo access.
 - [Linux Boot Time Optimizations](documentation/linux-boot-time-optimizations.md) – Tips for faster boot times.
 - [Post-Install Resources](documentation/post-install-resources.md) – Optional tools, drivers, and tweaks.
 - [VPN Private Internet Access Setup](documentation/vpn-private-internet-access-setup.md) – Optional VPN configuration guide.
+
 
 ---
 
