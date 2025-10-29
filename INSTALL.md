@@ -35,17 +35,17 @@ _A layout with a few applications open in a tiled setup. Dolphin is using the Br
 
 ---
 
+## Compatibility & Disclaimer
+
+Before starting the installation, make sure your system meets the [system requirements and compatibility notes](documentation/compatibility-and-disclaimer.md). This includes details about supported hardware and software configurations.
+
+---
+
 ## Installation
 
 For detailed installation instructions, please see the [INSTALL.md](INSTALL.md). The guide includes:
 - Step-by-step installation instructions
 - Optional features and configurations
-
----
-
-## Compatibility & Disclaimer
-
-Before starting the installation, make sure your system meets the [system requirements and compatibility notes](documentation/compatibility-and-disclaimer.md). This includes details about supported hardware and software configurations.
 
 ---
 
