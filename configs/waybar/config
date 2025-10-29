@@ -1,40 +1,46 @@
 {
-  "layer": "top",
-  "position": "top",
-  "modules-left": ["custom/power_button", "clock"],
-  "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["tray", "pulseaudio", "battery", "network"],
+   "logging": {
+      "enabled": true,
+      "file": "$HOME/.local/share/level-up/waybar.log",
+      "level": "debug"  // Adjust as needed (trace, debug, info, warn, error)
+   },
 
-  "clock": {
-    "format": "{:%a %d %b %H:%M}",
-    "on-click": "korganizer"
-  },
+   "layer": "top",
+   "position": "top",
+   "modules-left": ["custom/power_button", "clock"],
+   "modules-center": ["hyprland/workspaces"],
+   "modules-right": ["tray", "pulseaudio", "battery", "network"],
 
-  "custom/power_button": {
-    "format": " ⏻ ",
-    "tooltip": false,
-    "on-click": "$HOME/.config/waybar/scripts/power_menu.sh %x %y"
-  },
+   "clock": {
+      "format": "{:%a %d %b %H:%M}",
+      "on-click": "korganizer"
+   },
 
-  "battery": {
-    "format": "{capacity}% {icon}",
-    "format-full": "{capacity}% ",
-    "format-icons": ["", "", "", "", ""],
-    "on-click": "notify-send '🔋 Battery Info' \"$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'state|to full|to empty|percentage')\"",
-    "interval": 15
-  },
+   "custom/power_button": {
+      "format": " ⏻ ",
+      "tooltip": false,
+      "on-click": "$HOME/.config/waybar/scripts/power_menu.sh %x %y"
+   },
 
-  "network": {
-    "format-wifi": "{essid}  ({signalStrength}%)",
-    "format-ethernet": "{ifname}  ",
-    "format-disconnected": "Disconnected ⚠",
-    "on-click": "nm-connection-editor"
-  },
+   "battery": {
+      "format": "{capacity}% {icon}",
+      "format-full": "{capacity}% ",
+      "format-icons": ["", "", "", "", ""],
+      "on-click": "notify-send '🔋 Battery Info' \"$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'state|to full|to empty|percentage')\"",
+      "interval": 15
+   },
 
-  "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-muted": "{volume}% \uf6a9",
-    "format-icons": ["", ""],  // Font Awesome mute and high volume icons
-    "on-click": "pavucontrol"
-  }
+   "network": {
+      "format-wifi": "{essid}  ({signalStrength}%)",
+      "format-ethernet": "{ifname}  ",
+      "format-disconnected": "Disconnected ⚠",
+      "on-click": "nm-connection-editor"
+   },
+
+   "pulseaudio": {
+      "format": "{volume}% {icon}",
+      "format-muted": "{volume}% \uf6a9",
+      "format-icons": ["", ""],  // Font Awesome mute and high volume icons
+      "on-click": "pavucontrol"
+   }
 }
