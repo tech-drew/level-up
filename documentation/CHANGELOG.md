@@ -1,11 +1,27 @@
 Changelog
-Last Updated: 2025-10-27 23:00 PST
+Last Updated: 2025-10-28 20:30 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+2025-10-28 20:30 - Added logging, dry-run support, and security disclaimer to install.sh
+
+Added:
+
+- Logging of install.sh actions to $HOME/.local/share/level-up/level-up-install.log following best practices.
+
+- Dry-run mode for install.sh using the --dry-run flag, allowing users to preview actions without making changes.
+
+- Security disclaimer and explicit user confirmation before installation requiring sudo.
+
+Modified:
+- Level-Up/install.sh updated to support logging, dry-run mode, and security confirmation.
+
+Removed:
+-None
 
 ------------------------------------------------------------
 
