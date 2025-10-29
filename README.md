@@ -9,6 +9,9 @@
 
 ## Project Status: Work in Progress
 
+This project is actively under development and evolving as I learn and experiment. Features may change over time, and feedback is welcome.
+
+
 ---
 
 I began learning Linux in June 2024, and this project has been a hands-on way to deepen that knowledge while preparing for the RHCSA. With no prior experience in GitHub, scripting, or programming, it has been a fun experiment pushing me outside my comfort zone. The project is constantly evolving as I learn, and I welcome feedback and suggestions.  
