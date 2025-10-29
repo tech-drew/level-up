@@ -4,9 +4,23 @@ set -euo pipefail
 
 # --- Setup logging ---
 LOG_DIR="$HOME/.local/share/level-up"
-LOG_FILE="$LOG_DIR/level-up-install.log"
 mkdir -p "$LOG_DIR"
-exec > >(tee -a "$LOG_FILE") 2>&1
+
+# Log files
+LOG_FILE="$LOG_DIR/level-up-install.log"
+DRY_RUN_LOG_FILE="$LOG_DIR/level-up-install-dryrun.log"
+
+# --- Dry-run support ---
+DRY_RUN=false
+if [[ "${1:-}" == "--dry-run" ]]; then
+    DRY_RUN=true
+    echo "==> Dry-run mode enabled. No changes will be made."
+    # Redirect all output to dry-run log + terminal
+    exec > >(tee -a "$DRY_RUN_LOG_FILE") 2>&1
+else
+    # Redirect all output to normal log + terminal
+    exec > >(tee -a "$LOG_FILE") 2>&1
+fi
 
 # --- Security disclaimer ---
 echo "==> SECURITY DISCLAIMER"
@@ -16,13 +30,6 @@ read -r -p "Do you want to continue? (y/n): " CONFIRM
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
     echo "Exiting installation."
     exit 1
-fi
-
-# --- Dry-run support ---
-DRY_RUN=false
-if [[ "${1:-}" == "--dry-run" ]]; then
-    DRY_RUN=true
-    echo "==> Dry-run mode enabled. No changes will be made."
 fi
 
 # --- Cache sudo credentials ---
