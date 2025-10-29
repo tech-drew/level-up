@@ -24,9 +24,8 @@ The following sections summarize the main lessons and skills I gained throughout
 ### Linux and System Administration
 - **Linux Skills:** Improved command-line proficiency and system administration knowledge.  
 - **Boot Time Optimization:** Learned techniques to reduce startup time and improve system performance.  
-- **Theming and Fonts:** Initially, I attempted to add fonts and a theme manager from scratch while using Fedora Server, which led to dependency issues and a complex setup. Switching the project to Fedora KDE Plasma resolved these problems and simplified configuration. This experience reinforced that theming and font management can be far more complicated than they initially appear.
+- **Theming and Fonts:** I initially started this project on Fedora Server and attempted to add fonts and a theme manager from scratch, which led to dependency issues and a complex setup. To resolve these challenges, I rebuilt the project on Fedora KDE Plasma. Switching to Fedora KDE Plasma provided built-in theming tools and preconfigured font management, which reduced dependency issues and simplified configuration. This experience reinforced that theming and font management can be far more complicated than they initially appear.
 
-- 
 ### Automation, Security, and Project Management
 - **Basic Automation:** Implemented scripts and routines to streamline repetitive tasks.  
 - **Security Practices:** Learned foundational security practices for project safety and integrity.  
