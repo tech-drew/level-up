@@ -35,18 +35,6 @@ echo "XDG_SESSION_TYPE: $XDG_SESSION_TYPE"
 echo "WAYLAND_DISPLAY: $WAYLAND_DISPLAY"
 echo "LANG: $LANG"
 
-# --- Waybar Logging ---
-WAYBAR_LOG="$LOG_DIR/waybar.log"
-if ! $DRY_RUN; then
-    WAYBAR_LOG_LEVEL=debug WAYBAR_VERBOSE=1 waybar >"$WAYBAR_LOG" 2>&1 &
-    WAYBAR_PID=$!
-    echo "Waybar logging to: $WAYBAR_LOG"
-    echo "Waybar PID: $WAYBAR_PID"
-else
-    echo "[DRY-RUN] Would launch Waybar with debug logging to $WAYBAR_LOG"
-    WAYBAR_PID=0
-fi
-
 # --- Hyprland Logging ---
 HYPRLAND_LOG="$LOG_DIR/hyprland.log"
 if ! $DRY_RUN; then
@@ -57,6 +45,23 @@ if ! $DRY_RUN; then
     echo "Hyprland PID: $HYPRLAND_PID"
 else
     echo "[DRY-RUN] Would launch Hyprland with debug logging to $HYPRLAND_LOG"
+fi
+
+# Wait for Hyprland to start (add a small delay to give it time)
+if ! $DRY_RUN; then
+    sleep 5 # Wait for 5 seconds for Hyprland to initialize
+fi
+
+# --- Waybar Logging ---
+WAYBAR_LOG="$LOG_DIR/waybar.log"
+if ! $DRY_RUN; then
+    WAYBAR_LOG_LEVEL=debug WAYBAR_VERBOSE=1 waybar >"$WAYBAR_LOG" 2>&1 &
+    WAYBAR_PID=$!
+    echo "Waybar logging to: $WAYBAR_LOG"
+    echo "Waybar PID: $WAYBAR_PID"
+else
+    echo "[DRY-RUN] Would launch Waybar with debug logging to $WAYBAR_LOG"
+    WAYBAR_PID=0
 fi
 
 # Wait for Hyprland to finish (if not in dry-run mode)
