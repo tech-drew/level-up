@@ -7,10 +7,10 @@ if [[ "${1:-}" == "--dry-run" ]]; then
     DRY_RUN=true
     echo "==> Dry-run mode enabled. No processes will be launched."
     # Redirect all output to dry-run log + terminal
-    exec > >(tee -a "$LOG_DIR/launch-hyprland-dryrun.log") 2>&1
+    tee -a "$LOG_DIR/launch-hyprland-dryrun.log" <&0 >&1 &
 else
     # Redirect all output to normal log + terminal
-    exec > >(tee -a "$LOG_DIR/launch-hyprland.log") 2>&1
+    tee -a "$LOG_DIR/launch-hyprland.log" <&0 >&1 &
 fi
 
 # Determine the home directory dynamically
