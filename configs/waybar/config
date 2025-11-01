@@ -1,9 +1,4 @@
 {
-   "logging": {
-      "enabled": true,
-      "file": "$HOME/.local/share/level-up/waybar.log",
-      "level": "debug"  // Adjust as needed (trace, debug, info, warn, error)
-   },
 
    "layer": "top",
    "position": "top",
