@@ -1,5 +1,5 @@
 #!/bin/bash
-# launch-hyprland.sh- Launch Hyprland and Waybar with debug logging (supports --dry-run)
+# launch-hyprland.sh - Launch Hyprland and Waybar (SDDM + dry-run)
 
 set -euo pipefail
 
@@ -21,8 +21,15 @@ else
     echo "[DRY-RUN] Would create log directory: $LOG_DIR"
 fi
 
+# --- Set Wayland session environment ---
+if ! $DRY_RUN; then
+    export XDG_SESSION_TYPE=wayland
+    export WAYLAND_DISPLAY=wayland-0
+else
+    echo "[DRY-RUN] Would set XDG_SESSION_TYPE=wayland and WAYLAND_DISPLAY=wayland-0"
+fi
+
 # --- Launch Waybar ---
-echo "Launching Waybar with debug logging..."
 if ! $DRY_RUN; then
     WAYBAR_LOG_LEVEL=debug WAYBAR_VERBOSE=1 waybar >"$WAYBAR_LOG" 2>&1 &
     WAYBAR_PID=$!
@@ -33,15 +40,8 @@ else
 fi
 
 # --- Launch Hyprland ---
-echo "Launching Hyprland with debug logging..."
 if ! $DRY_RUN; then
-    HYPRLAND_LOG_LEVEL=debug hyprland >"$HYPRLAND_LOG" 2>&1
-    echo "Hyprland logging to: $HYPRLAND_LOG"
+    exec HYPRLAND_LOG_LEVEL=debug hyprland >"$HYPRLAND_LOG" 2>&1
 else
     echo "[DRY-RUN] Would launch Hyprland with debug logging, logs to $HYPRLAND_LOG"
-fi
-
-# --- Wait for Waybar if running ---
-if ! $DRY_RUN && [[ $WAYBAR_PID -ne 0 ]]; then
-    wait $WAYBAR_PID
 fi
