@@ -221,23 +221,34 @@ fi
 # --- 10. Create a Level-Up desktop entry for login manager ---
 echo "--> Creating Level-Up desktop entry for login manager..."
 
+# Stable location for wrapper
+LOCAL_BIN="$HOME/.local/bin"
+mkdir -p "$LOCAL_BIN"
+
+WRAPPER_SRC="$SCRIPT_DIR/launch-hyprland.sh"
+WRAPPER_DEST="$LOCAL_BIN/launch-hyprland.sh"
+
 DESKTOP_ENTRY_DIR="$HOME/.local/share/xsessions"
 DESKTOP_ENTRY_FILE="$DESKTOP_ENTRY_DIR/level-up.desktop"
-WRAPPER_PATH="$SCRIPT_DIR/launch-hyprland.sh"  # Update if your wrapper has a different name or location
 
 if ! $DRY_RUN; then
+    # Copy wrapper to ~/.local/bin
+    cp "$WRAPPER_SRC" "$WRAPPER_DEST"
+    chmod +x "$WRAPPER_DEST"
+    echo "    Wrapper installed at: $WRAPPER_DEST"
+
+    # Create desktop entry
     mkdir -p "$DESKTOP_ENTRY_DIR"
     cat > "$DESKTOP_ENTRY_FILE" <<EOF
 [Desktop Entry]
 Name=Level-Up
 Comment=Launch Level-Up Hyprland session
-Exec=$WRAPPER_PATH
+Exec=$WRAPPER_DEST
 Type=XSession
 EOF
-    chmod +x "$WRAPPER_PATH"
     echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
 else
-    echo "[DRY-RUN] Would create desktop entry at $DESKTOP_ENTRY_FILE with Exec=$WRAPPER_PATH"
+    echo "[DRY-RUN] Would copy wrapper to $WRAPPER_DEST and create desktop entry at $DESKTOP_ENTRY_FILE"
 fi
 
 echo "    [!] You may need to log out and log back in for group changes to take effect."
