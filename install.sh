@@ -221,25 +221,27 @@ fi
 # --- 10. Create a Level-Up session for SDDM ---
 echo "--> Creating Level-Up session for SDDM/KDE..."
 
-WRAPPER_PATH="$SCRIPT_DIR/launch-hyprland.sh"
+WRAPPER_SRC_PATH="$SCRIPT_DIR/launch-hyprland.sh"
+WRAPPER_DEST_PATH="/usr/local/bin/launch-hyprland.sh"
 DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
 
 if ! $DRY_RUN; then
     # Check if wrapper exists
-    if [[ ! -f "$WRAPPER_PATH" ]]; then
-        echo "    [!] Wrapper script $WRAPPER_PATH not found. Cannot create login session."
+    if [[ ! -f "$WRAPPER_SRC_PATH" ]]; then
+        echo "    [!] Wrapper script $WRAPPER_SRC_PATH not found. Cannot create login session."
     else
-        # Ensure wrapper is executable
-        sudo chmod +x "$WRAPPER_PATH"
-        echo "    Wrapper script made executable: $WRAPPER_PATH"
+        # Copy wrapper to system-wide location
+        sudo cp "$WRAPPER_SRC_PATH" "$WRAPPER_DEST_PATH"
+        sudo chmod +x "$WRAPPER_DEST_PATH"
+        echo "    Wrapper script copied and made executable: $WRAPPER_DEST_PATH"
 
-        # Create a system-wide desktop entry
+        # Create a system-wide desktop entry pointing to the new location
         sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
 [Desktop Entry]
 Name=Level-Up
 Comment=Launch Level-Up Hyprland session
-Exec=$WRAPPER_PATH
-TryExec=$WRAPPER_PATH
+Exec=$WRAPPER_DEST_PATH
+TryExec=$WRAPPER_DEST_PATH
 Type=XSession
 DesktopNames=Level-Up
 X-KDE-PluginInfo-Name=level-up
@@ -256,7 +258,7 @@ EOF
         echo "    You should now see 'Level-Up' as a login option in SDDM after logging out."
     fi
 else
-    echo "[DRY-RUN] Would make wrapper executable: $WRAPPER_PATH"
+    echo "[DRY-RUN] Would copy wrapper to $WRAPPER_DEST_PATH and make executable"
     echo "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE"
 fi
 
