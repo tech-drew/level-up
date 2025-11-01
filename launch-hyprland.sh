@@ -15,6 +15,8 @@ fi
 
 # Determine the home directory dynamically
 HOME_DIR=$(eval echo "~$USER")
+
+# Ensure LOG_DIR is set before use
 LOG_DIR="$HOME_DIR/.local/share/level-up"
 mkdir -p "$LOG_DIR"
 
@@ -27,12 +29,7 @@ echo "LANG: $LANG"
 
 # Set environment variables for Wayland
 export XDG_SESSION_TYPE=wayland
-
-# Check if WAYLAND_DISPLAY is set, if not set a default value
-if [ -z "${WAYLAND_DISPLAY:-}" ]; then
-    export WAYLAND_DISPLAY=wayland-0
-fi
-
+export WAYLAND_DISPLAY=wayland-0
 export LANG=en_US.UTF-8
 
 # --- Waybar Logging ---
