@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Define the home directory dynamically
+# Determine the home directory dynamically
 HOME_DIR=$(eval echo "~$USER")
 
 # Ensure LOG_DIR is set before use
@@ -24,14 +24,16 @@ fi
 echo "Launching Level-Up session for user $USER..."
 echo "HOME_DIR: $HOME_DIR"
 echo "LOG_DIR: $LOG_DIR"
+
+# Set default environment variables if they are not set already
+export XDG_SESSION_TYPE="${XDG_SESSION_TYPE:-wayland}"
+export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
+export LANG="${LANG:-en_US.UTF-8}"
+
+# Log environment variables
 echo "XDG_SESSION_TYPE: $XDG_SESSION_TYPE"
 echo "WAYLAND_DISPLAY: $WAYLAND_DISPLAY"
 echo "LANG: $LANG"
-
-# Set environment variables for Wayland
-export XDG_SESSION_TYPE=wayland
-export WAYLAND_DISPLAY=wayland-0
-export LANG=en_US.UTF-8
 
 # --- Waybar Logging ---
 WAYBAR_LOG="$LOG_DIR/waybar.log"
