@@ -32,10 +32,8 @@ The following sections summarize the main lessons and skills I gained throughout
 - **Licensing:** Gained awareness of software licensing and the importance of choosing the right license for a project.
 
 ## Future Goals
-- Improve and expand project widgets for better usability and customization.
-- Enhance install.sh with a dry-run option and add clear code comments to make installation safer and more understandable.
-- Explore advanced scripting and automation to streamline repetitive tasks.
-- Experiment with Podman containers and integrate them into project workflows.
+- Improve and expand waybar functionality. Create a Network Widget, Documentation Wdiget, Add Screen Brightness settings, etc.
+- Create Podman and Docker Containers for the alpha, beta, rc, and release versions of this project to learn about containers for my RHCSA studying
 - Investigate lightweight animated wallpapers and their system impact.
 - Learn about workflows, including GitHub Actions, to automate project tasks.
 - Establish clear security guidelines for the project and follow best practices.
