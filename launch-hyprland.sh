@@ -45,7 +45,8 @@ fi
 # --- Hyprland Logging ---
 HYPRLAND_LOG="$LOG_DIR/hyprland.log"
 if ! $DRY_RUN; then
-    HYPRLAND_LOG_LEVEL=debug hyprland >"$HYPRLAND_LOG" 2>&1 &
+    export HYPRLAND_LOG_LEVEL=debug
+    hyprland >"$HYPRLAND_LOG" 2>&1 &
     HYPRLAND_PID=$!
     echo "Hyprland logging to: $HYPRLAND_LOG"
     echo "Hyprland PID: $HYPRLAND_PID"
