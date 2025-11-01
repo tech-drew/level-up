@@ -1,5 +1,5 @@
 #!/bin/bash
-# launch-hyprland.sh - Launch Hyprland and Waybar (SDDM + dry-run)
+# launch-hyprland.sh - portable Hyprland + Waybar launcher with logging and dry-run support
 
 set -euo pipefail
 
@@ -10,7 +10,11 @@ if [[ "${1:-}" == "--dry-run" ]]; then
     echo "==> Dry-run mode enabled. No processes will be launched."
 fi
 
-# --- Directories ---
+# --- Determine home directory dynamically ---
+HOME_DIR=$(eval echo "~$USER")
+export HOME="$HOME_DIR"
+
+# --- Logging directories ---
 LOG_DIR="$HOME/.local/share/level-up"
 HYPRLAND_LOG="$LOG_DIR/hyprland.log"
 WAYBAR_LOG="$LOG_DIR/waybar.log"
