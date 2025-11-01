@@ -1,6 +1,13 @@
 #!/bin/bash
 set -euo pipefail
 
+# Define the home directory dynamically
+HOME_DIR=$(eval echo "~$USER")
+
+# Ensure LOG_DIR is set before use
+LOG_DIR="$HOME_DIR/.local/share/level-up"
+mkdir -p "$LOG_DIR"
+
 # --- Dry-run support ---
 DRY_RUN=false
 if [[ "${1:-}" == "--dry-run" ]]; then
@@ -13,16 +20,10 @@ else
     exec > >(tee -a "$LOG_DIR/launch-hyprland.log") 2>&1
 fi
 
-# Determine the home directory dynamically
-HOME_DIR=$(eval echo "~$USER")
-
-# Ensure LOG_DIR is set before use
-LOG_DIR="$HOME_DIR/.local/share/level-up"
-mkdir -p "$LOG_DIR"
-
 # Log the start of the script
 echo "Launching Level-Up session for user $USER..."
 echo "HOME_DIR: $HOME_DIR"
+echo "LOG_DIR: $LOG_DIR"
 echo "XDG_SESSION_TYPE: $XDG_SESSION_TYPE"
 echo "WAYLAND_DISPLAY: $WAYLAND_DISPLAY"
 echo "LANG: $LANG"
