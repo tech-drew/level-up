@@ -218,20 +218,22 @@ else
     fi
 fi
 
-# --- 10. Create a Level-Up desktop entry for login manager ---
-echo "--> Creating Level-Up desktop entry for login manager..."
+# --- 10. Create a Level-Up session for SDDM ---
+echo "--> Creating Level-Up session for SDDM/KDE..."
 
-# Ensure wrapper script exists and is executable
 WRAPPER_PATH="$SCRIPT_DIR/launch-hyprland.sh"
+DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
+
 if ! $DRY_RUN; then
+    # Check if wrapper exists
     if [[ ! -f "$WRAPPER_PATH" ]]; then
         echo "    [!] Wrapper script $WRAPPER_PATH not found. Cannot create login session."
     else
-        chmod +x "$WRAPPER_PATH"
+        # Ensure wrapper is executable
+        sudo chmod +x "$WRAPPER_PATH"
         echo "    Wrapper script made executable: $WRAPPER_PATH"
 
-        # System-wide desktop entry (for SDDM/KDE)
-        DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
+        # Create a system-wide desktop entry
         sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
 [Desktop Entry]
 Name=Level-Up
@@ -239,15 +241,24 @@ Comment=Launch Level-Up Hyprland session
 Exec=$WRAPPER_PATH
 TryExec=$WRAPPER_PATH
 Type=XSession
+DesktopNames=Level-Up
+X-KDE-PluginInfo-Name=level-up
+X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session
+X-KDE-PluginInfo-Category=Desktop
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-EnabledByDefault=true
 EOF
+
+        # Ensure desktop entry is readable
+        sudo chmod 644 "$DESKTOP_ENTRY_FILE"
+
         echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
         echo "    You should now see 'Level-Up' as a login option in SDDM after logging out."
     fi
 else
     echo "[DRY-RUN] Would make wrapper executable: $WRAPPER_PATH"
-    echo "[DRY-RUN] Would create system-wide desktop entry at /usr/share/xsessions/level-up.desktop with Exec=$WRAPPER_PATH"
+    echo "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE"
 fi
-
 
 echo "    [!] You may need to log out and log back in for group changes to take effect."
 
