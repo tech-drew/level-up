@@ -7,10 +7,10 @@ if [[ "${1:-}" == "--dry-run" ]]; then
     DRY_RUN=true
     echo "==> Dry-run mode enabled. No processes will be launched."
     # Redirect all output to dry-run log + terminal
-    tee -a "$LOG_DIR/launch-hyprland-dryrun.log" <&0 >&1 &
+    exec > >(tee -a "$LOG_DIR/launch-hyprland-dryrun.log") 2>&1
 else
     # Redirect all output to normal log + terminal
-    tee -a "$LOG_DIR/launch-hyprland.log" <&0 >&1 &
+    exec > >(tee -a "$LOG_DIR/launch-hyprland.log") 2>&1
 fi
 
 # Determine the home directory dynamically
@@ -27,7 +27,12 @@ echo "LANG: $LANG"
 
 # Set environment variables for Wayland
 export XDG_SESSION_TYPE=wayland
-export WAYLAND_DISPLAY=wayland-0
+
+# Check if WAYLAND_DISPLAY is set, if not set a default value
+if [ -z "${WAYLAND_DISPLAY:-}" ]; then
+    export WAYLAND_DISPLAY=wayland-0
+fi
+
 export LANG=en_US.UTF-8
 
 # --- Waybar Logging ---
