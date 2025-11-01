@@ -221,34 +221,33 @@ fi
 # --- 10. Create a Level-Up desktop entry for login manager ---
 echo "--> Creating Level-Up desktop entry for login manager..."
 
-LOCAL_BIN="$HOME/.local/bin"
-mkdir -p "$LOCAL_BIN"
-
-WRAPPER_SRC="$SCRIPT_DIR/launch-hyprland.sh"
-WRAPPER_DEST="$LOCAL_BIN/launch-hyprland.sh"
-
-DESKTOP_ENTRY_DIR="$HOME/.local/share/xsessions"
-DESKTOP_ENTRY_FILE="$DESKTOP_ENTRY_DIR/level-up.desktop"
-
+# Ensure wrapper script exists and is executable
+WRAPPER_PATH="$SCRIPT_DIR/launch-hyprland.sh"
 if ! $DRY_RUN; then
-    # Copy wrapper to ~/.local/bin
-    cp "$WRAPPER_SRC" "$WRAPPER_DEST"
-    chmod +x "$WRAPPER_DEST"
-    echo "    Wrapper installed at: $WRAPPER_DEST"
+    if [[ ! -f "$WRAPPER_PATH" ]]; then
+        echo "    [!] Wrapper script $WRAPPER_PATH not found. Cannot create login session."
+    else
+        chmod +x "$WRAPPER_PATH"
+        echo "    Wrapper script made executable: $WRAPPER_PATH"
 
-    # Create desktop entry
-    mkdir -p "$DESKTOP_ENTRY_DIR"
-    cat > "$DESKTOP_ENTRY_FILE" <<EOF
+        # System-wide desktop entry (for SDDM/KDE)
+        DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
+        sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
 [Desktop Entry]
 Name=Level-Up
 Comment=Launch Level-Up Hyprland session
-Exec=$WRAPPER_DEST
+Exec=$WRAPPER_PATH
+TryExec=$WRAPPER_PATH
 Type=XSession
 EOF
-    echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
+        echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
+        echo "    You should now see 'Level-Up' as a login option in SDDM after logging out."
+    fi
 else
-    echo "[DRY-RUN] Would copy wrapper to $WRAPPER_DEST and create desktop entry at $DESKTOP_ENTRY_FILE"
+    echo "[DRY-RUN] Would make wrapper executable: $WRAPPER_PATH"
+    echo "[DRY-RUN] Would create system-wide desktop entry at /usr/share/xsessions/level-up.desktop with Exec=$WRAPPER_PATH"
 fi
+
 
 echo "    [!] You may need to log out and log back in for group changes to take effect."
 
