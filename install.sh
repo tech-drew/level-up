@@ -221,7 +221,6 @@ fi
 # --- 10. Create a Level-Up desktop entry for login manager ---
 echo "--> Creating Level-Up desktop entry for login manager..."
 
-# Stable location for wrapper
 LOCAL_BIN="$HOME/.local/bin"
 mkdir -p "$LOCAL_BIN"
 
