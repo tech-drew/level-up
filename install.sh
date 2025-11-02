@@ -144,6 +144,12 @@ HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
 if [[ -f "$HYPRLAND_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
+        echo "    hyprland.conf copied to $HOME/.config/hypr/"
+        
+        # --- Append the exec-once line to hyprland.conf ---
+        USER_NAME=$(whoami)
+        sed -i "25i exec-once = /home/$USER_NAME/level-up/scripts/launch-waybar-with-logging.sh" "$HOME/.config/hypr/hyprland.conf"
+        echo "    Added exec-once line to hyprland.conf"
     else
         echo "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/"
     fi
