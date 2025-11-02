@@ -218,24 +218,20 @@ else
     fi
 fi
 
-# --- 10. Create a Level-Up session for SDDM using logging ---
+# --- 10. Create a Level-Up session for SDDM with proper logging ---
 echo "--> Creating Level-Up session for SDDM/KDE..."
 
 DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
 LOG_DIR="$HOME/.local/share/level-up"
-HYPRLAND_LOG="$LOG_DIR/hyprland.log"
-WAYBAR_LOG="$LOG_DIR/waybar.log"
+mkdir -p "$LOG_DIR"
 
 if ! $DRY_RUN; then
-    # Ensure log directory exists
-    mkdir -p "$LOG_DIR"
-
-    # Create system-wide desktop entry
+    # Create a system-wide desktop entry pointing directly to Hyprland
     sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
 [Desktop Entry]
 Name=Level-Up
 Comment=Launch Level-Up Hyprland session with logging
-Exec=bash -c 'mkdir -p \"$LOG_DIR\"; hyprland >\"$HYPRLAND_LOG\" 2>&1 & HYPR_PID=\$!; sleep 5; waybar >\"$WAYBAR_LOG\" 2>&1 & wait \$HYPR_PID'
+Exec=sh -c 'mkdir -p \"$LOG_DIR\" && hyprland > \"$LOG_DIR/hyprland.log\" 2>&1'
 TryExec=hyprland
 Type=XSession
 DesktopNames=Level-Up
@@ -246,19 +242,28 @@ X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-EnabledByDefault=true
 EOF
 
-    # Ensure desktop entry is readable
     sudo chmod 644 "$DESKTOP_ENTRY_FILE"
-
     echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
-    echo "    Hyprland logs: $HYPRLAND_LOG"
-    echo "    Waybar logs: $WAYBAR_LOG"
+
+    # Configure Waybar logging via hyprland.conf
+    HYPRLAND_CONF="$HOME/.config/hypr/hyprland.conf"
+    if [[ -f "$HYPRLAND_CONF" ]]; then
+        # Remove any old exec-once for Waybar to prevent duplicates
+        sed -i '/exec-once.*waybar/d' "$HYPRLAND_CONF"
+        # Add new exec-once with logging
+        echo "exec-once = sh -c 'mkdir -p \"$LOG_DIR\" && waybar > \"$LOG_DIR/waybar.log\" 2>&1 &'" >> "$HYPRLAND_CONF"
+        echo "    Waybar exec-once added to hyprland.conf with logging"
+    else
+        echo "    [!] hyprland.conf not found at $HYPRLAND_CONF. Waybar logging not configured."
+    fi
 else
     echo "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE"
-    echo "[DRY-RUN] Hyprland logs: $HYPRLAND_LOG"
-    echo "[DRY-RUN] Waybar logs: $WAYBAR_LOG"
+    echo "[DRY-RUN] Would configure Waybar logging in $HOME/.config/hypr/hyprland.conf"
 fi
 
-echo "    [!] You may need to log out and log back in for the session to appear in SDDM."
+echo "    You should now see 'Level-Up' as a login option in SDDM after logging out."
+echo "    Both Hyprland and Waybar logs will be written to $LOG_DIR"
+
 
 
 echo "==> Installation complete!"
