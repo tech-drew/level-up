@@ -1,4 +1,4 @@
-# Logs Documentation for Level-Up Installation and Hyprland Session
+# Logging Locations and Troubleshooting for Level-Up
 
 This document explains the various log files generated during the **Level-Up installation** and **Hyprland sessions**. Understanding these logs will help you monitor the installation, troubleshoot issues, and ensure everything is working smoothly.
 
