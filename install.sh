@@ -257,16 +257,15 @@ if ! $DRY_RUN; then
 [Desktop Entry]
 Name=Level-Up
 Comment=Launch Level-Up Hyprland session with logging
-Exec=$WRAPPER_DEST_PATH
+Exec=env XDG_CURRENT_DESKTOP=Hyprland $WRAPPER_DEST_PATH  # Set it to Hyprland
 TryExec=$WRAPPER_DEST_PATH
-Type=XSession
+Type=Application
 DesktopNames=Level-Up
 X-KDE-PluginInfo-Name=level-up
 X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session with logging
 X-KDE-PluginInfo-Category=Desktop
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-EnabledByDefault=true
-EOF
 
         # Ensure desktop entry is readable
         sudo chmod 644 "$DESKTOP_ENTRY_FILE"
