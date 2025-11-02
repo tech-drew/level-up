@@ -143,31 +143,34 @@ fi
 echo "--> Copying Hyprland and Hyprlock configs..."
 HYPRLAND_CONF="$SCRIPT_DIR/configs/hypr/hyprland.conf"
 HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
+# Define the path to the script needing execution permission
+WAYBAR_LAUNCH_SCRIPT="$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh" 
 
 if [[ -f "$HYPRLAND_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
         echo "    hyprland.conf copied to $HOME/.config/hypr/"
         
+        # --- NEW CODE BLOCK: Give the script execute permissions ---
+        if [[ -f "$WAYBAR_LAUNCH_SCRIPT" ]]; then
+            chmod +x "$WAYBAR_LAUNCH_SCRIPT"
+            echo "    Execute permission added to launch-waybar-with-logging.sh"
+        else
+            echo "    [!] launch-waybar-with-logging.sh not found. Cannot set execute permission."
+        fi
+        # --------------------------------------------------------
+
         # --- Append the exec-once line to hyprland.conf ---
         USER_NAME=$(whoami)
-        sed -i "25i exec-once = /home/$USER_NAME/level-up/scripts/launch-waybar-with-logging.sh" "$HOME/.config/hypr/hyprland.conf"
+        # Note: Ensure $SCRIPT_DIR is resolved to the absolute path of the project root
+        WAYBAR_EXEC_PATH="/home/$USER_NAME/level-up/scripts/launch-waybar-with-logging.sh"
+        sed -i "25i exec-once = $WAYBAR_EXEC_PATH" "$HOME/.config/hypr/hyprland.conf"
         echo "    Added exec-once line to hyprland.conf"
     else
         echo "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/"
     fi
 else
     echo "    [!] hyprland.conf not found. Skipping."
-fi
-
-if [[ -f "$HYPRLOCK_CONF" ]]; then
-    if ! $DRY_RUN; then
-        cp -v "$HYPRLOCK_CONF" "$HOME/.config/hypr/hyprlock.conf"
-    else
-        echo "[DRY-RUN] Would copy hyprlock.conf to $HOME/.config/hypr/"
-    fi
-else
-    echo "    [!] hyprlock.conf not found. Skipping."
 fi
 
 # --- 6. Copy wallpaper ---
