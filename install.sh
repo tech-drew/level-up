@@ -266,7 +266,7 @@ X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session with logging
 X-KDE-PluginInfo-Category=Desktop
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-EnabledByDefault=true
-EOF"
+EOF
        
         # Ensure desktop entry is readable
         sudo chmod 644 "$DESKTOP_ENTRY_FILE"
