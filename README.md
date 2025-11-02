@@ -71,16 +71,19 @@ Optional guides and resources are available in the [Documentation](documentation
 
 ---
 
-This project is part of my ongoing Linux learning journey.  
-I welcome constructive feedback, ideas, and suggestions that can help me improve and refine **Level-Up**.
+This project is part of my ongoing journey to learn Linux. I welcome constructive feedback, ideas, and suggestions that can help me improve and refine **Level-Up**.
 
-While I’m not currently accepting direct code contributions or pull requests, I appreciate hearing different perspectives and learning from community input.  
+At this time, I’m not accepting direct code contributions or pull requests. I want this project to reflect my personal growth over time, so code changes from others will be rejected. However, I truly appreciate hearing different perspectives and learning from community input.
 
-If you’d like to share thoughts or recommendations, please:
-- Open an [issue](../../issues) to provide feedback or suggest improvements  
-- Or leave a comment in the Discussions tab
+If you’d like to share feedback or suggestions, please use the **Discussions tab**:
 
-Thank you for taking the time to look through this project and for helping me grow through your insights.
+- Leave a comment or suggestion in the [Discussions tab](https://github.com/Always-Growing/level-up/discussions/31) to share your thoughts, ideas, or recommendations.
+
+If you're reporting a problem or bug, please open an **Issue**:
+
+- Open an [issue](../../issues) for any bugs, errors, or technical problems that need attention.
+
+Thank you for being part of this journey
 
 ---
 
