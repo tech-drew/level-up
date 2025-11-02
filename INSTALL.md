@@ -20,6 +20,11 @@ If you run the script with sudo or as root, those files will be placed in the ro
 
 To ensure the configuration is applied to your user account, run the "./install.sh" command as your regular user (without sudo):
 
+### Important: Logout and Select Level-Up Session
+
+After the script finishes running, log out of your current session and log back in.
+From the login screen, select the 'Level-Up' session (this is the session you created via the .desktop file). This will launch your Hyprland session with the configured settings and logging enabled.
+
 ### Optional Features
 
 - **Dry-Run Mode** – Test the installation without making changes:
@@ -34,3 +39,5 @@ All actions will be logged and printed, but no files will be copied or packages 
 
 **Normal Logging** (for regular installations) is saved to:  
 `$HOME/.local/share/level-up/level-up-install.log`
+
+
