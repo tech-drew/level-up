@@ -267,8 +267,4 @@ echo "    [!] You may need to log out and log back in for group changes to take 
 
 echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
-echo "==> You can now log into Hyprland from your display manager, or type 'Hyprland' in a TTY."
-
-echo "==> Installation complete!"
-echo "==> Welcome to Level-Up!"
-echo "==> You can now log into Hyprland from your display manager, or type 'Hyprland' in a TTY."
+echo "==> You can now log into Level-Up from your display manager, or type 'Hyprland' in a TTY."
