@@ -139,38 +139,49 @@ else
     echo "[DRY-RUN] Would copy scripts from $SCRIPTS_DIR to $HOME/level-up/scripts/"
 fi
 
-# --- 5. Copy Hyprland/Hyprlock configs ---
+# --- 5. Copy Hyprland/Hyprlock configs and make Waybar launch script system-accessible ---
 echo "--> Copying Hyprland and Hyprlock configs..."
 HYPRLAND_CONF="$SCRIPT_DIR/configs/hypr/hyprland.conf"
 HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
-# Define the path to the script needing execution permission
-WAYBAR_LAUNCH_SCRIPT="$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh" 
+
+# Define system-wide paths for the Waybar launch script
+WAYBAR_SRC_PATH="$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh"
+WAYBAR_DEST_PATH="/usr/local/bin/launch-waybar-with-logging.sh" # System-wide location
 
 if [[ -f "$HYPRLAND_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
         echo "    hyprland.conf copied to $HOME/.config/hypr/"
-        
-        # --- NEW CODE BLOCK: Give the script execute permissions ---
-        if [[ -f "$WAYBAR_LAUNCH_SCRIPT" ]]; then
-            chmod +x "$WAYBAR_LAUNCH_SCRIPT"
-            echo "    Execute permission added to launch-waybar-with-logging.sh"
-        else
-            echo "    [!] launch-waybar-with-logging.sh not found. Cannot set execute permission."
-        fi
-        # --------------------------------------------------------
 
-        # --- Append the exec-once line to hyprland.conf ---
-        USER_NAME=$(whoami)
-        # Note: Ensure $SCRIPT_DIR is resolved to the absolute path of the project root
-        WAYBAR_EXEC_PATH="/home/$USER_NAME/level-up/scripts/launch-waybar-with-logging.sh"
-        sed -i "25i exec-once = $WAYBAR_EXEC_PATH" "$HOME/.config/hypr/hyprland.conf"
-        echo "    Added exec-once line to hyprland.conf"
+        # --- BLOCK: Copy Waybar launch script to system-wide location and make executable ---
+        if [[ -f "$WAYBAR_SRC_PATH" ]]; then
+            sudo cp "$WAYBAR_SRC_PATH" "$WAYBAR_DEST_PATH"
+            sudo chmod +x "$WAYBAR_DEST_PATH"
+            echo "    Waybar launch script copied and made executable: $WAYBAR_DEST_PATH"
+        else
+            echo "    [!] launch-waybar-with-logging.sh not found. Cannot set up automatic launch."
+        fi
+        # ---------------------------------------------------------------------------------------
+
+        # --- Append the exec-once line to hyprland.conf (pointing to the new system path) ---
+        sed -i "25i exec-once = $WAYBAR_DEST_PATH" "$HOME/.config/hypr/hyprland.conf"
+        echo "    Added exec-once line to hyprland.conf, pointing to $WAYBAR_DEST_PATH"
     else
         echo "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/"
+        echo "[DRY-RUN] Would copy and chmod +x Waybar launch script to $WAYBAR_DEST_PATH"
     fi
 else
     echo "    [!] hyprland.conf not found. Skipping."
+fi
+
+if [[ -f "$HYPRLOCK_CONF" ]]; then
+    if ! $DRY_RUN; then
+        cp -v "$HYPRLOCK_CONF" "$HOME/.config/hypr/hyprlock.conf"
+    else
+        echo "[DRY-RUN] Would copy hyprlock.conf to $HOME/.config/hypr/"
+    fi
+else
+    echo "    [!] hyprlock.conf not found. Skipping."
 fi
 
 # --- 6. Copy wallpaper ---
