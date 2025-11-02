@@ -24,11 +24,14 @@ fi
 
 # --- Security disclaimer ---
 echo "==> SECURITY DISCLAIMER"
-echo "This script requires sudo permissions to install packages and configure system services."
-echo "Please review and understand the script before running it."
-read -r -p "Do you want to continue? (y/n): " CONFIRM
+echo "This script requires sudo permissions to install packages, configure system services, and modify system-wide configurations."
+echo "By running this script, you acknowledge that you are responsible for any changes made to your system."
+echo "Although this script does not modify user accounts or sensitive data, it will install software, adjust configurations, and modify system settings."
+echo "It is recommended that you back up important data and configurations before proceeding."
+echo "Some changes, such as enabling services or modifying system files, may require a logout or reboot to take effect."
+read -r -p "Do you want to continue with these changes? (y/n): " CONFIRM
 if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
-    echo "Exiting installation."
+    echo "Exiting installation. No changes have been made."
     exit 1
 fi
 
