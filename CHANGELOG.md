@@ -9,6 +9,28 @@ Notes:
 
 ------------------------------------------------------------
 
+2025-11-02 22:30 - Updated documentation and fixed launch-hyprland-wth-logging.sh
+
+Added:
+
+- level-up/scripts
+- level-up/scripts/launch-hyprland-wth-logging.sh
+- level-up/scripts/launch-waybar-wth-logging.sh
+
+Modified:
+
+- updated README.md to fix a broken CHANGEME.ms
+- updated level-up/install.sh to create level-up.desktop which is used as an SDDM login option to start the project with logging.
+- updated level-up/documentation/logging-locations-and-troubleshooting.md to include newly created logs
+- updated level-up/documentation/lessons-learned.md with updated future plans
+- updated level-up/documentation/awknowledgements.md to fix broken links
+
+Removed:
+
+- None
+
+------------------------------------------------------------
+
 2025-10-28 22:30 - Created branches.md documentation for branch changes.
 
 Added:
