@@ -224,7 +224,7 @@ echo "--> Creating Level-Up session for SDDM/KDE..."
 # Define wrapper paths
 WRAPPER_SRC_PATH="$SCRIPT_DIR/launch-hyprland.sh"
 WRAPPER_DEST_PATH="/usr/local/bin/launch-hyprland.sh"
-DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
+DESKTOP_ENTRY_FILE="/usr/share/wayland-sessions/level-up.desktop" 
 
 if ! $DRY_RUN; then
     # Check if wrapper exists
