@@ -97,6 +97,7 @@ CONFIG_DIRS=(
     "$HOME/.config/wofi"
     "$HOME/.config/timeshift"
     "$HOME/Pictures"
+    "$HOME/level-up/scripts"  # Create scripts directory
 )
 echo "--> Creating config directories..."
 for dir in "${CONFIG_DIRS[@]}"; do
@@ -107,8 +108,8 @@ for dir in "${CONFIG_DIRS[@]}"; do
     fi
 done
 
-# --- 4. Copy config files ---
-echo "--> Copying configuration files..."
+# --- 4. Copy config and script files ---
+echo "--> Copying configuration and script files..."
 CONFIG_MAP=(
     "alacritty"
     "fastfetch"
@@ -125,6 +126,15 @@ for cfg in "${CONFIG_MAP[@]}"; do
         echo "[DRY-RUN] Would copy $cfg configs from $SRC to $DEST"
     fi
 done
+
+# Copy scripts (including launch scripts)
+echo "--> Copying scripts..."
+SCRIPTS_DIR="$SCRIPT_DIR/scripts/"
+if ! $DRY_RUN; then
+    cp -rv "$SCRIPTS_DIR"* "$HOME/level-up/scripts/" || echo "[!] No scripts to copy"
+else
+    echo "[DRY-RUN] Would copy scripts from $SCRIPTS_DIR to $HOME/level-up/scripts/"
+fi
 
 # --- 5. Copy Hyprland/Hyprlock configs ---
 echo "--> Copying Hyprland and Hyprlock configs..."
