@@ -15,7 +15,7 @@ echo "LOG_DIR: $LOG_DIR"
 
 # Set default environment variables if they are not set already
 export XDG_SESSION_TYPE="${XDG_SESSION_TYPE:-wayland}"
-export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
+export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-1}"
 export LANG="${LANG:-en_US.UTF-8}"
 
 # Log environment variables
