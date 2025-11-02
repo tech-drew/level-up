@@ -222,9 +222,9 @@ fi
 echo "--> Creating Level-Up session for SDDM/KDE..."
 
 # Define wrapper paths
-WRAPPER_SRC_PATH="$SCRIPT_DIR/launch-hyprland.sh"
-WRAPPER_DEST_PATH="/usr/local/bin/launch-hyprland.sh"
-DESKTOP_ENTRY_FILE="/usr/share/wayland-sessions/level-up.desktop" 
+WRAPPER_SRC_PATH="$SCRIPT_DIR/scripts/launch-hyprland-with-logging.sh"
+WRAPPER_DEST_PATH="/usr/local/bin/launch-hyprland-with-logging.sh"
+DESKTOP_ENTRY_FILE="/usr/share/wayland-sessions/level-up.desktop"
 
 if ! $DRY_RUN; then
     # Check if wrapper exists
@@ -240,13 +240,13 @@ if ! $DRY_RUN; then
         sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
 [Desktop Entry]
 Name=Level-Up
-Comment=Launch Level-Up Hyprland session
+Comment=Launch Level-Up Hyprland session with logging
 Exec=$WRAPPER_DEST_PATH
 TryExec=$WRAPPER_DEST_PATH
 Type=XSession
 DesktopNames=Level-Up
 X-KDE-PluginInfo-Name=level-up
-X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session
+X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session with logging
 X-KDE-PluginInfo-Category=Desktop
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-EnabledByDefault=true
@@ -262,6 +262,7 @@ else
     echo "[DRY-RUN] Would copy wrapper to $WRAPPER_DEST_PATH and make executable"
     echo "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE"
 fi
+
 
 echo "    [!] You may need to log out and log back in for group changes to take effect."
 
