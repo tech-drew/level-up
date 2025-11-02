@@ -52,6 +52,14 @@ if ! $DRY_RUN; then
     sleep 5 # Wait for 5 seconds for Hyprland to initialize
 fi
 
+# Ensure the display server is available before launching Waybar
+if ! $DRY_RUN; then
+    while [ ! -S "/tmp/$WAYLAND_DISPLAY" ]; do
+        echo "Waiting for Wayland display to be ready..."
+        sleep 1
+    done
+fi
+
 # --- Waybar Logging ---
 WAYBAR_LOG="$LOG_DIR/waybar.log"
 if ! $DRY_RUN; then
