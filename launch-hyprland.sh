@@ -14,4 +14,11 @@ HYPRLAND_LOG="$LOG_DIR/hyprland.log"
 echo "Launching Hyprland..." > "$HYPRLAND_LOG"
 
 # Start Hyprland and log output
-hyprland >> "$HYPRLAND_LOG" 2>&1
+hyprland >> "$HYPRLAND_LOG" 2>&1 &
+HYPRLAND_PID=$!
+
+# Log the PID of Hyprland
+echo "Hyprland started with PID: $HYPRLAND_PID" >> "$HYPRLAND_LOG"
+
+# Wait for Hyprland to finish
+wait $HYPRLAND_PID
