@@ -26,7 +26,7 @@ This document explains the various log files generated during the **Level-Up ins
    - `3`: Debug (Verbose logging for detailed troubleshooting)
    - `trace`: Extremely verbose, detailed logging (Use with caution, generates large amounts of data)
 
-   You can adjust the logging level by editing the `loglevel` in your `hyprland.conf`. By default, the log file will be located in `$HOME/.local/share/level-up/hyprland.log`.
+   You can adjust the logging level by editing the `loglevel` in `$HOME/.local/share/level-up/launch-hyprland-with-logging.log` . By default, the log file will be located in `$HOME/.local/share/level-up/hyprland.log`.
 
 ### 4. **Waybar Log (`waybar.log`)**
    - **Location**: `$HOME/.local/share/level-up/waybar.log`
@@ -40,7 +40,7 @@ This document explains the various log files generated during the **Level-Up ins
    - `debug`: Logs detailed debug info
    - `trace`: Extremely verbose logs, including all internal operations
 
-   You can adjust the logging level by modifying the `logging` section in your Waybar config file (`~/.config/waybar/config.json`). The default log level is typically `info`, but you can set it to `debug` or `trace` if you need more detailed logs for troubleshooting.
+   You can adjust the logging level by modifying the `logging` section in your Waybar config file (`$HOME/.local/share/level-up/launch-waybar-with-logging.log`). The default log level is typically `info`, but you can set it to `debug` or `trace` if you need more detailed logs for troubleshooting.
 
 ### 5. **Launch Hyprland with Logging (`launch-hyprland-with-logging.sh`)**
    - **Location**: `$HOME/.local/share/level-up/launch-hyprland-with-logging.log` (or your defined log location)
