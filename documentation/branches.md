@@ -2,7 +2,7 @@
 
 ## v2.2.0-beta-fedora-kde-hyprland-and-waybar-logs
 - **Purpose**: Adds logging for `hyprland.conf` and `waybar` to improve troubleshooting.
-- **Status**: Testing Branch
+- **Status**: Active Beta Branch
 - **Notable Changes**:
   - Enables verbose logging for Hyprland and Waybar configurations.
   - Provides log files for easier debugging and troubleshooting.
@@ -11,7 +11,7 @@
 
 ## v2.1.0-beta-fedora-kde-installer-logs
 - **Purpose**: Adds logging support to the Fedora KDE installer script (`install.sh`).
-- **Status**: Testing Branch
+- **Status**: Stable
 - **Notable Changes**:
   - Implements logging for installation steps.
   - Captures dry-run logs for debugging.
@@ -21,7 +21,7 @@
 
 ## v2.0.0-beta-fedora-kde
 - **Purpose**: Adds logging for `hyprland.conf` and `waybar` to improve troubleshooting.
-- **Status**: Active Beta Branch
+- **Status**: Stable
 - **Notable Changes**:
   - Rebuilt the project on Fedora 42 KDE Plasma Desktop instead of Fedora Server to resolve theming and font issues.
 - **Related Issues**:
