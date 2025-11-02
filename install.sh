@@ -218,51 +218,48 @@ else
     fi
 fi
 
-# --- 10. Create a Level-Up session for SDDM ---
+# --- 10. Create a Level-Up session for SDDM using logging ---
 echo "--> Creating Level-Up session for SDDM/KDE..."
 
-WRAPPER_SRC_PATH="$SCRIPT_DIR/launch-hyprland.sh"
-WRAPPER_DEST_PATH="/usr/local/bin/launch-hyprland.sh"
 DESKTOP_ENTRY_FILE="/usr/share/xsessions/level-up.desktop"
+LOG_DIR="$HOME/.local/share/level-up"
+HYPRLAND_LOG="$LOG_DIR/hyprland.log"
+WAYBAR_LOG="$LOG_DIR/waybar.log"
 
 if ! $DRY_RUN; then
-    # Check if wrapper exists
-    if [[ ! -f "$WRAPPER_SRC_PATH" ]]; then
-        echo "    [!] Wrapper script $WRAPPER_SRC_PATH not found. Cannot create login session."
-    else
-        # Copy wrapper to system-wide location
-        sudo cp "$WRAPPER_SRC_PATH" "$WRAPPER_DEST_PATH"
-        sudo chmod +x "$WRAPPER_DEST_PATH"
-        echo "    Wrapper script copied and made executable: $WRAPPER_DEST_PATH"
+    # Ensure log directory exists
+    mkdir -p "$LOG_DIR"
 
-        # Create a system-wide desktop entry pointing to the new location
-        sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
+    # Create system-wide desktop entry
+    sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
 [Desktop Entry]
 Name=Level-Up
-Comment=Launch Level-Up Hyprland session
-Exec=$WRAPPER_DEST_PATH
-TryExec=$WRAPPER_DEST_PATH
+Comment=Launch Level-Up Hyprland session with logging
+Exec=bash -c 'mkdir -p \"$LOG_DIR\"; hyprland >\"$HYPRLAND_LOG\" 2>&1 & HYPR_PID=\$!; sleep 5; waybar >\"$WAYBAR_LOG\" 2>&1 & wait \$HYPR_PID'
+TryExec=hyprland
 Type=XSession
 DesktopNames=Level-Up
 X-KDE-PluginInfo-Name=level-up
-X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session
+X-KDE-PluginInfo-Comment=Launch Level-Up Hyprland session with logging
 X-KDE-PluginInfo-Category=Desktop
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-EnabledByDefault=true
 EOF
 
-        # Ensure desktop entry is readable
-        sudo chmod 644 "$DESKTOP_ENTRY_FILE"
+    # Ensure desktop entry is readable
+    sudo chmod 644 "$DESKTOP_ENTRY_FILE"
 
-        echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
-        echo "    You should now see 'Level-Up' as a login option in SDDM after logging out."
-    fi
+    echo "    Desktop entry created at: $DESKTOP_ENTRY_FILE"
+    echo "    Hyprland logs: $HYPRLAND_LOG"
+    echo "    Waybar logs: $WAYBAR_LOG"
 else
-    echo "[DRY-RUN] Would copy wrapper to $WRAPPER_DEST_PATH and make executable"
     echo "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE"
+    echo "[DRY-RUN] Hyprland logs: $HYPRLAND_LOG"
+    echo "[DRY-RUN] Waybar logs: $WAYBAR_LOG"
 fi
 
-echo "    [!] You may need to log out and log back in for group changes to take effect."
+echo "    [!] You may need to log out and log back in for the session to appear in SDDM."
+
 
 echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
