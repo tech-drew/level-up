@@ -40,7 +40,10 @@ _A layout with a few applications open in a tiled setup. Dolphin is using the Br
 ---
 ## Installation
 
-Follow the steps in the [INSTALL.md](INSTALL.md) to get started with the installation.
+Before proceeding with the installation, please **read the [compatibility and security disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
+
+Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTALL.md) to get started with the installation.
+
 
 ---
 
@@ -54,16 +57,17 @@ For important system requirements, compatibility notes, and disclaimers, please 
 ## Documentation
 
 Optional guides and resources are available in the [Documentation](documentation/) folder, including:
-
+- [compatibility-and-security-disclaimer](documentation/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
+- [INSTALL](INSTALL.md) – Installation instructions for setting up the project.
 - [CHANGELOG](CHANGELOG.md) – Project version history and updates.
-- [Logging-Locations-and-Troubleshooting](documentation/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
 - [Branches Overview](documentation/branches.md) – Overview of branches, including their purposes, changes, and related issues.
-- [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
+- [Logging-Locations-and-Troubleshooting](documentation/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
+- [Post-Install Resources](documentation/post-install-resources.md) – Optional tools, drivers, and tweaks.
 - [Fedora KDE Plasma SSH Setup](documentation/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
 - [Github Private Repo Access Setup](documentation/github-private-repo-access-setup.md) – Optional setup guide for private repo access.
 - [Linux Boot Time Optimizations](documentation/linux-boot-time-optimizations.md) – Tips for faster boot times.
-- [Post-Install Resources](documentation/post-install-resources.md) – Optional tools, drivers, and tweaks.
 - [VPN Private Internet Access Setup](documentation/vpn-private-internet-access-setup.md) – Optional VPN configuration guide.
+- [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
 
 ---
 
