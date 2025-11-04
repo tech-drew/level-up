@@ -1,7 +1,8 @@
+## Compatibility and Security Disclaimer
+Before proceeding with the installation, please **read the [compatibility and security disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
+
 ## Install Instructions
-
 ---
-
 If Git is not already installed, install it using the following command:
 
 ```bash
