@@ -16,7 +16,7 @@ This project uses Alacritty for terminal sessions within Hyprland. However, both
 
 ---
 
-## Security and Usage Disclaimer
+## Security Disclaimer
 
 All configurations and scripts included in Level-Up have been tested only on a clean installation of Fedora 42 KDE Plasma Desktop Edition. There is **no guarantee** that they will function correctly on existing systems or on installations missing required dependencies.
 
