@@ -9,9 +9,9 @@
 
 ## Project Status: Work in Progress
 
-This project is actively under development and evolving as I learn and experiment. Features may change over time, and feedback is welcome.
+This project is under development and evolving as I learn and grow. Features may change over time, and feedback is welcome.
 
-I started learning Linux in June 2024, and this project serves as a hands-on way to deepen my knowledge while preparing for the RHCSA. Prior to working on this project I had no experience in GitHub, scripting, or programming.
+I started learning Linux in June 2024, and this project serves as a hands-on way to deepen my Linux knowledge. Prior to working on this project I had no experience in GitHub, scripting, or programming.
 
 For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](documentation/lessons-learned.md) document.
 
@@ -36,7 +36,7 @@ _A layout with a few applications open in a tiled setup. Dolphin is using the Br
 ---
 ## Installation
 
-Before proceeding with the installation, please **read the [compatibility and security disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
+Before proceeding with the installation, please **read the [Compatibility and Security Disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
 
 Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTALL.md) to get started with the installation.
 
@@ -46,7 +46,7 @@ Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTAL
 ## Documentation
 
 Optional guides and resources are available in the [Documentation](documentation/) folder, including:
-- [compatibility-and-security-disclaimer](documentation/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
+- [Compatibility-and-Security-Disclaimer](documentation/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
 - [INSTALL](INSTALL.md) – Installation instructions for setting up the project.
 - [CHANGELOG](CHANGELOG.md) – Project version history and updates.
 - [Branches Overview](documentation/branches.md) – Overview of branches, including their purposes, changes, and related issues.
