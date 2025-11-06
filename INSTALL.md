@@ -1,5 +1,5 @@
 ## Compatibility and Security Disclaimer
-Before proceeding with the installation, please **read the [compatibility and security disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
+Before proceeding with the installation, please **read the [Compatibility and Security Disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
 
 ## Install Instructions
 ---
