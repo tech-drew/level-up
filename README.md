@@ -43,13 +43,6 @@ Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTAL
 
 ---
 
-## Compatibility & Disclaimer
-
-For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer](documentation/compatibility-and-disclaimer.md).
-
-
----
-
 ## Documentation
 
 Optional guides and resources are available in the [Documentation](documentation/) folder, including:
