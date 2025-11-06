@@ -8,6 +8,7 @@
   - Provides log files for easier debugging and troubleshooting.
 - **Related Issues**:
   - [#24](https://github.com/Always-Growing/level-up/issues/24) (Logging setup for Hyprland/Waybar)
+  - [#30](https://github.com/Always-Growing/level-up/issues/30) (Improved Logging setup for Hyprland/Waybar)
 
 ## v2.1.0-beta-fedora-kde-installer-logs
 - **Purpose**: Adds logging support to the Fedora KDE installer script (`install.sh`).
