@@ -1,11 +1,30 @@
 Changelog
-Last Updated: 2025-10-28 21:30 PST
+Last Updated: 2025-11-05 22:00 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+------------------------------------------------------------
+
+2025-11-05 22:00 - Updated documentation 
+
+Added:
+
+- None
+
+Modified:
+
+- updated README.md for consistent writting.
+- updated level-up/documentation/compatibility-and-security-disclaimer for consistent writting.
+- updated level-up/documentation/lessons-learned.md with updated future plans
+- updated level-up/documentation/branches added a new issue to v2.2.0-beta-fedora-kde-hyprland-and-waybar-with-logging
+
+Removed:
+
+- None
 
 ------------------------------------------------------------
 
@@ -19,7 +38,7 @@ Added:
 
 Modified:
 
-- updated README.md to fix a broken CHANGEME.ms
+- updated level-up/README.md to fix a broken CHANGEME.ms
 - updated level-up/install.sh to create level-up.desktop which is used as an SDDM login option to start the project with logging.
 - updated level-up/documentation/logging-locations-and-troubleshooting.md to include newly created logs
 - updated level-up/documentation/lessons-learned.md with updated future plans
