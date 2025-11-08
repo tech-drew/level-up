@@ -96,3 +96,12 @@ If you believe any licensing is missed or not properly acknowledged in this proj
 
 ---
 
+### Icon Theme
+
+The **Level-Up Icon Theme** (purple variant of Breeze Dark) included in this project is a derivative work of the **Breeze Dark Icon Theme** by the KDE Community.
+
+- Original Breeze Dark Icon Theme: © KDE Community, licensed under the **GPL v2 or later**.
+- Level-Up modifications: © Always-Growing / 2025, licensed under the **GPL v3**.
+
+The full license for the Level-Up Icon Theme can be found in the [Level-Up-Icon-Theme-LICENSE](licenses/level-up-icon-theme.txt) file.
+
