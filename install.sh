@@ -291,6 +291,31 @@ else
     echo "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE"
 fi
 
+# --- 11. Install Icon Theme ---
+echo "--> Installing custom icon theme..."
+
+# Path to the icon theme tarball
+ICON_THEME_ARCHIVE="$SCRIPT_DIR/themes/level-up-icon-theme.tar.gz"
+
+# Destination directory for icon theme (user-specific installation)
+ICON_THEME_DEST="$HOME/.local/share/icons/level-up-icon-theme"
+
+# Check if the icon theme archive exists
+if [[ -f "$ICON_THEME_ARCHIVE" ]]; then
+    if ! $DRY_RUN; then
+        # Create destination directory if it doesn't exist
+        mkdir -p "$ICON_THEME_DEST"
+
+        # Extract the theme to the destination directory
+        tar -xzf "$ICON_THEME_ARCHIVE" -C "$ICON_THEME_DEST"
+        echo "    Icon theme extracted and installed to $ICON_THEME_DEST"
+    else
+        # In dry-run mode, just log what would happen
+        echo "[DRY-RUN] Would extract and install icon theme to $ICON_THEME_DEST"
+    fi
+else
+    echo "    [!] Icon theme archive not found at $ICON_THEME_ARCHIVE. Skipping."
+fi
 
 echo "    [!] You may need to log out and log back in for group changes to take effect."
 
