@@ -1,21 +1,26 @@
 #!/bin/bash
 
-# Set the log directory (make sure the parent directory exists)
-LOG_DIR="$HOME/.local/share/level-up"
-mkdir -p "$LOG_DIR"
+# Source the logging script
+source /usr/local/bin/logging.sh
 
-# Set the log file path for waybar
-WAYBAR_LOG="$LOG_DIR/waybar.log"
+# Initialize logging for this script
+initialize_logging "$0"  # "$0" gives the script name
+
+# Set environment variables for Waybar (using info level for logging)
+export WAYBAR_LOG_LEVEL=info
 
 # Log the start of Waybar
-echo "Launching Waybar with logging..." > "$WAYBAR_LOG"
+log_message "Launching Waybar with logging..." "INFO"
 
-# Set debug logging and start Waybar, redirecting output to log file
-WAYBAR_LOG_LEVEL=debug waybar >> "$WAYBAR_LOG" 2>&1 &
+# Start Waybar and redirect output to the log file
+waybar &>> "$LOG_FILE" &
 WAYBAR_PID=$!
 
-# Log the PID
-echo "Waybar started with PID: $WAYBAR_PID" >> "$WAYBAR_LOG"
+# Log the PID of Waybar
+log_message "Waybar started with PID: $WAYBAR_PID" "INFO"
 
 # Wait for Waybar to finish
 wait $WAYBAR_PID
+
+# Log that Waybar has exited
+log_message "Waybar has exited." "INFO"
