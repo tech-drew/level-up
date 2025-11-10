@@ -1,11 +1,33 @@
 Changelog
-Last Updated: 2025-11-05 22:00 PST
+Last Updated: 2025-11-09 24:00 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+------------------------------------------------------------
+
+2025-11-09 24:00 - Updated documentation 
+
+Added:
+
+- level-up/scripts/logging.sh
+- level-up/themes/level-up-icon-theme.tar.gz
+- level-up/themes/level-up-icon-theme-old-backup.tar.gz
+- level-up/licenses/level-up-icon-theme.txt
+
+Modified:
+
+- updated README.md to include a note about the level-up-icon-theme licensing.
+- level-up/scripts/launch-hyprland-with-logging adjusted to include a more robust logging solution
+- level-up/scripts/launch-waybar-with-logging adjusted to include a more robust logging solution
+- level-up/install.sh adjusted to include a more robust logging solution, Section 11 Install Level-Up Icon Theme, Echo Output for each section
+
+Removed:
+
+- None
 
 ------------------------------------------------------------
 
