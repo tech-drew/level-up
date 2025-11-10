@@ -11,7 +11,7 @@
 
 This project is under development and evolving as I learn and grow. Features may change over time, and feedback is welcome.
 
-I started learning Linux in June 2024, and this project serves as a hands-on way to deepen my Linux knowledge. Prior to working on this project I had no experience in GitHub, scripting, or programming.
+I started learning Linux in June 2025, and this project serves as a hands-on way to deepen my Linux knowledge. Prior to working on this project I had no experience in GitHub, scripting, or programming.
 
 For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](documentation/lessons-learned.md) document.
 
