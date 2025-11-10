@@ -2,25 +2,31 @@
 
 # Function to initialize log directory and file
 initialize_logging() {
-    # Create the log directory and set the log file path based on the script name
-    LOG_DIR="$HOME/.local/share/level-up/logs/$(basename "$1" .sh)"  # $1 removes the .sh from the dir name
+    local script_path="$1"
+    SCRIPT_NAME=$(basename "$script_path")  # e.g., install.sh or logging.sh
+
+    # Create log directory based on script name (without .sh)
+    LOG_DIR="$HOME/.local/share/level-up/logs/${SCRIPT_NAME%.sh}"
     mkdir -p "$LOG_DIR"
-    LOG_FILE="$LOG_DIR/$(basename "$1" .sh)-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
+
+    # Create a new session log file
+    LOG_FILE="$LOG_DIR/${SCRIPT_NAME%.sh}-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
 }
 
-# Function to log messages with different log levels
+# Function to log messages with timestamp, level, and script name
 log_message() {
-    # Ensure LOG_FILE is set before proceeding
     if [[ -z "${LOG_FILE:-}" ]]; then
         echo "ERROR: LOG_FILE not set. Please call initialize_logging first." >&2
         exit 1
     fi
 
     local message=$1
-    local log_level=${2:-INFO}  # Default to INFO if no log level provided
-    local timestamp=$(date --utc +"%Y-%m-%dT%H:%M:%S.%3NZ")
-    local component="script"
-    echo "[$timestamp] [$log_level] [$component] $message" >> "$LOG_FILE"
+    local log_level=${2:-INFO}
+    local timestamp
+    timestamp=$(date --utc +"%Y-%m-%dT%H:%M:%S.%3NZ")
+
+    # Use the script name captured during initialization
+    echo "[$timestamp] [$log_level] [$SCRIPT_NAME] $message" >> "$LOG_FILE"
 }
 
 # Function to redirect stdout to the log with INFO level
@@ -37,17 +43,13 @@ log_stderr() {
     done
 }
 
-# Function to capture stdout and stderr and redirect them to the appropriate log level
+# Function to capture stdout and stderr
 capture_output() {
-    # Ensure that LOG_FILE is set before capturing output
     if [[ -z "${LOG_FILE:-}" ]]; then
         echo "ERROR: LOG_FILE not set. Please call initialize_logging first." >&2
         exit 1
     fi
 
-    # Redirect stdout (file descriptor 1) to log_stdout (INFO level)
     exec 1> >(log_stdout)
-    
-    # Redirect stderr (file descriptor 2) to log_stderr (ERROR level)
     exec 2> >(log_stderr)
 }
