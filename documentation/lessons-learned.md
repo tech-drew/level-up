@@ -1,7 +1,7 @@
 # Lessons Learned
 
 ## Background
-I began learning Linux in June 2024, and this project has served as a hands-on way to deepen my Linux understanding. Prior to this project, I had no experience with GitHub, scripting, or programming. The project has been a fun and rewarding experiment, pushing me outside my comfort zone and giving me practical experience and skills in areas I was unfamiliar with.
+I began learning Linux in June 2025, and this project has served as a hands-on way to deepen my Linux understanding. Prior to this project, I had no experience with GitHub, scripting, or programming. The project has been a fun and rewarding experiment, pushing me outside my comfort zone and giving me practical experience and skills in areas I was unfamiliar with.
 
 This project is constantly evolving as I learn new concepts and techniques, and I am always open to feedback and suggestions from the community.
 
