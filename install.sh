@@ -3,13 +3,16 @@
 set -euo pipefail
 
 # --- Setup logging ---
-LOG_DIR="$HOME/.local/share/level-up/logs"
+LOG_DIR="$HOME/.local/share/level-up/logs/install"
 mkdir -p "$LOG_DIR"
+
+LOG_DIR_DRY="$HOME/.local/share/level-up/logs/install-dry-run"
+mkdir -p "$LOG_DIR_DRY"
 
 # Dry-run or normal mode log file setup
 if [[ "${1:-}" == "--dry-run" ]]; then
     DRY_RUN=true
-    LOG_FILE="$LOG_DIR/install-dry-run-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
+    LOG_FILE="$LOG_DIR_DRY/install-dry-run-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
     echo "==> Dry-run mode enabled. No changes will be made." | tee -a "$LOG_FILE"
 else
     DRY_RUN=false
