@@ -120,7 +120,7 @@ fi
 COPR_PACKAGES=(
     hyprland
     hyprlock
-    hyprland-qtutils
+    hyprland-qtutils     # Comment out hyprland-qtutils if you want to try this project on Fedora 43.
     swww
 )
 
