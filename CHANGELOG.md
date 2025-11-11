@@ -1,5 +1,5 @@
 Changelog
-Last Updated: 2025-11-09 24:00 PST
+Last Updated: 11-11 12:00 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
@@ -9,7 +9,26 @@ Notes:
 
 ------------------------------------------------------------
 
-2025-11-09 24:00 - Updated documentation 
+2025-11-11 12:00 - Updated logging and level-up-icon-theme 
+
+Added:
+
+- level-up/themes/.gitkeep
+
+Modified:
+
+- updated README.md to fix typos
+- updated level-up/scripts/logging.sh to be consistent with log formatting in the install.sh
+- updated level-up/documentation/lessons-learned.md to fix typos
+- updated level-up/themes/level-up-icon-theme to fix errors and improve hyprland compatibility
+
+Removed:
+
+- None
+
+------------------------------------------------------------
+
+2025-11-10 00:00 - Updated documentation 
 
 Added:
 
