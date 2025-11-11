@@ -92,6 +92,7 @@ PACKAGES=(
     alacritty
     fastfetch
     gimp
+    network-manager-applet
     pavucontrol
     waybar
     wofi
