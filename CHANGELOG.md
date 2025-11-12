@@ -1,5 +1,5 @@
 Changelog
-Last Updated: 11-11 12:00 PST
+Last Updated: 12025-11-12 07:00 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
@@ -7,6 +7,23 @@ Notes:
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+------------------------------------------------------------
+
+2025-11-12 07:00 - Updated logging and level-up-icon-theme 
+
+Added:
+
+- level-up/documentation/post-install-resources added the Arch wiki as a resource.
+
+Modified:
+
+- Updated level-up/configs/hyprland.conf with better logging support and added two environmental variables to help with theme import (dbus, systemctl line). Additionally a comment was left on hyprland-qtutils line as it prevents the installer from successfully completing on Fedora 43
+- Updated level-up/documentation/logging-locations-and-troubleshooting with more details regarding hyprland logs
+- Updated level-up/documentation/compatibility-and-security-disclaimer with notes on why this project is not compatible with Fedora 43 and added some information on a known issue with using Alacritty within a virtual machines.
+
+Removed:
+
+- level-up/documentation/post-install-resources Removed the Noble resource as it is not needed now that the project is on Fedora 42 KDE Plasma
 ------------------------------------------------------------
 
 2025-11-11 12:00 - Updated logging and level-up-icon-theme 
