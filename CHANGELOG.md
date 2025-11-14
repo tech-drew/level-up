@@ -11,28 +11,23 @@
 ## 2025-11-12 07:00 - Updated logging and level-up-icon-theme 
 
 ### Added:
-
 - level-up/documentation/post-install-resources added the Arch wiki as a resource.
 
 ### Changed:
-
 - Updated level-up/configs/hyprland.conf with better logging support and added two environmental variables to help with theme import (dbus, systemctl line). Additionally a comment was left on hyprland-qtutils line as it prevents the installer from successfully completing on Fedora 43
 - Updated level-up/documentation/logging-locations-and-troubleshooting with more details regarding hyprland logs
 - Updated level-up/documentation/compatibility-and-security-disclaimer with notes on why this project is not compatible with Fedora 43 and added some information on a known issue with using Alacritty within a virtual machines.
 
 ### Removed:
-
 - level-up/documentation/post-install-resources Removed the Noble resource as it is not needed now that the project is on Fedora 42 KDE Plasma
 
 
 ## 2025-11-11 12:00 - Updated logging and level-up-icon-theme 
 
 ### Added:
-
 - level-up/themes/.gitkeep
 
 ### Changed:
-
 - updated README.md to fix typos
 - updated level-up/scripts/logging.sh to be consistent with log formatting in the install.sh
 - updated level-up/documentation/lessons-learned.md to fix typos
@@ -42,14 +37,12 @@
 ## 2025-11-10 00:00 - Updated documentation 
 
 ### Added:
-
 - level-up/scripts/logging.sh
 - level-up/themes/level-up-icon-theme.tar.gz
 - level-up/themes/level-up-icon-theme-old-backup.tar.gz
 - level-up/licenses/level-up-icon-theme.txt
 
 ### Changed:
-
 - updated README.md to include a note about the level-up-icon-theme licensing.
 - level-up/scripts/launch-hyprland-with-logging adjusted to include a more robust logging solution
 - level-up/scripts/launch-waybar-with-logging adjusted to include a more robust logging solution
@@ -59,7 +52,6 @@
 ## 2025-11-05 22:00 - Updated documentation 
 
 ### Changed:
-
 - updated README.md for consistent writting.
 - updated level-up/documentation/compatibility-and-security-disclaimer for consistent writting.
 - updated level-up/documentation/lessons-learned.md with updated future plans
@@ -69,13 +61,11 @@
 ## 2025-11-02 22:30 - Updated documentation and fixed launch-hyprland-wth-logging.sh
 
 ### Added:
-
 - level-up/scripts
 - level-up/scripts/launch-hyprland-wth-logging.sh
 - level-up/scripts/launch-waybar-wth-logging.sh
 
 ### Changed:
-
 - updated level-up/README.md to fix a broken CHANGEME.ms
 - updated level-up/install.sh to create level-up.desktop which is used as an SDDM login option to start the project with logging.
 - updated level-up/documentation/logging-locations-and-troubleshooting.md to include newly created logs
@@ -86,52 +76,38 @@
 ## 2025-10-28 22:30 - Created branches.md documentation for branch changes.
 
 ### Added:
-
 - branches.md documenation
 
 ### Changed:
-
 - updated README.md to include a link to the branches.md documentation
 
 
 ## 2025-10-28 21:30 - Added Logging for Hyprland, Waybar, and Documentation Update
 
 ### Added:
-
 - Logging enabled for Hyprland: Configured verbose logging in hyprland.conf to capture detailed debug information.
-
 - Logging enabled for Waybar: Configured Waybar’s built-in logging functionality to capture detailed logs with the highest verbosity for troubleshooting.
-
 - logging-and-troubleshooting.md: Created a new documentation file explaining where to find logs for the installation process, hyprland.conf, and Waybar for easier debugging and troubleshooting.
 
 ### Changed:
-
 - Logging configuration: Updated install.sh, hyprland.conf, and waybar configurations to ensure logs are correctly captured for key system components.
-
 
 
 ## 2025-10-28 21:00 - Move CHANGELOG.md to Root & Create Separate install.sh
 
 ### Added:
-
 - CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
-
 - INSTALL.md created as a separate file the installation process.
 
 ### Changed:
-
 - CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
-
 
 
 ## 2025-10-28 20:30 - Added logging, dry-run support, and security disclaimer to install.sh
 
 ### Added:
-
 - Logging of install.sh actions to $HOME/.local/share/level-up/level-up-install.log following best practices.
-
 - Dry-run mode for install.sh using the --dry-run flag, allowing users to preview actions without making changes.
-
 - Security disclaimer and explicit user confirmation before installation requiring sudo.
 
 ### Changed:
@@ -398,4 +374,4 @@
 - Set up a custom bash prompt in .bashrc.
 - Added default wallpaper and created required directories.
 
-## Initial development began around July 2025.
+### Note: Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
