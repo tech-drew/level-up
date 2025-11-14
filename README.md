@@ -31,7 +31,7 @@ _The Fastfetch and Alacritty customizations in action._
 _A view of the Wofi application launcher on this system._
 
 ![screenshot 4](project-screenshots/screenshot4.png)  
-_A layout with a few applications open in a tiled setup. Dolphin is using the Breeze Dark theme, configured through the KDE Settings._
+_A layout with a few applications open in a tiled setup. Dolphin is using the Level-Up-Icon theme, configured through the KDE Icon Settings._
 
 ---
 ## Installation
