@@ -1,5 +1,5 @@
 # Changelog
-## Last Updated: 2025-11-12 07:00 PST
+## Last Updated: 025-11-14 13:30 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
@@ -7,6 +7,19 @@
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+## 2025-11-14 13:30 - Updated CHANGELOG.md formatting and Project Screenshots
+
+### Changed:
+- Updated `level-up/CHANGELOG.md` with updated formatting to match best practices
+- Updated `level-up/install.sh` to use the `level-up/wallpapers/level-up.png`
+- Updated `level-up/configs/hypr/hyprland.conf` exec-once swww line to use the `level-up/wallpapers/level-up.png` wallpaper.
+- Updated `level-up/configs/hypr/hyprlock.conf` to use the `level-up/wallpapers/level-up.png` wallpaper.
+- Updated `level-up/project-screenshots/screenshot1.png` to use the `level-up/wallpapers/level-up.png` wallpaper
+- Updated `level-up/project-screenshots/screenshot3.png` to use the `level-up/wallpapers/level-up.png` wallpaper.
+- Updated `level-up/project-screenshots/screenshot4.png` to use the `level-up-icon-theme`. 
+
+### Removed
+- `level-up/wallpapers/end_4HyprlandWallpaper.png`
 
 ## 2025-11-12 07:00 - Updated logging and level-up-icon-theme 
 
