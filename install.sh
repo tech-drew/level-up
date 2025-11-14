@@ -265,7 +265,7 @@ fi
 # --- 6. Copy wallpaper ---
 echo "6. Copy wallpaper"
 log_message "Copying wallpaper..." "INFO"
-WALLPAPER="$SCRIPT_DIR/wallpapers/end_4HyprlandWallpaper.png"
+WALLPAPER="$SCRIPT_DIR/wallpapers/level-up.png"
 if [[ -f "$WALLPAPER" ]]; then
     if ! $DRY_RUN; then
         cp -v "$WALLPAPER" "$HOME/Pictures/"
