@@ -1,100 +1,80 @@
-Changelog
-Last Updated: 2025-11-12 07:00 PST
+# Changelog
+## Last Updated: 2025-11-12 07:00 PST
 
-Notes:
+### Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
-------------------------------------------------------------
 
-2025-11-12 07:00 - Updated logging and level-up-icon-theme 
+## 2025-11-12 07:00 - Updated logging and level-up-icon-theme 
 
-Added:
+### Added:
 
 - level-up/documentation/post-install-resources added the Arch wiki as a resource.
 
-Modified:
+### Changed:
 
 - Updated level-up/configs/hyprland.conf with better logging support and added two environmental variables to help with theme import (dbus, systemctl line). Additionally a comment was left on hyprland-qtutils line as it prevents the installer from successfully completing on Fedora 43
 - Updated level-up/documentation/logging-locations-and-troubleshooting with more details regarding hyprland logs
 - Updated level-up/documentation/compatibility-and-security-disclaimer with notes on why this project is not compatible with Fedora 43 and added some information on a known issue with using Alacritty within a virtual machines.
 
-Removed:
+### Removed:
 
 - level-up/documentation/post-install-resources Removed the Noble resource as it is not needed now that the project is on Fedora 42 KDE Plasma
-------------------------------------------------------------
 
-2025-11-11 12:00 - Updated logging and level-up-icon-theme 
 
-Added:
+## 2025-11-11 12:00 - Updated logging and level-up-icon-theme 
+
+### Added:
 
 - level-up/themes/.gitkeep
 
-Modified:
+### Changed:
 
 - updated README.md to fix typos
 - updated level-up/scripts/logging.sh to be consistent with log formatting in the install.sh
 - updated level-up/documentation/lessons-learned.md to fix typos
 - updated level-up/themes/level-up-icon-theme to fix errors and improve hyprland compatibility
 
-Removed:
 
-- None
+## 2025-11-10 00:00 - Updated documentation 
 
-------------------------------------------------------------
-
-2025-11-10 00:00 - Updated documentation 
-
-Added:
+### Added:
 
 - level-up/scripts/logging.sh
 - level-up/themes/level-up-icon-theme.tar.gz
 - level-up/themes/level-up-icon-theme-old-backup.tar.gz
 - level-up/licenses/level-up-icon-theme.txt
 
-Modified:
+### Changed:
 
 - updated README.md to include a note about the level-up-icon-theme licensing.
 - level-up/scripts/launch-hyprland-with-logging adjusted to include a more robust logging solution
 - level-up/scripts/launch-waybar-with-logging adjusted to include a more robust logging solution
 - level-up/install.sh adjusted to include a more robust logging solution, Section 11 Install Level-Up Icon Theme, Echo Output for each section
 
-Removed:
 
-- None
+## 2025-11-05 22:00 - Updated documentation 
 
-------------------------------------------------------------
-
-2025-11-05 22:00 - Updated documentation 
-
-Added:
-
-- None
-
-Modified:
+### Changed:
 
 - updated README.md for consistent writting.
 - updated level-up/documentation/compatibility-and-security-disclaimer for consistent writting.
 - updated level-up/documentation/lessons-learned.md with updated future plans
 - updated level-up/documentation/branches added a new issue to v2.2.0-beta-fedora-kde-hyprland-and-waybar-with-logging
 
-Removed:
 
-- None
+## 2025-11-02 22:30 - Updated documentation and fixed launch-hyprland-wth-logging.sh
 
-------------------------------------------------------------
-
-2025-11-02 22:30 - Updated documentation and fixed launch-hyprland-wth-logging.sh
-
-Added:
+### Added:
 
 - level-up/scripts
 - level-up/scripts/launch-hyprland-wth-logging.sh
 - level-up/scripts/launch-waybar-wth-logging.sh
 
-Modified:
+### Changed:
 
 - updated level-up/README.md to fix a broken CHANGEME.ms
 - updated level-up/install.sh to create level-up.desktop which is used as an SDDM login option to start the project with logging.
@@ -102,31 +82,21 @@ Modified:
 - updated level-up/documentation/lessons-learned.md with updated future plans
 - updated level-up/documentation/awknowledgements.md to fix broken links
 
-Removed:
 
-- None
+## 2025-10-28 22:30 - Created branches.md documentation for branch changes.
 
-------------------------------------------------------------
-
-2025-10-28 22:30 - Created branches.md documentation for branch changes.
-
-Added:
+### Added:
 
 - branches.md documenation
 
-Modified:
+### Changed:
 
 - updated README.md to include a link to the branches.md documentation
 
-Removed:
 
-- None
+## 2025-10-28 21:30 - Added Logging for Hyprland, Waybar, and Documentation Update
 
-------------------------------------------------------------
-
-2025-10-28 21:30 - Added Logging for Hyprland, Waybar, and Documentation Update
-
-Added:
+### Added:
 
 - Logging enabled for Hyprland: Configured verbose logging in hyprland.conf to capture detailed debug information.
 
@@ -134,37 +104,29 @@ Added:
 
 - logging-and-troubleshooting.md: Created a new documentation file explaining where to find logs for the installation process, hyprland.conf, and Waybar for easier debugging and troubleshooting.
 
-Modified:
+### Changed:
 
 - Logging configuration: Updated install.sh, hyprland.conf, and waybar configurations to ensure logs are correctly captured for key system components.
 
-Removed:
 
-- None
 
-------------------------------------------------------------
+## 2025-10-28 21:00 - Move CHANGELOG.md to Root & Create Separate install.sh
 
-2025-10-28 21:00 - Move CHANGELOG.md to Root & Create Separate install.sh
-
-Added:
+### Added:
 
 - CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
 
 - INSTALL.md created as a separate file the installation process.
 
-Modified:
+### Changed:
 
 - CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
 
-Removed:
 
-- None
 
-------------------------------------------------------------
+## 2025-10-28 20:30 - Added logging, dry-run support, and security disclaimer to install.sh
 
-2025-10-28 20:30 - Added logging, dry-run support, and security disclaimer to install.sh
-
-Added:
+### Added:
 
 - Logging of install.sh actions to $HOME/.local/share/level-up/level-up-install.log following best practices.
 
@@ -172,395 +134,249 @@ Added:
 
 - Security disclaimer and explicit user confirmation before installation requiring sudo.
 
-Modified:
+### Changed:
 - Level-Up/install.sh updated to support logging, dry-run mode, and security confirmation.
 
-Removed:
--None
 
-------------------------------------------------------------
+## 2025-10-27 23:00 - Renamed all files and directories to lowercase to follow programming best practices and replaced spaces with hyphens in file and folder names.
 
-2025-10-27 23:00 - Renamed all files and directories to lowercase to follow programming best practices and replaced spaces with hyphens in file and folder names.
-
-Added:
-- None
-
-Modified:
+### Changed:
 - /Level-Up/ was renamed to /level-up/
 
-Removed:
-- None
-  
-------------------------------------------------------------
 
-2025-10-27 19:30 - Adjusted the formatting of documentation to use consistent formatting.
+## 2025-10-27 19:30 - Adjusted the formatting of documentation to use consistent formatting.
 
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/Fedora Kde Plasma SSH Setup.md
 - Level-Up/Github Private Repo Access Setup.md
 - Level-Up/Linux Boot Time Optimizations.md
 - Level-Up/VPN Private Internet Access Setup.md
 
-Removed:
+### Removed:
 - Fedora Server Install documentation
   
-------------------------------------------------------------
 
-2025-10-22 22:30 - Added a Project Screenshots folder with some example screenshots of the project
+## 2025-10-22 22:30 - Added a Project Screenshots folder with some example screenshots of the project
 
-Added:
+### Added:
 - Level-Up\Project Screenshots
 
-Modified:
-- None
 
-Removed:
-- None
-------------------------------------------------------------
+## 2025-10-22 12:30 - Renamed named branches to use Semantic Versioning for the naming.
 
-2025-10-22 12:30 - Renamed named branches to use Semantic Versioning for the naming.
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Renamed main branch to v1.0.0-alpha-fedora-server-deprecated
 - Renamed fedora-kde-plasma-rebuild branch to v2.0.0-beta-fedora-kde
 - Changed the main branch from v1.0.0-alpha-fedora-server-deprecated to v2.0.0-beta-fedora-kde
 
-Removed:
-- None
-------------------------------------------------------------
 
-2025-10-21 21:30 - Added the floating keybinding from main to this branch to enable floating on some windows. Added virtual machine manager to install.sh
+## 2025-10-21 21:30 - Added the floating keybinding from main to this branch to enable floating on some windows. Added virtual machine manager to install.sh
 
-Added:
+### Added:
 - Keybinding to enable floating on windows
 - virt-manager added to install.sh and a section was created to enable the correct service.
 
-Modified:
+### Changed:
 - Level-Up/configs/hypr/hyprland.conf
 
-Removed:
-- None
-------------------------------------------------------------
 
-2025-10-21 21:00 - Fixed broken install.sh for Fedora KDE Plasma
+## 2025-10-21 21:00 - Fixed broken install.sh for Fedora KDE Plasma
 
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/install.sh 
 
-Removed:
-- None
-------------------------------------------------------------
 
-2025-10-12 21:30 - Adjusted Waybar Widget Tray Background Color
+## 2025-10-12 21:30 - Adjusted Waybar Widget Tray Background Color
 
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/config/waybar/style.css changed the waybar tray background color to purple to match the waybar.
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-10-11 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma. 
 
-2025-10-11 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma. 
-
-Added:
+### Added:
 - Level-Up/install.sh Pavucontrol was added back in to use with hyprland
 
-Modified:
+### Changed:
 - Level-Up/install.sh removed a bunch of stuff from the installer that does not work with Fedora KDE Plasma
 
-Removed:
+### Removed:
 - Level-Up/install.sh removed cabextract. Cabextract is needed for ms fonts but the rebuild is using the KDE Plasma fonts
 
-------------------------------------------------------------
 
-2025-10-05 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma
+## 2025-10-05 21:30 - Removed a bunch of stuff from install.sh not needed on Fedora KDE Plasma
 
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/install.sh
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-29 22:30 - Added a keybinding to enable floating on some windows
 
-2025-09-29 22:30 - Added a keybinding to enable floating on some windows
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/install.sh
 
-Removed:
+### Removed:
 - Pipewire configuration in install.sh. I believe it breaks installing this config ontop of Fedora KDE Plasma.
 
-------------------------------------------------------------
 
-2025-09-28 14:30 - Added a Licenses folder and created Licensing information for this project. The licensing information in this project is best effort. If anything is missing or incorrect please message me and I will work to fix the errors.
+## 2025-09-28 14:30 - Added a Licenses folder and created Licensing information for this project. The licensing information in this project is best effort. If anything is missing or incorrect please message me and I will work to fix the errors.
 
-Added:
+### Added:
 - Level-Up/Licenses
 - Level-Up/Level-Up License.txt
 
-Modified:
+### Changed:
 - Level-Up/README.md
+  
 
-Removed:
-- None
+## 2025-09-19 23:00 - Updated install.sh to create user wofi directory and copy over the wofi configurations
 
-------------------------------------------------------------
-
-2025-09-19 23:00 - Updated install.sh to create user wofi directory and copy over the wofi configurations
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/install.sh
+  
 
-Removed:
-- None
+## 2025-09-19 22:30 - Updated Waybar and Power Menu.sh. Power menu now attached to waybar button.
 
-------------------------------------------------------------
-
-2025-09-19 22:30 - Updated Waybar and Power Menu.sh. Power menu now attached to waybar button.
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Level-Up/configs/waybar/config
 - Level-Up/configs/waybar/style.css
 - Level-Up/configs/waybar/scripts/power_menu.sh
+  
 
-Removed:
-- None
+## 2025-09-18 22:00 - Added Wofi folder and style.css
 
-------------------------------------------------------------
-
-2025-09-18 22:00 - Added Wofi folder and style.css
-
-Added:
+### Added:
 - Wofi folder and wofi style.css
 
-Modified:
-- Added a keybinding for kate in Level-Up/configs/hypr/hyprland.conf 
+### Changed:
+- Added a keybinding for kate in Level-Up/configs/hypr/hyprland.conf
+  
 
-Removed:
-- None
+## 2025-09-17 23:00 - Main Branch - Modified README to fix technical inaccuracies and to add an explicit warning to only install this configuration on a fresh Fedora Server install. 
 
-------------------------------------------------------------
-
-2025-09-17 23:00 - Main Branch - Modified README to fix technical inaccuracies and to add an explicit warning to only install this configuration on a fresh Fedora Server install. 
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Modified Level-Up/README.md to have a more clear and technically accurate reason for why you should avoid running this configuration in a virtual machine.
 - Modified Level-Up/README.md to have an explicit warning do not install this on anything other than a fresh install of Fedora Server
+  
 
-Removed:
-- None
+## 2025-09-16 22:30 - Main Branch - Modified Level-Up/configs/waybar/conf removing bad icons.
 
-------------------------------------------------------------
-
-2025-09-16 22:30 - Main Branch - Modified Level-Up/configs/waybar/conf removing bad icons.
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Modified Level-Up/configs/waybar/config. Removed two bad icons. Changed sound percentage to remain while the device is muted.
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-16 22:00 - Main Branch - Added wayland-utils wl-clipboard to install.sh
 
-2025-09-16 22:00 - Main Branch - Added wayland-utils wl-clipboard to install.sh
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Modified install.sh to add wayland-utils wl-clipboard. This package is needed to save clip art when you select some of the screen top copy for screenshots.
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-16 07:00 - Main Branch - Modified install.sh to fix a typo
 
-2025-09-16 07:00 - Main Branch - Modified install.sh to fix a typo
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Modified install.sh to add a missing backslash after the kde packages.
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-15 12:30 - Fixed inconsistent syntax in hyprland.conf
 
-2025-09-15 12:30 - Fixed inconsistent syntax in hyprland.conf
-
-Added:
-- None
-
-Modified:
+### Changed:
 - hyprland.conf fixed inconsistent variable declarations.
 - created a hyprlock.conf keybinding
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-14 23:30 - Main Branch - Added Documentation folder to repo
 
-2025-09-14 23:30 - Main Branch - Added Documentation folder to repo
-
-Added:
+### Added:
 - Documentation/ folder containing VPN setup, GitHub SSH access, and boot optimization guides
+  
 
-Modified:
-- None
+## 2025-09-14 23:00 - Test Branch - Merged hyprlock_test with hyprlock
 
-Removed:
-- None
-
-------------------------------------------------------------
-
-2025-09-14 23:00 - Test Branch - Merged hyprlock_test with hyprlock
-
-Added:
+### Added:
 - kde-cli-tools kde-runtime to install.sh fix Dolphin issues
-
-Modified:
+  
+### Changed:
 - install.sh 
 - kde-cli-tools kde-runtime
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-14 21:00 - Test Branch - Worked on broken fonts install.sh.
 
-2025-09-14 21:00 - Test Branch - Worked on broken fonts install.sh.
-
-Added:
-- None
-
-Modified:
+### Changed:
 - install.sh 
 - hyprland.conf added hyprlock keybinding
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-14 15:00 - Test Branch - Enhanced install.sh with Pipewire audio setup and improved dolphin file associations
 
-2025-09-14 15:00 - Test Branch - Enhanced install.sh with Pipewire audio setup and improved dolphin file associations
-
-Added:
+### Added:
 - Hyprlock
 - Installed Pipewire packages (pipewire, pipewire-pulse, pipewire-alsa, wireplumber) during installation.
 
-Modified:
+### Changed:
 - Added a check to see if xdg-mime is available before setting file associations.
 - Added copying of hyprlock.conf along with hyprland.conf to the config directory.
 - Improved messages and flow in install.sh.
 - Added file associations for basic file types to dolphin
 - Updated README.md to give a more accurate description of the project.
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-13 20:00 - Fixed install.sh hyprland.conf installation issue.
 
-2025-09-13 20:00 - Fixed install.sh hyprland.conf installation issue.
-
-Added:
-- None
-
-Modified:
+### Changed:
 - Updated install.sh and hyprland.conf. The last update stopped the install.sh from correctly copying over the hyprland.conf to the new system.
 - Updated README.md to indicate testing was done with Fedora 42 Server.
 
-Removed:
+### Removed:
 - Removed some of LibreOffice files. The intention was to only install LibreOffice Writer.
 
-------------------------------------------------------------
 
-2025-09-13 17:00 - Merged feature/installed-apps into main
+## 2025-09-13 17:00 - Merged feature/installed-apps into main
 
-Added:
+### Added:
 - Finalized install.sh script with improved app installation and setup.
 
-Modified:
+### Changed:
 - CHANGELOG.md
 - hyprland.conf
 - power_menu.sh
 - install.sh
 
-Removed:
-- None
-
-Note:
+### Removed:
 - Deleted feature/installed-apps branch after successful merge.
 
-------------------------------------------------------------
 
-2025-09-13 13:30 - Install Script Fixes and Improvements 
+## 2025-09-13 13:30 - Install Script Fixes and Improvements 
 
-Added:
+### Added:
 - Added Microsoft Core Fonts installation using tar.gz method instead of broken RPM.
 - Added fallback check to skip power_menu.sh setup if the script is missing.
 - Added logic to rebuild font cache after installing Microsoft Fonts.
 
-Modified:
+### Changed:
 - Replaced RPM-based Microsoft Fonts install with a reliable tar.gz-based method.
 - Fixed .bashrc prompt customization to prevent grep warnings and ensure correct escaping.
 - Improved output messages for clarity during installation.
 - Ensured config directories and wallpaper paths are handled more robustly.
 
-Removed:
+### Removed:
 - Removed broken msttcore-fonts-installer RPM installation method.
 
-------------------------------------------------------------
 
-2025-09-13 12:00 - Added missing software to the installation
+## 2025-09-13 12:00 - Added missing software to the installation
 
-Added:
+### Added:
 - Installed Firefox, GNOME Calendar, Galculator, GIMP, Virt-Manager, NetworkManager Connection Editor, LibreOffice, and Microsoft Fonts in install.sh.
 
-Modified:
+### Changed:
 - Updated install.sh to group all package installations together for better readability.
 - Improved install completion messages for clarity.
+- 
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-02 20:30 - Power Menu Integration 
 
-2025-09-02 20:30 - Power Menu Integration 
-
-Added:
+### Added:
 - Installed wofi as a dependency for the power menu.
 - Added power_menu.sh to ~/.config/hypr/waybar/scripts/
 - Made power_menu.sh executable.
@@ -569,29 +385,17 @@ Added:
 - Added Security and Compatibility Disclaimer to the README.md
 - Added Acknowledgments to the README.md
 
-Modified:
+### Changed:
 - Updated install.sh to include power menu setup steps.
 
-Removed:
-- None
 
-------------------------------------------------------------
+## 2025-09-02 12:00 - Fedora 42 Hyprland Setup
 
-2025-09-02 12:00 - Fedora 42 Hyprland Setup
-
-Added:
+### Added:
 - Installed Hyprland using the COPR repository.
 - Installed core applications: Alacritty, Fastfetch, Waybar, etc.
 - Added configuration files for Alacritty, Fastfetch, Waybar, and Hyprland.
 - Set up a custom bash prompt in .bashrc.
 - Added default wallpaper and created required directories.
 
-Modified:
-- None
-
-------------------------------------------------------------
-
-- Initial development began around July 2025.
-
-Removed:
-- None
+## Initial development began around July 2025.
