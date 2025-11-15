@@ -86,7 +86,7 @@ Thank you for being part of this journey
 
 **Level-Up** is licensed under the **Level-Up License**, which grants you the freedom to use, modify, and distribute the project. However, certain conditions must be met for redistribution and modification. Please refer to the full **Level-Up License** in the [Level-Up License](licenses/level-up-license.txt) file for the complete terms.
 
-This project also incorporates third-party software with their respective licenses. Please refer to the [licenses/](licenses/) directory for the licenses of third-party software used in this project.
+This project also incorporates third-party software with their respective licenses. Please refer to the [licenses/](licenses) directory for the licenses of third-party software used in this project.
 
 For more details on the Level-Up License, please see the full [Level-Up License](licenses/level-up-license.txt) file.
 
