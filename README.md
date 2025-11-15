@@ -13,7 +13,7 @@ This project is under development and evolving as I learn and grow. Features may
 
 I started learning Linux in June 2025, and this project serves as a hands-on way to deepen my Linux knowledge. Prior to working on this project I had no experience in GitHub, scripting, or programming.
 
-For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](documentation/lessons-learned.md) document.
+For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](docs/lessons-learned.md) document.
 
 ---
 
@@ -36,7 +36,7 @@ _A layout with a few applications open in a tiled setup. Dolphin is using the Le
 ---
 ## Installation
 
-Before proceeding with the installation, please **read the [Compatibility and Security Disclaimer](documentation/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
+Before proceeding with the installation, please **read the [Compatibility and Security Disclaimer](docs/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
 
 Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTALL.md) to get started with the installation.
 
@@ -45,18 +45,18 @@ Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTAL
 
 ## Documentation
 
-Optional guides and resources are available in the [Documentation](documentation/) folder, including:
-- [Compatibility-and-Security-Disclaimer](documentation/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
+Optional guides and resources are available in the [docs](docs/) folder, including:
+- [Compatibility-and-Security-Disclaimer](docs/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
 - [INSTALL](INSTALL.md) – Installation instructions for setting up the project.
 - [CHANGELOG](CHANGELOG.md) – Project version history and updates.
-- [Branches Overview](documentation/branches.md) – Overview of branches, including their purposes, changes, and related issues.
-- [Logging-Locations-and-Troubleshooting](documentation/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
-- [Post-Install Resources](documentation/post-install-resources.md) – Optional tools, drivers, and tweaks.
-- [Fedora KDE Plasma SSH Setup](documentation/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
-- [Github Private Repo Access Setup](documentation/github-private-repo-access-setup.md) – Optional setup guide for private repo access.
-- [Linux Boot Time Optimizations](documentation/linux-boot-time-optimizations.md) – Tips for faster boot times.
-- [VPN Private Internet Access Setup](documentation/vpn-private-internet-access-setup.md) – Optional VPN configuration guide.
-- [Acknowledgments](documentation/acknowledgments.md) – Credits for referenced open-source projects.
+- [Branches Overview](docs/branches.md) – Overview of branches, including their purposes, changes, and related issues.
+- [Logging-Locations-and-Troubleshooting](docs/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
+- [Post-Install Resources](docs/post-install-resources.md) – Optional tools, drivers, and tweaks.
+- [Fedora KDE Plasma SSH Setup](docs/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
+- [Github Private Repo Access Setup](docs/github-private-repo-access-setup.md) – Optional setup guide for private repo access.
+- [Linux Boot Time Optimizations](docs/linux-boot-time-optimizations.md) – Tips for faster boot times.
+- [VPN Private Internet Access Setup](docs/vpn-private-internet-access-setup.md) – Optional VPN configuration guide.
+- [Acknowledgments](docs/acknowledgments.md) – Credits for referenced open-source projects.
 
 ---
 
