@@ -1,11 +1,17 @@
 # Changelog
-## Last Updated: 025-11-14 13:30 PST
+## Last Updated: 2025-11-14 23:30 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+## 2025-11-14 23:30 - Updated CHANGELOG.md formatting and Project Screenshots
+
+### Changed:
+- Renamed `level-up/documentation` folder to `level-up/docs` to match best practices
+
 
 ## 2025-11-14 13:30 - Updated CHANGELOG.md formatting and Project Screenshots
 
