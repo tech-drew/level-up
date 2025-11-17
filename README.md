@@ -46,11 +46,11 @@ Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTAL
 ## Documentation
 
 Optional guides and resources are available in the [docs](docs/) folder, including:
-- [Compatibility-and-Security-Disclaimer](docs/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
+- [Compatibility and Security Disclaimer](docs/compatibility-and-security-disclaimer.md) – Disclaimer regarding compatibility and security considerations.
 - [INSTALL](INSTALL.md) – Installation instructions for setting up the project.
 - [CHANGELOG](CHANGELOG.md) – Project version history and updates.
 - [Branches Overview](docs/branches.md) – Overview of branches, including their purposes, changes, and related issues.
-- [Logging-Locations-and-Troubleshooting](docs/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
+- [Logging Locations and Troubleshooting](docs/logging-locations-and-troubleshooting.md) – Guide on where to find logs for the installation process, hyprland, waybar, and troubleshooting tips.
 - [Post-Install Resources](docs/post-install-resources.md) – Optional tools, drivers, and tweaks.
 - [Fedora KDE Plasma SSH Setup](docs/fedora-kde-plasma-ssh-setup.md) – Optional SSH configuration tips.
 - [Github Private Repo Access Setup](docs/github-private-repo-access-setup.md) – Optional setup guide for private repo access.
