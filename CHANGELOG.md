@@ -7,6 +7,16 @@
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+
+## 2025-11-17 19:00 - Created Keybindings documentation. Updated level-up-icon-theme.tar.gz
+
+### Added:
+- Added `level-up/docs/keybindings` as a resource.
+
+### Changed:
+- Updated `level-up/themes/level-up-icon-theme` to contain the correct folder structure
+
+
 ## 2025-11-14 23:30 - Updated CHANGELOG.md formatting and Project Screenshots
 
 ### Changed:
