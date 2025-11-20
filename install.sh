@@ -90,6 +90,7 @@ echo "1. Install required packages"
 log_message "Installing required packages..." "INFO"
 PACKAGES=(
     alacritty
+    btop
     fastfetch
     gimp
     network-manager-applet
