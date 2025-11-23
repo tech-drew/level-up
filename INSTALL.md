@@ -1,4 +1,4 @@
-﻿# Level-Up
+# Level-Up
 
 **Level-Up** is a customizable desktop environment built on **Fedora 42 KDE Plasma Desktop Edition**, featuring **Hyprland** as the dynamic window manager. It comes preconfigured with a curated set of tools and aesthetic customizations, including **Waybar**, **Alacritty**, **Fastfetch**, **Dolphin**, and more.
 
@@ -11,13 +11,9 @@
 
 This project is actively under development and evolving as I learn and experiment. Features may change over time, and feedback is welcome.
 
-
----
-
-I began learning Linux in June 2024, and this project has been a hands-on way to deepen that knowledge while preparing for the RHCSA. With no prior experience in GitHub, scripting, or programming, it has been a fun experiment pushing me outside my comfort zone. The project is constantly evolving as I learn, and I welcome feedback and suggestions.  
+I began learning Linux in June 2024, and this project has been a hands-on way to deepen that knowledge while preparing for the RHCSA. With no prior experience in GitHub, scripting, or programming, it has been a fun experiment pushing me outside my comfort zone. The project is constantly evolving, and I welcome feedback and suggestions.
 
 For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](documentation/lessons-learned.md) document.
-
 
 ---
 
@@ -38,16 +34,18 @@ _A view of the Wofi application launcher on this system._
 _A layout with a few applications open in a tiled setup. Dolphin is using the Breeze Dark theme, configured through the KDE Settings._
 
 ---
-## Installation
-
-Follow the steps in the [INSTALL.md](INSTALL.md) to get started with the installation.
-
----
 
 ## Compatibility & Disclaimer
 
-For important system requirements, compatibility notes, and disclaimers, please see the [Compatibility and Disclaimer](documentation/compatibility-and-disclaimer.md).
+Before starting the installation, make sure your system meets the [system requirements and compatibility notes](documentation/compatibility-and-disclaimer.md). This includes details about supported hardware and software configurations.
 
+---
+
+## Installation
+
+For detailed installation instructions, please see the [INSTALL.md](INSTALL.md). The guide includes:
+- Step-by-step installation instructions
+- Optional features and configurations
 
 ---
 
@@ -67,24 +65,17 @@ Optional guides and resources are available in the [Documentation](documentation
 
 ## Feedback & Suggestions
 
----
+This project is part of my ongoing Linux learning journey. I welcome feedback, ideas, and suggestions to help improve **Level-Up**.
 
-This project is part of my ongoing Linux learning journey.  
-I welcome constructive feedback, ideas, and suggestions that can help me improve and refine **Level-Up**.
+While I am not currently accepting direct code contributions (pull requests), I encourage you to:
+- Open an [issue](../../issues) to provide feedback or suggest improvements.
+- Leave comments or questions in the Discussions tab.
 
-While I’m not currently accepting direct code contributions or pull requests, I appreciate hearing different perspectives and learning from community input.  
-
-If you’d like to share thoughts or recommendations, please:
-- Open an [issue](../../issues) to provide feedback or suggest improvements  
-- Or leave a comment in the Discussions tab
-
-Thank you for taking the time to look through this project and for helping me grow through your insights.
+Thank you for taking the time to explore this project and for your valuable input.
 
 ---
 
 ## Licensing
-
----
 
 **Level-Up** is licensed under the **Level-Up License**, which grants you the freedom to use, modify, and distribute the project. However, certain conditions must be met for redistribution and modification. Please refer to the full **Level-Up License** in the [Level-Up License](licenses/level-up-license.txt) file for the complete terms.
 
@@ -95,6 +86,3 @@ For more details on the Level-Up License, please see the full [Level-Up License]
 ---
 
 If you believe any licensing is missed or not properly acknowledged in this project, please reach out to me directly so I can update the licensing to remedy any issues. Your help in ensuring proper licensing is greatly appreciated.
-
----
-

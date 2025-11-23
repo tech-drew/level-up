@@ -2,124 +2,224 @@
 
 set -euo pipefail
 
-# Get script's directory reliably
+# --- Setup logging ---
+LOG_DIR="$HOME/.local/share/level-up"
+mkdir -p "$LOG_DIR"
+
+# Log files
+LOG_FILE="$LOG_DIR/level-up-install.log"
+DRY_RUN_LOG_FILE="$LOG_DIR/level-up-install-dryrun.log"
+
+# --- Dry-run support ---
+DRY_RUN=false
+if [[ "${1:-}" == "--dry-run" ]]; then
+    DRY_RUN=true
+    echo "==> Dry-run mode enabled. No changes will be made."
+    # Redirect all output to dry-run log + terminal
+    exec > >(tee -a "$DRY_RUN_LOG_FILE") 2>&1
+else
+    # Redirect all output to normal log + terminal
+    exec > >(tee -a "$LOG_FILE") 2>&1
+fi
+
+# --- Security disclaimer ---
+echo "==> SECURITY DISCLAIMER"
+echo "This script requires sudo permissions to install packages and configure system services."
+echo "Please review and understand the script before running it."
+read -r -p "Do you want to continue? (y/n): " CONFIRM
+if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+    echo "Exiting installation."
+    exit 1
+fi
+
+# --- Cache sudo credentials ---
+if ! $DRY_RUN; then
+    sudo -v
+    # Keep-alive: update sudo timestamp until script finishes
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
+
+# --- Script directory ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Script directory: $SCRIPT_DIR"
 
 echo "==> Starting Fedora Level-Up Hyprland installation..."
 
-# 1. Install Hyprland-related and other needed packages (no KDE defaults)
+# --- 1. Install required packages ---
 echo "--> Installing required packages..."
-
-sudo dnf clean all
-sudo dnf install -y \
-    alacritty \
-    fastfetch \
-    gimp \
-    pavucontrol \
-    waybar \
-    wofi \
-    wl-clipboard \
-    timeshift \
+PACKAGES=(
+    alacritty
+    fastfetch
+    gimp
+    pavucontrol
+    waybar
+    wofi
+    wl-clipboard
+    timeshift
     virt-manager
+)
 
-# 2. Enable COPR and install extra packages
+if ! $DRY_RUN; then
+    sudo dnf clean all
+    sudo dnf install -y "${PACKAGES[@]}"
+else
+    echo "[DRY-RUN] Would install packages: ${PACKAGES[*]}"
+fi
+
+# --- 2. Enable COPR and install extra packages ---
 echo "--> Enabling solopasha/hyprland COPR repo..."
-sudo dnf copr enable solopasha/hyprland -y
+if ! $DRY_RUN; then
+    sudo dnf copr enable solopasha/hyprland -y || true
+else
+    echo "[DRY-RUN] Would enable COPR repo: solopasha/hyprland"
+fi
 
-echo "--> Installing COPR packages (if available)..."
-sudo dnf install -y \
-    hyprland \
-    hyprlock \
-    hyprland-qtutils \
-    swww \
-    --enablerepo=copr:copr.fedorainfracloud.org:solopasha:hyprland
+COPR_PACKAGES=(
+    hyprland
+    hyprlock
+    hyprland-qtutils
+    swww
+)
 
-# 3. Create config directories
+echo "--> Installing COPR packages..."
+if ! $DRY_RUN; then
+    sudo dnf install -y "${COPR_PACKAGES[@]}" --enablerepo=copr:copr.fedorainfracloud.org:solopasha:hyprland
+else
+    echo "[DRY-RUN] Would install COPR packages: ${COPR_PACKAGES[*]}"
+fi
+
+# --- 3. Create config directories ---
+CONFIG_DIRS=(
+    "$HOME/.config/alacritty"
+    "$HOME/.config/fastfetch"
+    "$HOME/.config/hypr"
+    "$HOME/.config/waybar"
+    "$HOME/.config/wofi"
+    "$HOME/.config/timeshift"
+    "$HOME/Pictures"
+)
 echo "--> Creating config directories..."
-mkdir -p "$HOME/.config/alacritty"
-mkdir -p "$HOME/.config/fastfetch"
-mkdir -p "$HOME/.config/hypr"
-mkdir -p "$HOME/.config/waybar"
-mkdir -p "$HOME/.config/wofi"
-mkdir -p "$HOME/.config/timeshift"
-mkdir -p "$HOME/Pictures"
+for dir in "${CONFIG_DIRS[@]}"; do
+    if ! $DRY_RUN; then
+        mkdir -p "$dir"
+    else
+        echo "[DRY-RUN] Would create directory: $dir"
+    fi
+done
 
-# 4. Copy config files with verbose output (remove error hiding)
+# --- 4. Copy config files ---
 echo "--> Copying configuration files..."
+CONFIG_MAP=(
+    "alacritty"
+    "fastfetch"
+    "waybar"
+    "wofi"
+    "timeshift"
+)
+for cfg in "${CONFIG_MAP[@]}"; do
+    SRC="$SCRIPT_DIR/configs/$cfg/"
+    DEST="$HOME/.config/$cfg/"
+    if ! $DRY_RUN; then
+        cp -rv "$SRC"* "$DEST" || echo "[!] No $cfg config files to copy"
+    else
+        echo "[DRY-RUN] Would copy $cfg configs from $SRC to $DEST"
+    fi
+done
 
-cp -rv "$SCRIPT_DIR/configs/alacritty/"* "$HOME/.config/alacritty/" || echo "[!] No alacritty config files to copy"
-cp -rv "$SCRIPT_DIR/configs/fastfetch/"* "$HOME/.config/fastfetch/" || echo "[!] No fastfetch config files to copy"
-cp -rv "$SCRIPT_DIR/configs/waybar/"* "$HOME/.config/waybar/" || echo "[!] No waybar config files to copy"
-cp -rv "$SCRIPT_DIR/configs/wofi/"* "$HOME/.config/wofi/" || echo "[!] No wofi config files to copy"
-cp -rv "$SCRIPT_DIR/configs/timeshift/"* "$HOME/.config/timeshift/" || echo "[!] No timeshift config files to copy"
-
-# 5. Copy Hyprland/Hyprlock configs
+# --- 5. Copy Hyprland/Hyprlock configs ---
 echo "--> Copying Hyprland and Hyprlock configs..."
-HYPRLAND_CONF_SOURCE="$SCRIPT_DIR/configs/hypr/hyprland.conf"
-HYPRLOCK_CONF_SOURCE="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
+HYPRLAND_CONF="$SCRIPT_DIR/configs/hypr/hyprland.conf"
+HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
 
-if [[ -f "$HYPRLAND_CONF_SOURCE" ]]; then
-    cp -v "$HYPRLAND_CONF_SOURCE" "$HOME/.config/hypr/hyprland.conf"
+if [[ -f "$HYPRLAND_CONF" ]]; then
+    if ! $DRY_RUN; then
+        cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
+    else
+        echo "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/"
+    fi
 else
     echo "    [!] hyprland.conf not found. Skipping."
 fi
 
-if [[ -f "$HYPRLOCK_CONF_SOURCE" ]]; then
-    cp -v "$HYPRLOCK_CONF_SOURCE" "$HOME/.config/hypr/hyprlock.conf"
+if [[ -f "$HYPRLOCK_CONF" ]]; then
+    if ! $DRY_RUN; then
+        cp -v "$HYPRLOCK_CONF" "$HOME/.config/hypr/hyprlock.conf"
+    else
+        echo "[DRY-RUN] Would copy hyprlock.conf to $HOME/.config/hypr/"
+    fi
 else
     echo "    [!] hyprlock.conf not found. Skipping."
 fi
 
-# 6. Copy wallpaper
-echo "--> Copying default wallpaper..."
-WALLPAPER_SOURCE="$SCRIPT_DIR/wallpapers/end_4HyprlandWallpaper.png"
-if [[ -f "$WALLPAPER_SOURCE" ]]; then
-    cp -v "$WALLPAPER_SOURCE" "$HOME/Pictures/"
+# --- 6. Copy wallpaper ---
+WALLPAPER="$SCRIPT_DIR/wallpapers/end_4HyprlandWallpaper.png"
+if [[ -f "$WALLPAPER" ]]; then
+    if ! $DRY_RUN; then
+        cp -v "$WALLPAPER" "$HOME/Pictures/"
+    else
+        echo "[DRY-RUN] Would copy wallpaper to $HOME/Pictures/"
+    fi
 else
     echo "    [!] Wallpaper not found. Skipping."
 fi
 
-# 7. Generate Fastfetch config
+# --- 7. Generate Fastfetch config ---
 echo "--> Generating Fastfetch config..."
 if command -v fastfetch &> /dev/null; then
-    fastfetch --gen-config
+    if ! $DRY_RUN; then
+        fastfetch --gen-config || echo "    [!] Fastfetch failed to generate config."
+    else
+        echo "[DRY-RUN] Would run 'fastfetch --gen-config'"
+    fi
 else
-    echo "    [!] Fastfetch not found or failed to generate config."
+    echo "    [!] Fastfetch not found. Skipping."
 fi
 
-# 8. Optional terminal prompt customization
+# --- 8. Optional terminal prompt customization ---
 read -r -p "Do you want to customize your terminal prompt with a green username? (y/n): " REPLY
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "--> Updating .bashrc with a custom green prompt..."
-    if ! grep -q "Custom green prompt" "$HOME/.bashrc"; then
-        {
-            echo ""
-            echo "# Custom green prompt"
-            echo 'GREEN="\[\e[38;5;38m\]"'
-            echo 'RESET="\[\e[0m\]"'
-            echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "'
-        } >> "$HOME/.bashrc"
-        echo "    Custom prompt added."
+    if ! $DRY_RUN; then
+        touch "$HOME/.bashrc"
+        if ! grep -q "Custom green prompt" "$HOME/.bashrc"; then
+            {
+                echo ""
+                echo "# Custom green prompt"
+                echo 'GREEN="\[\e[38;5;38m\]"'
+                echo 'RESET="\[\e[0m\]"'
+                echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "'
+            } >> "$HOME/.bashrc"
+            echo "    Custom prompt added."
+        else
+            echo "    Custom prompt already exists."
+        fi
     else
-        echo "    Custom prompt already exists."
+        echo "[DRY-RUN] Would add custom green prompt to .bashrc"
     fi
 else
     echo "    Skipping terminal prompt customization."
 fi
 
-# 9. Set up libvirt for virt-manager
+# --- 9. Set up libvirt for virt-manager ---
 echo "--> Setting up libvirt and virtualization support..."
+if ! $DRY_RUN; then
+    sudo systemctl enable --now libvirtd || true
+else
+    echo "[DRY-RUN] Would enable and start libvirtd service"
+fi
 
-# Start and enable the libvirtd service
-echo "    Starting and enabling libvirtd..."
-sudo systemctl enable --now libvirtd
-
-# Add the current user to the libvirt group
-echo "    Adding user '$USER' to libvirt group..."
-sudo usermod -aG libvirt "$USER"
+if id -nG "$USER" | grep -qw libvirt; then
+    echo "    User already in libvirt group. Skipping."
+else
+    if ! $DRY_RUN; then
+        sudo usermod -aG libvirt "$USER"
+    else
+        echo "[DRY-RUN] Would add user $USER to libvirt group"
+    fi
+fi
 
 echo "    [!] You may need to log out and log back in for group changes to take effect."
+
 echo "==> Installation complete!"
 echo "==> Welcome to Level-Up!"
 echo "==> You can now log into Hyprland from your display manager, or type 'Hyprland' in a TTY."

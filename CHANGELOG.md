@@ -1,11 +1,31 @@
 Changelog
-Last Updated: 2025-10-28 20:30 PST
+Last Updated: 2025-10-28 21:00 PST
 
 Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+------------------------------------------------------------
+
+2025-10-28 21:00 - Move CHANGELOG.md to Root & Create Separate install.sh
+
+Added:
+
+- CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
+
+- INSTALL.md created as a separate file the installation process.
+
+Modified:
+
+- CHANGELOG.md moved to the root directory for better visibility and alignment with best practices.
+
+Removed:
+
+- None
+
+------------------------------------------------------------
 
 2025-10-28 20:30 - Added logging, dry-run support, and security disclaimer to install.sh
 
@@ -36,7 +56,6 @@ Modified:
 Removed:
 - None
   
-
 ------------------------------------------------------------
 
 2025-10-27 19:30 - Adjusted the formatting of documentation to use consistent formatting.
