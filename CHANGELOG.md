@@ -1,5 +1,5 @@
 # Changelog
-## Last Updated: 2025-11-17 19:00 PST
+## Last Updated: 2025-11-23 14:00 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
@@ -7,6 +7,17 @@
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+## 2025-11-23 14:00 - Merged v2.0.0-beta-fedora-kde and v2.1.0-fedora-kde-installer-logs into the main branch, preserving history.
+
+### Added:
+- `level-up/install.sh` btop was added to the installed packages
+- Added a btop keybinding `$mainmod + ESC` to `level-up/configs/hypr/hyprland.conf`
+
+### Removed:
+- Deprecated `v2.0.0-beta-fedora-kde` and `v2.1.0-fedora-kde-installer-logs` branches. The deprecated branches were removed after successful integration into `v2.2.0-fedora-kde-hyprland-and-waybar-logs`.
+
+### Added:
+- Added `level-up/docs/keybindings` as a resource.
 
 ## 2025-11-17 19:00 - Created Keybindings documentation. Updated level-up-icon-theme.tar.gz
 
