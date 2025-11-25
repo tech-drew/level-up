@@ -1,11 +1,21 @@
 # Changelog
-## Last Updated: 2025-11-23 14:00 PST
+## Last Updated: 2025-11-24 23:00 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+
+## 2025-11-24 23:00 - Created separate config files for the hyprland.conf. Files are empty and need to be filled in later.
+
+### Added:
+- `level-up/configs/hypr/autostart.conf`
+- `level-up/configs/hypr/input.conf`
+- `level-up/configs/hypr/keybindings.conf`
+- `level-up/configs/hypr/looknfeel.conf`
+- `level-up/configs/hypr/monitors.conf`    
 
 ## 2025-11-23 14:00 - Merged v2.0.0-beta-fedora-kde and v2.1.0-fedora-kde-installer-logs into the main branch, preserving history.
 
