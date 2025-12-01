@@ -1,5 +1,5 @@
 # Changelog
-## Last Updated: 2025-11-30 20:00 PST
+## Last Updated: 2025-11-30 23:00 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
@@ -8,11 +8,14 @@
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
 
-## 2025-11-30 20:00 - Added monitor configurations in monitors.conf
+## 2025-11-30 23:00 - Added configurations in input.conf and monitors.conf 
 
 ### Updated:
-- `level-up/configs/hypr/hyprland.conf` with an update note on source files and included `level-up/configs/hypr/monitors.conf` as a source file. 
+- `level-up/configs/hypr/hyprland.conf` with an update note on source files included 
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/monitors.conf` as a source file.
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/input.conf` as a source file.
 - `level-up/configs/hypr/monitors.conf` Added some common resolutions information along with helpful comments on usage for end-users.
+- `level-up/configs/hypr/inputs.conf` Added keyboard input information
 
 ## 2025-11-24 23:00 - Created separate config files for the hyprland.conf. Files are empty and need to be filled in later.
 
