@@ -1,11 +1,23 @@
 # Changelog
-## Last Updated: 2025-11-30 23:00 PST
+## Last Updated: 2025-12-01 21:00 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+
+
+## 2025-12-01 21:00 - Added configurations in keybindings.conf and looknfeel.conf 
+
+### Updated:
+- `level-up/configs/hypr/hyprland.conf` Added the screencopy section for screen capture recording.
+- `level-up/configs/hypr/hyprland.conf` Moved the variables above the source files.
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/keybindings.conf` as a source file.
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/looknfeel` as a source file.
+- `level-up/configs/hypr/keybindings.conf` Added the `level-up` keybindings to the file.
+- `level-up/configs/hypr/looknfeel.conf` Added the `level-up` theming to the file.
 
 
 ## 2025-11-30 23:00 - Added configurations in input.conf and monitors.conf 
