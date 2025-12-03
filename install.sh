@@ -185,8 +185,18 @@ fi
 # --- 5. Copy Hyprland/Hyprlock configs and make Waybar, Hyprland launch script, and logging script system-accessible ---
 echo "5. Copy Hyprland/Hyprlock configs and make Waybar, Hyprland launch script, and logging script system-accessible"
 log_message "Copying Hyprland and Hyprlock configs..." "INFO"
+
 HYPRLAND_CONF="$SCRIPT_DIR/configs/hypr/hyprland.conf"
 HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
+
+# Additional Hypr config files to copy
+HYPR_EXTRA_CONFIGS=(
+    "autostart.conf"
+    "monitors.conf"
+    "input.conf"
+    "keybindings.conf"
+    "looknfeel.conf"
+)
 
 # Define system-wide paths for the Waybar launch script
 WAYBAR_SRC_PATH="$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh"
@@ -200,6 +210,7 @@ HYPRLAND_LAUNCH_DEST_PATH="/usr/local/bin/launch-hyprland-with-logging.sh" # Sys
 LOGGING_SCRIPT_SRC_PATH="$SCRIPT_DIR/scripts/logging.sh"
 LOGGING_SCRIPT_DEST_PATH="/usr/local/bin/logging.sh" # System-wide location
 
+# --- Copy hyprland.conf ---
 if [[ -f "$HYPRLAND_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
@@ -208,50 +219,48 @@ if [[ -f "$HYPRLAND_CONF" ]]; then
         # --- BLOCK: Copy Waybar launch script to system-wide location and make executable ---
         if [[ -f "$WAYBAR_SRC_PATH" ]]; then
             sudo cp "$WAYBAR_SRC_PATH" "$WAYBAR_DEST_PATH"
-            sudo chown root:root "$WAYBAR_DEST_PATH"  # Ensure root ownership
-            sudo chmod 755 "$WAYBAR_DEST_PATH"        # Set permissions: rwx for root, r-x for others
+            sudo chown root:root "$WAYBAR_DEST_PATH"
+            sudo chmod 755 "$WAYBAR_DEST_PATH"
             log_message "Waybar launch script copied and made executable: $WAYBAR_DEST_PATH" "INFO"
         else
             log_message "[!] launch-waybar-with-logging.sh not found. Cannot set up automatic launch." "ERROR"
         fi
-        # ---------------------------------------------------------------------------------------
 
         # --- BLOCK: Copy Hyprland launch script to system-wide location and make executable ---
         if [[ -f "$HYPRLAND_LAUNCH_SRC_PATH" ]]; then
             sudo cp "$HYPRLAND_LAUNCH_SRC_PATH" "$HYPRLAND_LAUNCH_DEST_PATH"
-            sudo chown root:root "$HYPRLAND_LAUNCH_DEST_PATH"  # Ensure root ownership
-            sudo chmod 755 "$HYPRLAND_LAUNCH_DEST_PATH"        # Set permissions: rwx for root, r-x for others
+            sudo chown root:root "$HYPRLAND_LAUNCH_DEST_PATH"
+            sudo chmod 755 "$HYPRLAND_LAUNCH_DEST_PATH"
             log_message "Hyprland launch script copied and made executable: $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
         else
             log_message "[!] launch-hyprland-with-logging.sh not found. Cannot set up automatic launch." "ERROR"
         fi
-        # ---------------------------------------------------------------------------------------
 
         # --- BLOCK: Copy logging script to system-wide location and make executable ---
         if [[ -f "$LOGGING_SCRIPT_SRC_PATH" ]]; then
             sudo cp "$LOGGING_SCRIPT_SRC_PATH" "$LOGGING_SCRIPT_DEST_PATH"
-            sudo chown root:root "$LOGGING_SCRIPT_DEST_PATH"  # Ensure root ownership
-            sudo chmod 755 "$LOGGING_SCRIPT_DEST_PATH"        # Set permissions: rwx for root, r-x for others
+            sudo chown root:root "$LOGGING_SCRIPT_DEST_PATH"
+            sudo chmod 755 "$LOGGING_SCRIPT_DEST_PATH"
             log_message "logging.sh script copied and made executable: $LOGGING_SCRIPT_DEST_PATH" "INFO"
         else
             log_message "[!] logging.sh script not found. Skipping." "ERROR"
         fi
-        # ---------------------------------------------------------------------------------------
 
-        # --- Append the exec-once line to hyprland.conf (pointing to the new system path) ---
-        # --- hyprland.conf can't use $PATH variables. This adds and the explicit user path to the hyprland.conf ---
+        # --- Append exec-once to hyprland.conf ---
         sed -i "25i exec-once = $WAYBAR_DEST_PATH" "$HOME/.config/hypr/hyprland.conf"
         log_message "Added exec-once line to hyprland.conf, pointing to $WAYBAR_DEST_PATH" "INFO"
+
     else
         log_message "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/" "INFO"
-        log_message "[DRY-RUN] Would copy and chmod +x Waybar launch script to $WAYBAR_DEST_PATH" "INFO"
-        log_message "[DRY-RUN] Would copy and chmod +x Hyprland launch script to $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
-        log_message "[DRY-RUN] Would copy and chmod +x logging.sh to $LOGGING_SCRIPT_DEST_PATH" "INFO"
+        log_message "[DRY-RUN] Would copy Waybar launch script to $WAYBAR_DEST_PATH" "INFO"
+        log_message "[DRY-RUN] Would copy Hyprland launch script to $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
+        log_message "[DRY-RUN] Would copy logging.sh to $LOGGING_SCRIPT_DEST_PATH" "INFO"
     fi
 else
     log_message "[!] hyprland.conf not found. Skipping." "ERROR"
 fi
 
+# --- Copy hyprlock.conf ---
 if [[ -f "$HYPRLOCK_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLOCK_CONF" "$HOME/.config/hypr/hyprlock.conf"
@@ -261,6 +270,26 @@ if [[ -f "$HYPRLOCK_CONF" ]]; then
 else
     log_message "[!] hyprlock.conf not found. Skipping." "ERROR"
 fi
+
+# --- Copy additional Hypr configs ---
+echo "Copying additional Hypr configuration files..."
+log_message "Copying extra Hypr config files..." "INFO"
+
+for cfg in "${HYPR_EXTRA_CONFIGS[@]}"; do
+    SRC="$SCRIPT_DIR/configs/hypr/$cfg"
+    DEST="$HOME/.config/hypr/$cfg"
+
+    if [[ -f "$SRC" ]]; then
+        if ! $DRY_RUN; then
+            cp -v "$SRC" "$DEST"
+            log_message "$cfg copied to $HOME/.config/hypr/" "INFO"
+        else
+            log_message "[DRY-RUN] Would copy $cfg to $HOME/.config/hypr/" "INFO"
+        fi
+    else
+        log_message "[!] $cfg not found in configs/hypr/. Skipping." "ERROR"
+    fi
+done
 
 
 # --- 6. Copy wallpaper ---
