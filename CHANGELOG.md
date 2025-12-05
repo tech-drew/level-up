@@ -1,5 +1,5 @@
 # Changelog
-## Last Updated: 2025-12-01 21:00 PST
+## Last Updated: 2025-12-04 21:30 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
@@ -7,7 +7,14 @@
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+## 2025-12-04 21:30 - Merged Branch 2.3 and 2.2 together
 
+### Updated:
+- `` Added the screencopy section for screen capture rec
+- Renamed branch `v2.2.0-fedora-kde-hyprland-and-waybar-logs` to `v2.3.0-fedora-kde-refactor-hyprland-conf` after merging the branches together.
+
+### Removed:
+- Deleted branch `v2.3.0-fedora-kde-refactor-hyprland-conf`
 
 ## 2025-12-01 21:00 - Added configurations in keybindings.conf and looknfeel.conf 
 
