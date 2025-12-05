@@ -2,20 +2,11 @@
 
 ## Supported Systems
 
-**Level-Up has only been tested to work on a clean installation of Fedora 42 KDE Plasma Desktop Edition.**
+**Level-Up has been tested to work on clean installations of Fedora 42 KDE Plasma Desktop Edition and Fedora 43 KDE Plasma Desktop Edition.**
 
 **Recommended:**
-- Fedora 42 KDE Plasma Desktop Edition (clean install only)
-
-**Note**
-The `install.sh` script does not currently work on Fedora 43 KDE Plasma. During Section 2, the installation of the `hyprland-qtutils` package fails. This issue occurs because Fedora 43 uses different dependency versions than those provided by the Hyprland packages in the COPR repository [`solopasha/hyprland`](https://copr.fedorainfracloud.org/coprs/solopasha/hyprland/).
-
-It is expected that the `solopasha/hyprland` repository will be updated to support Fedora 43 in the future. Until then, it is recommended to use Fedora 42 for full compatibility with this project.
-
-As a temporary workaround, you may either:
-
-* **Manually compile** the necessary packages for Fedora 43, or
-* **Remove the `hyprland-qtutils` installation step** from Section 2 of `install.sh` (not recommended).
+- Fedora 42 KDE Plasma Desktop Edition (clean install)
+- Fedora 43 KDE Plasma Desktop Edition (clean install)
 
 ## Recommendations for creating a bootable Fedora usb.
 
@@ -34,7 +25,7 @@ There may be other issues running this project within a virtual machine. The iss
 
 ## Security Disclaimer
 
-All configurations and scripts included in Level-Up have been tested only on a clean installation of Fedora 42 KDE Plasma Desktop Edition. There is **no guarantee** that they will function correctly on existing systems or on installations missing required dependencies.
+All configurations and scripts included in Level-Up have been tested only on clean installations of Fedora 42 KDE Plasma Desktop Edition and Fedora 43 KDE Plasma Desktop Edition. There is **no guarantee** that they will function correctly on existing systems or on installations missing required dependencies.
 
 Level-Up and its included scripts are provided **as-is**, without support. By using this project, you accept full responsibility for any changes made to your system. Please carefully review all scripts and configuration files before applying them.
 
