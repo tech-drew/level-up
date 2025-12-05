@@ -47,30 +47,47 @@ Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTAL
 
 Level-Up uses a **GitFlow-inspired workflow** to organize development and maintain historical snapshots.  
 **Note:** This workflow is for informational purposes only; contributions via pull requests are not being accepted at this time.
+## Project Workflow Overview
+
+Level-Up uses a **GitFlow-inspired workflow** to organize development and maintain historical snapshots.  
+**Note:** This workflow is for informational purposes only; contributions via pull requests are not being accepted at this time.
 
 ### Branch Structure
 
-- **`main`**: Stable snapshot branch containing the full project history (currently v2.3-beta). Only updated when creating snapshots or applying hotfixes.  
-- **`develop`**: Active development branch where ongoing changes, experiments, and preparations for future snapshots occur.  
-- **`feature/*`**: Short-lived branches for new features, branched off `develop`. Used mainly for historical reference.  
-- **`issue/*`**: Short-lived branches for resolving specific issues or bugs, branched off `develop`. Example: `issue/42-fix-waybar-logs`.  
-- **`release/*`** (optional): Branches used to stabilize upcoming snapshots before merging into `main`.  
-- **`hotfix/*`**: Branches for urgent fixes applied to `main` and merged back into `develop`.
+| Branch Type          | Description                                                                                   | Example                                      |
+|----------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------|
+| **`main`**            | Stable snapshot branch containing the full project history. Only updated when creating snapshots or applying hotfixes. | `v2.3-beta`                                  |
+| **`develop`**         | Active development branch where ongoing changes, experiments, and preparations for future snapshots occur. |                                              |
+| **`feature/*`**       | Short-lived branches for new features. Branched off `develop`.                                | `feature/new-workspace-keybindings`          |
+| **`issue/*`**         | Short-lived branches for resolving specific issues or bugs. Branched off `develop`.           | `issue/42-fix-waybar-logs`                   |
+| **`release/*`** (optional) | Branches used to stabilize upcoming snapshots before merging into `main`.                    | `release/v2.3`                               |
+| **`hotfix/*`**        | Branches for urgent fixes applied to `main` and merged back into `develop`.                   | `hotfix/fix-waybar-logs`                     |
 
-main  (stable snapshot)
-  │
-  ├── hotfix/hotfix-1      <- urgent fixes branch off main
-  │         │
-  │         └── merges back into main & develop
-  │
-  └── develop  (active development)
-         │
-   ┌─────┬───────────┬───────────┐
-feature/xyz  issue/42-fix-waybar-logs  release/v4.0.0.example-release
-   │           │           │
-   └───────────┴───────────┘ merged back into develop
-         │
-         └── eventually merged into main for snapshot
+### How It Works:
+
+1. **Main** contains the stable snapshot of the project (e.g., `v2.3-beta`).  
+   It is the production-ready branch and is only updated when creating stable snapshots or applying hotfixes.
+   
+2. **Develop** is where active development takes place.  
+   It serves as the integration branch for features, bug fixes, and experiments.  
+   **Branches created off `develop`** include:
+   - **Feature branches** for new features.
+   - **Issue branches** for bug fixes or small updates.
+
+3. **Feature branches** are created off `develop` for new features and merged back into `develop` once the feature is complete.  
+   Example: `feature/new-workspace-keybindings`
+
+4. **Issue branches** are created off `develop` to work on bug fixes or small updates and are merged back into `develop`.  
+   Example: `issue/42-fix-waybar-logs`
+
+5. **Release branches** (optional) are used to stabilize the project before a snapshot or release.  
+   These branches are created off `develop` and, once stabilized, are merged into both `develop` and `main`.  
+   Example: `release/v2.3`
+
+6. **Hotfix branches** are created off `main` to fix urgent issues in production and are merged back into both `main` and `develop` after the fix.  
+   Example: `hotfix/fix-waybar-logs`
+
+By following this branching structure, you can easily manage the flow of code from development to stable snapshots while keeping everything organized.
 
 ## Commit Message Best Practices
 
