@@ -34,12 +34,81 @@ _A view of the Wofi application launcher on this system._
 _A layout with a few applications open in a tiled setup. Dolphin is using the Level-Up-Icon theme, configured through the KDE Icon Settings._
 
 ---
+
 ## Installation
 
 Before proceeding with the installation, please **read the [Compatibility and Security Disclaimer](docs/compatibility-and-security-disclaimer.md)** to ensure that your system meets the necessary requirements and to be aware of any potential issues.
 
 Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTALL.md) to get started with the installation.
 
+---
+
+## Project Workflow Overview
+
+Level-Up uses a **GitFlow-inspired workflow** to organize development and maintain historical snapshots.  
+**Note:** This workflow is for informational purposes only; contributions via pull requests are not being accepted at this time.
+
+### Branch Structure
+
+- **`main`**: Stable snapshot branch containing the full project history (currently v2.3-beta). Only updated when creating snapshots or applying hotfixes.  
+- **`develop`**: Active development branch where ongoing changes, experiments, and preparations for future snapshots occur.  
+- **`feature/*`**: Short-lived branches for new features, branched off `develop`. Used mainly for historical reference.  
+- **`issue/*`**: Short-lived branches for resolving specific issues or bugs, branched off `develop`. Example: `issue/42-fix-waybar-logs`.  
+- **`release/*`** (optional): Branches used to stabilize upcoming snapshots before merging into `main`.  
+- **`hotfix/*`**: Branches for urgent fixes applied to `main` and merged back into `develop`.
+
+main  (stable snapshot)
+  │
+  ├── hotfix/hotfix-1      <- urgent fixes branch off main
+  │         │
+  │         └── merges back into main & develop
+  │
+  └── develop  (active development)
+         │
+   ┌─────┬───────────┬───────────┐
+feature/xyz  issue/42-fix-waybar-logs  release/v4.0.0.example-release
+   │           │           │
+   └───────────┴───────────┘ merged back into develop
+         │
+         └── eventually merged into main for snapshot
+
+## Commit Message Best Practices
+
+To maintain a clear, organized project history, follow these guidelines for commit messages. Commit types **do not have to match branch names**: branches indicate **where work happens**, commits indicate **what type of change** was made.
+
+### Recommended Format
+
+`<type>(<scope>): <short description>`
+
+- **`type`** – Kind of change:
+  - `feat` – New feature
+  - `fix` – Bug fix
+  - `docs` – Documentation changes
+  - `style` – Formatting or style changes
+  - `refactor` – Code changes that do not add features or fix bugs
+  - `test` – Adding or updating tests
+  - `chore` – Maintenance tasks
+
+- **`scope`** – Optional; the project section affected (e.g., `hyprland`, `waybar`, `install`)  
+- **`short description`** – A concise, imperative mood description of the change (e.g., “Add support for Waybar modules”)
+
+### Examples
+
+- `feat(hyprland): add new workspace navigation keybindings`  
+- `fix(issue/42): resolve Waybar log display bug`  
+- `docs(README): update installation instructions for Fedora 43`  
+- `refactor(alacritty): simplify color scheme configuration`  
+- `chore: update dependencies to latest versions`
+
+### Guidelines
+
+1. Keep the first line ≤ 72 characters.  
+2. Use **imperative mood** (“Fix bug” not “Fixed bug”).  
+3. Reference issues when applicable (e.g., `fix(issue/42)`).  
+4. Make **one logical change per commit**; avoid mixing unrelated changes.  
+5. Use a blank line before a longer description if needed.
+
+Following these best practices keeps the project history **organized, readable, and easy to track**, especially when working across multiple branches (`feature/*`, `issue/*`, `release/*`, `hotfix/*`) and snapshots (`develop` → `main`).
 
 ---
 
