@@ -10,7 +10,7 @@
 ## 2025-12-04 21:30 - Merged Branch 2.3 and 2.2 together
 
 ### Updated:
-- `` Added the screencopy section for screen capture rec
+- `docs/compatibility-and-security-disclaimer.md` now correctly lists both Fedora 42 KDE Plasma Desktop Edition and Fedora 43 KDE Plasma Desktop Edition.
 - Renamed branch `v2.2.0-fedora-kde-hyprland-and-waybar-logs` to `v2.3.0-fedora-kde-refactor-hyprland-conf` after merging the branches together.
 
 ### Removed:
