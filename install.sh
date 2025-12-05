@@ -85,8 +85,10 @@ log_message "Script directory: $SCRIPT_DIR" "INFO"
 
 log_message "Starting Level-Up installation..." "INFO"
 
-echo "1. Install required packages"
+###############################################################################
 # --- 1. Install required packages ---
+###############################################################################
+
 log_message "Installing required packages..." "INFO"
 PACKAGES=(
     alacritty
@@ -109,7 +111,10 @@ else
     log_message "[DRY-RUN] Would install packages: ${PACKAGES[*]}" "INFO"
 fi
 
+###############################################################################
 # --- 2. Enable COPR and install extra packages ---
+###############################################################################
+
 echo "2. Enable COPR and install extra packages"
 log_message "Enabling solopasha/hyprland COPR repo..." "INFO"
 if ! $DRY_RUN; then
@@ -132,7 +137,10 @@ else
     log_message "[DRY-RUN] Would install COPR packages: ${COPR_PACKAGES[*]}" "INFO"
 fi
 
+###############################################################################
 # --- 3. Create config directories ---
+###############################################################################
+
 echo "3. Create config directories"
 log_message "Creating config directories..." "INFO"
 CONFIG_DIRS=(
@@ -153,7 +161,10 @@ for dir in "${CONFIG_DIRS[@]}"; do
     fi
 done
 
+###############################################################################
 # --- 4. Copy config and script files ---
+###############################################################################
+
 echo "4. Copy config and script files"
 log_message "Copying configuration and script files..." "INFO"
 CONFIG_MAP=(
@@ -182,11 +193,23 @@ else
     log_message "[DRY-RUN] Would copy scripts from $SCRIPTS_DIR to $HOME/level-up/scripts/" "INFO"
 fi
 
+###############################################################################
 # --- 5. Copy Hyprland/Hyprlock configs and make Waybar, Hyprland launch script, and logging script system-accessible ---
+###############################################################################
 echo "5. Copy Hyprland/Hyprlock configs and make Waybar, Hyprland launch script, and logging script system-accessible"
 log_message "Copying Hyprland and Hyprlock configs..." "INFO"
+
 HYPRLAND_CONF="$SCRIPT_DIR/configs/hypr/hyprland.conf"
 HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
+
+# Additional Hypr config files to copy
+HYPR_EXTRA_CONFIGS=(
+    "autostart.conf"
+    "monitors.conf"
+    "input.conf"
+    "keybindings.conf"
+    "looknfeel.conf"
+)
 
 # Define system-wide paths for the Waybar launch script
 WAYBAR_SRC_PATH="$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh"
@@ -200,58 +223,56 @@ HYPRLAND_LAUNCH_DEST_PATH="/usr/local/bin/launch-hyprland-with-logging.sh" # Sys
 LOGGING_SCRIPT_SRC_PATH="$SCRIPT_DIR/scripts/logging.sh"
 LOGGING_SCRIPT_DEST_PATH="/usr/local/bin/logging.sh" # System-wide location
 
+
+# --- Copy hyprland.conf ---
 if [[ -f "$HYPRLAND_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
         log_message "hyprland.conf copied to $HOME/.config/hypr/" "INFO"
 
-        # --- BLOCK: Copy Waybar launch script to system-wide location and make executable ---
+        # --- Copy Waybar launch script ---
         if [[ -f "$WAYBAR_SRC_PATH" ]]; then
             sudo cp "$WAYBAR_SRC_PATH" "$WAYBAR_DEST_PATH"
-            sudo chown root:root "$WAYBAR_DEST_PATH"  # Ensure root ownership
-            sudo chmod 755 "$WAYBAR_DEST_PATH"        # Set permissions: rwx for root, r-x for others
+            sudo chown root:root "$WAYBAR_DEST_PATH"
+            sudo chmod 755 "$WAYBAR_DEST_PATH"
             log_message "Waybar launch script copied and made executable: $WAYBAR_DEST_PATH" "INFO"
         else
             log_message "[!] launch-waybar-with-logging.sh not found. Cannot set up automatic launch." "ERROR"
         fi
-        # ---------------------------------------------------------------------------------------
 
-        # --- BLOCK: Copy Hyprland launch script to system-wide location and make executable ---
+        # --- Copy Hyprland launch script ---
         if [[ -f "$HYPRLAND_LAUNCH_SRC_PATH" ]]; then
             sudo cp "$HYPRLAND_LAUNCH_SRC_PATH" "$HYPRLAND_LAUNCH_DEST_PATH"
-            sudo chown root:root "$HYPRLAND_LAUNCH_DEST_PATH"  # Ensure root ownership
-            sudo chmod 755 "$HYPRLAND_LAUNCH_DEST_PATH"        # Set permissions: rwx for root, r-x for others
+            sudo chown root:root "$HYPRLAND_LAUNCH_DEST_PATH"
+            sudo chmod 755 "$HYPRLAND_LAUNCH_DEST_PATH"
             log_message "Hyprland launch script copied and made executable: $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
         else
             log_message "[!] launch-hyprland-with-logging.sh not found. Cannot set up automatic launch." "ERROR"
         fi
-        # ---------------------------------------------------------------------------------------
 
-        # --- BLOCK: Copy logging script to system-wide location and make executable ---
+
+        # --- Copy logging script ---
         if [[ -f "$LOGGING_SCRIPT_SRC_PATH" ]]; then
             sudo cp "$LOGGING_SCRIPT_SRC_PATH" "$LOGGING_SCRIPT_DEST_PATH"
-            sudo chown root:root "$LOGGING_SCRIPT_DEST_PATH"  # Ensure root ownership
-            sudo chmod 755 "$LOGGING_SCRIPT_DEST_PATH"        # Set permissions: rwx for root, r-x for others
+            sudo chown root:root "$LOGGING_SCRIPT_DEST_PATH"
+            sudo chmod 755 "$LOGGING_SCRIPT_DEST_PATH"
             log_message "logging.sh script copied and made executable: $LOGGING_SCRIPT_DEST_PATH" "INFO"
         else
             log_message "[!] logging.sh script not found. Skipping." "ERROR"
         fi
-        # ---------------------------------------------------------------------------------------
 
-        # --- Append the exec-once line to hyprland.conf (pointing to the new system path) ---
-        # --- hyprland.conf can't use $PATH variables. This adds and the explicit user path to the hyprland.conf ---
-        sed -i "25i exec-once = $WAYBAR_DEST_PATH" "$HOME/.config/hypr/hyprland.conf"
-        log_message "Added exec-once line to hyprland.conf, pointing to $WAYBAR_DEST_PATH" "INFO"
     else
         log_message "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/" "INFO"
-        log_message "[DRY-RUN] Would copy and chmod +x Waybar launch script to $WAYBAR_DEST_PATH" "INFO"
-        log_message "[DRY-RUN] Would copy and chmod +x Hyprland launch script to $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
-        log_message "[DRY-RUN] Would copy and chmod +x logging.sh to $LOGGING_SCRIPT_DEST_PATH" "INFO"
+        log_message "[DRY-RUN] Would copy Waybar launch script to $WAYBAR_DEST_PATH" "INFO"
+        log_message "[DRY-RUN] Would copy Hyprland launch script to $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
+        log_message "[DRY-RUN] Would copy logging.sh to $LOGGING_SCRIPT_DEST_PATH" "INFO"
     fi
 else
     log_message "[!] hyprland.conf not found. Skipping." "ERROR"
 fi
 
+
+# --- Copy hyprlock.conf ---
 if [[ -f "$HYPRLOCK_CONF" ]]; then
     if ! $DRY_RUN; then
         cp -v "$HYPRLOCK_CONF" "$HOME/.config/hypr/hyprlock.conf"
@@ -263,7 +284,43 @@ else
 fi
 
 
+# --- Copy additional Hypr configs ---
+echo "Copying additional Hypr configuration files..."
+log_message "Copying extra Hypr config files..." "INFO"
+
+for cfg in "${HYPR_EXTRA_CONFIGS[@]}"; do
+    SRC="$SCRIPT_DIR/configs/hypr/$cfg"
+    DEST="$HOME/.config/hypr/$cfg"
+
+    if [[ -f "$SRC" ]]; then
+        if ! $DRY_RUN; then
+            cp -v "$SRC" "$DEST"
+            log_message "$cfg copied to $HOME/.config/hypr/" "INFO"
+        else
+            log_message "[DRY-RUN] Would copy $cfg to $HOME/.config/hypr/" "INFO"
+        fi
+    else
+        log_message "[!] $cfg not found in configs/hypr/. Skipping." "ERROR"
+    fi
+done
+
+
+# --- Append exec-once to autostart.conf *after it's copied* ---
+if ! $DRY_RUN; then
+    if [[ -f "$HOME/.config/hypr/autostart.conf" ]]; then
+        sed -i "4i exec-once = $WAYBAR_DEST_PATH" "$HOME/.config/hypr/autostart.conf"
+        log_message "Added exec-once line to autostart.conf, pointing to $WAYBAR_DEST_PATH" "INFO"
+    else
+        log_message "[!] autostart.conf missing, cannot append exec-once" "ERROR"
+    fi
+else
+    log_message "[DRY-RUN] Would modify autostart.conf to add exec-once line" "INFO"
+fi
+
+###############################################################################
 # --- 6. Copy wallpaper ---
+###############################################################################
+
 echo "6. Copy wallpaper"
 log_message "Copying wallpaper..." "INFO"
 WALLPAPER="$SCRIPT_DIR/wallpapers/level-up.png"
@@ -277,7 +334,10 @@ else
     log_message "[!] Wallpaper not found. Skipping." "ERROR"
 fi
 
+###############################################################################
 # --- 7. Generate Fastfetch config ---
+###############################################################################
+
 echo "7. Generate Fastfetch config"
 log_message "Generating Fastfetch config..." "INFO"
 if command -v fastfetch &> /dev/null; then
@@ -290,7 +350,10 @@ else
     log_message "[!] Fastfetch not found. Skipping." "ERROR"
 fi
 
+###############################################################################
 # --- 8. Optional terminal prompt customization ---
+###############################################################################
+
 echo "8. Optional terminal prompt customization"
 read -r -p "Do you want to customize your terminal prompt with a green username? (y/n): " REPLY
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
@@ -316,7 +379,10 @@ else
     log_message "Skipping terminal prompt customization." "INFO"
 fi
 
+###############################################################################
 # --- 9. Set up libvirt for virt-manager ---
+###############################################################################
+
 echo "9. Set up libvirt for virt-manager"
 log_message "Setting up libvirt and virtualization support..." "INFO"
 if ! $DRY_RUN; then
@@ -335,7 +401,10 @@ else
     fi
 fi
 
+###############################################################################
 # --- 10. Create a Level-Up session for SDDM ---
+###############################################################################
+
 echo "10. Create a Level-Up session for SDDM"
 log_message "Creating Level-Up session for SDDM/KDE..." "INFO"
 WRAPPER_SRC_PATH="$SCRIPT_DIR/scripts/launch-hyprland-with-logging.sh"
@@ -367,7 +436,10 @@ else
     log_message "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE" "INFO"
 fi
 
+###############################################################################
 # --- 11. Install Level-Up Icon Theme ---
+###############################################################################
+
 echo "11. Install Level-Up Icon Theme"
 log_message "Installing level-up-icon-theme..." "INFO"
 ICON_THEME_ARCHIVE="$SCRIPT_DIR/themes/level-up-icon-theme.tar.gz"

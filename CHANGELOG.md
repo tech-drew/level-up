@@ -1,11 +1,42 @@
 # Changelog
-## Last Updated: 2025-11-23 14:00 PST
+## Last Updated: 2025-12-01 21:00 PST
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+
+
+## 2025-12-01 21:00 - Added configurations in keybindings.conf and looknfeel.conf 
+
+### Updated:
+- `level-up/configs/hypr/hyprland.conf` Added the screencopy section for screen capture recording.
+- `level-up/configs/hypr/hyprland.conf` Moved the variables above the source files.
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/keybindings.conf` as a source file.
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/looknfeel` as a source file.
+- `level-up/configs/hypr/keybindings.conf` Added the `level-up` keybindings to the file.
+- `level-up/configs/hypr/looknfeel.conf` Added the `level-up` theming to the file.
+
+
+## 2025-11-30 23:00 - Added configurations in input.conf and monitors.conf 
+
+### Updated:
+- `level-up/configs/hypr/hyprland.conf` with an update note on source files included 
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/monitors.conf` as a source file.
+- `level-up/configs/hypr/hyprland.conf` `level-up/configs/hypr/input.conf` as a source file.
+- `level-up/configs/hypr/monitors.conf` Added some common resolutions information along with helpful comments on usage for end-users.
+- `level-up/configs/hypr/inputs.conf` Added keyboard input information
+
+## 2025-11-24 23:00 - Created separate config files for the hyprland.conf. Files are empty and need to be filled in later.
+
+### Added:
+- `level-up/configs/hypr/autostart.conf`
+- `level-up/configs/hypr/input.conf`
+- `level-up/configs/hypr/keybindings.conf`
+- `level-up/configs/hypr/looknfeel.conf`
+- `level-up/configs/hypr/monitors.conf`    
 
 ## 2025-11-23 14:00 - Merged v2.0.0-beta-fedora-kde and v2.1.0-fedora-kde-installer-logs into the main branch, preserving history.
 
