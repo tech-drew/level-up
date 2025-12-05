@@ -47,10 +47,6 @@ Once you've reviewed the disclaimer, follow the steps in the [INSTALL.md](INSTAL
 
 Level-Up uses a **GitFlow-inspired workflow** to organize development and maintain historical snapshots.  
 **Note:** This workflow is for informational purposes only; contributions via pull requests are not being accepted at this time.
-## Project Workflow Overview
-
-Level-Up uses a **GitFlow-inspired workflow** to organize development and maintain historical snapshots.  
-**Note:** This workflow is for informational purposes only; contributions via pull requests are not being accepted at this time.
 
 ### Branch Structure
 
