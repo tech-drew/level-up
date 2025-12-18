@@ -1,11 +1,18 @@
 # Changelog
-## Last Updated: 2025-12-04 21:30 PST
+## Last Updated: 2025-12-17 22:30
 
 ### Notes:
 - All timestamps are in Pacific Standard Time (PST).
 - Changes made before 2025-09-02 12:00 were grouped into the initial setup entry.
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
+
+## 2025-12-17 22:30 - nm-applet added to autostart. Removed "network" from waybar tray.
+
+### Updated:
+- `configs/waybar/config` Removed network from the tray.
+- Added nm-applet to `configs/hypr/autostart.conf`.
+
 
 ## 2025-12-04 21:30 - Merged Branch 2.3 and 2.2 together
 
