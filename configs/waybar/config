@@ -4,7 +4,7 @@
    "position": "top",
    "modules-left": ["custom/power_button", "clock"],
    "modules-center": ["hyprland/workspaces"],
-   "modules-right": ["tray", "pulseaudio", "battery", "network"],
+   "modules-right": ["tray", "pulseaudio", "battery"],
 
    "clock": {
       "format": "{:%a %d %b %H:%M}",
