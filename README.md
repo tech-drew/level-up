@@ -7,13 +7,23 @@
 
 ---
 
-## Project Status: Work in Progress
+## Project Status: Work in Progress / Maintained for Personal Use
 
-This project is under development and evolving as I learn and grow. Features may change over time, and feedback is welcome.
+This project is maintained for personal use and evolves as I continue learning. Features may change, and feedback is welcome.
 
-I started learning Linux in June 2025, and this project serves as a hands-on way to deepen my Linux knowledge. Prior to working on this project I had no experience in GitHub, scripting, or programming.
+I began learning Linux in June 2025, and this project serves as a hands-on way to build my skills. Prior to this, I had no experience with GitHub, scripting, or programming.
 
-For a detailed summary of the skills, challenges, and lessons I learned while building this project, see the [Lessons Learned](docs/lessons-learned.md) document.
+Level-Up is fully functional and used as my daily driver, meeting my personal needs. While it may never be considered “complete,” I am satisfied with its current state.
+
+### Known Limitations
+
+- Screen capture is not currently supported for video recording.
+
+- Some applications may experience GUI issues in Hyprland; these are typically resolved by using a standard Plasma session.
+
+Overall, the system is stable, reliable, and suitable for everyday use.
+
+Updates will be limited while I focus on other projects, though development may resume in the future.
 
 ---
 
