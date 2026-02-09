@@ -6,6 +6,12 @@
 - Initial development began around July 2025. Early changes from the first couple of months were not consistently documented, as the project was not yet being actively tracked.
 - I'm new to GitHub, Linux, scripting and programming, so this changelog format may evolve as I learn.
 
+### 2026-02-06
+
+| Type        | Issue / Description                                  | Changes Summary                                  |
+|------------|------------------------------------------------------|-------------------------------------------------|
+| Feature    | [#1](https://github.com/tech-drew/level-up/issues/1) Network Widget | Added nm-applet to Waybar and removed the network widget.|
+
 ## 2025-12-17 22:30 - nm-applet added to autostart. Removed "network" from waybar tray.
 
 ### Updated:
