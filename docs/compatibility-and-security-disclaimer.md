@@ -5,8 +5,9 @@
 **Level-Up has been tested to work on clean installations of Fedora 42 KDE Plasma Desktop Edition and Fedora 43 KDE Plasma Desktop Edition.**
 
 **Recommended:**
-- Fedora 42 KDE Plasma Desktop Edition (clean install)
-- Fedora 43 KDE Plasma Desktop Edition (clean install)
+- Fedora 44 KDE Plasma Desktop Edition (clean install)
+
+**Note:** This project can be installed on Fedora 42/43 using the Fedora-42/43 branch. Fedora 42/43 have different dependencies from Fedora 44.
 
 ## Recommendations for creating a bootable Fedora usb.
 
