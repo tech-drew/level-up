@@ -4,7 +4,13 @@
    "position": "top",
    "modules-left": ["custom/power_button", "clock"],
    "modules-center": ["hyprland/workspaces"],
-   "modules-right": ["tray", "pulseaudio", "battery", "network"],
+   "modules-right": ["tray", "pulseaudio", "battery"],
+
+   "tray": {
+    "icon-size": 21,
+    "spacing": 10,
+    "reverse-direction": true
+   },
 
    "clock": {
       "format": "{:%a %d %b %H:%M}",
@@ -21,15 +27,8 @@
       "format": "{capacity}% {icon}",
       "format-full": "{capacity}% ",
       "format-icons": ["", "", "", "", ""],
-      "on-click": "notify-send '🔋 Battery Info' \"$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'state|to full|to empty|percentage')\"",
+      "on-click": "notify-send 'Battery Info' \"$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'state|to full|to empty|percentage')\"",
       "interval": 15
-   },
-
-   "network": {
-      "format-wifi": "{essid}  ({signalStrength}%)",
-      "format-ethernet": "{ifname}  ",
-      "format-disconnected": "Disconnected ⚠",
-      "on-click": "nm-connection-editor"
    },
 
    "pulseaudio": {
