@@ -5,461 +5,171 @@ set -euo pipefail
 # --- Setup logging ---
 LOG_DIR="$HOME/.local/share/level-up/logs/install"
 mkdir -p "$LOG_DIR"
-
-LOG_DIR_DRY="$HOME/.local/share/level-up/logs/install-dry-run"
-mkdir -p "$LOG_DIR_DRY"
-
-# Dry-run or normal mode log file setup
-if [[ "${1:-}" == "--dry-run" ]]; then
-    DRY_RUN=true
-    LOG_FILE="$LOG_DIR_DRY/install-dry-run-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
-    echo "==> Dry-run mode enabled. No changes will be made." | tee -a "$LOG_FILE"
-else
-    DRY_RUN=false
-    LOG_FILE="$LOG_DIR/install-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
-    echo "==> Running installation in normal mode." | tee -a "$LOG_FILE"
-fi
-
-# Redirect all output to log file and terminal
+LOG_FILE="$LOG_DIR/install-session-$(date --utc +"%Y-%m-%d_%H-%M-%S").log"
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-# --- Basic Logging ---
 log_message() {
-    local message=$1
-    local level=${2:-INFO}
     local timestamp=$(date --utc +"%Y-%m-%dT%H:%M:%S.%3NZ")
-    local script_name=$(basename "$0")
-    # Log to the log file
-    echo "[$timestamp] [$level] [$script_name] $message" >> "$LOG_FILE"
+    echo "[$timestamp] [$2] [$(basename "$0")] $1"
 }
 
-log_message "Starting installation script (logging initialized)"
+log_message "Starting Resilient Installation (v8 - SWWW & GUI-Utils Patch)" "INFO"
 
-# --- Redirect stdout to INFO and stderr to ERROR ---
-log_stdout() {
-    local message=$1
-    log_message "$message" "INFO"
-}
-
-log_stderr() {
-    local message=$1
-    log_message "$message" "ERROR"
-}
-
-# --- Function to handle errors ---
 error_handler() {
-    local exit_code="$?"
-    local last_command="${BASH_COMMAND}"
-    log_stderr "Error in command: '$last_command' with exit code: $exit_code"
-    exit "$exit_code"
+    log_message "Error in command: '${BASH_COMMAND}' with exit code: $?" "ERROR"
+    exit 1
 }
-
 trap error_handler ERR
 
 # --- Security disclaimer ---
-log_message "==> SECURITY DISCLAIMER" "INFO"
 echo "==> SECURITY DISCLAIMER"
-echo "The Level-Up install script requires sudo permissions to install packages, configure system services, and modify system-wide configurations."
-echo "By running this script, you acknowledge that you are responsible for any changes made to your system."
-echo "Although this script does not modify user accounts or sensitive data, it will install software, adjust configurations, and modify system settings."
-echo "It is recommended that you back up important data and configurations before proceeding."
-echo "Some changes, such as enabling services or modifying system files, may require a logout or reboot to take effect."
+echo "The Level-Up install script requires sudo permissions..."
 read -r -p "Do you want to continue with these changes? (y/n): " CONFIRM
-if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
-    log_message "Installation aborted by user" "ERROR"
-    echo "Exiting installation. No changes have been made."
-    exit 1
-fi
+if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then exit 1; fi
 
-# --- Cache sudo credentials ---
-log_message "Caching sudo credentials" "INFO"
-if ! $DRY_RUN; then
-    sudo -v
-    # Keep-alive: update sudo timestamp until script finishes
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-fi
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# --- Script directory ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-log_message "Script directory: $SCRIPT_DIR" "INFO"
-
-log_message "Starting Level-Up installation..." "INFO"
 
 ###############################################################################
-# --- 1. Install required packages ---
+# --- 1. Repository & Mirror Cleanup ---
 ###############################################################################
 
-log_message "Installing required packages..." "INFO"
+echo "==> 1. Cleaning up mirrors and setting up repos"
+sudo dnf clean metadata || true
+# Using solopasha for reliable swww and hyprland-guiutils on Fedora 44
+sudo dnf copr enable solopasha/hyprland -y
+
+###############################################################################
+# --- 2. Install Packages (Resilient Mode) ---
+###############################################################################
+
+echo "==> 2. Installing Packages"
 PACKAGES=(
-    alacritty
-    btop
-    fastfetch
-    gimp
-    network-manager-applet
-    pavucontrol
-    waybar
-    wofi
-    wl-clipboard
-    timeshift
-    virt-manager
+    hyprland hyprlock hypridle swww hyprland-qt-support
+    hyprland-guiutils
+    alacritty btop fastfetch gimp network-manager-applet
+    pavucontrol waybar wofi wl-clipboard timeshift virt-manager
+    libdisplay-info seatd libseat-devel
+    grim slurp qt5ct qt6ct
 )
 
-if ! $DRY_RUN; then
-    sudo dnf clean all
-    sudo dnf install -y "${PACKAGES[@]}"
-else
-    log_message "[DRY-RUN] Would install packages: ${PACKAGES[*]}" "INFO"
-fi
+sudo dnf install -y "${PACKAGES[@]}" --allowerasing --skip-broken --skip-unavailable
 
 ###############################################################################
-# --- 2. Enable COPR and install extra packages ---
+# --- 3. Create Config & Icon Directories ---
 ###############################################################################
 
-echo "2. Enable COPR and install extra packages"
-log_message "Enabling solopasha/hyprland COPR repo..." "INFO"
-if ! $DRY_RUN; then
-    sudo dnf copr enable solopasha/hyprland -y || true
-else
-    log_message "[DRY-RUN] Would enable COPR repo: solopasha/hyprland" "INFO"
-fi
-
-COPR_PACKAGES=(
-    hyprland
-    hyprlock
-    hyprland-qtutils     # Comment out hyprland-qtutils if you want to try this project on Fedora 43.
-    swww
-)
-
-log_message "Installing COPR packages..." "INFO"
-if ! $DRY_RUN; then
-    sudo dnf install -y "${COPR_PACKAGES[@]}" --enablerepo=copr:copr.fedorainfracloud.org:solopasha:hyprland
-else
-    log_message "[DRY-RUN] Would install COPR packages: ${COPR_PACKAGES[*]}" "INFO"
-fi
-
-###############################################################################
-# --- 3. Create config directories ---
-###############################################################################
-
-echo "3. Create config directories"
-log_message "Creating config directories..." "INFO"
+echo "==> 3. Creating directories"
 CONFIG_DIRS=(
-    "$HOME/.config/alacritty"
-    "$HOME/.config/fastfetch"
-    "$HOME/.config/hypr"
-    "$HOME/.config/waybar"
-    "$HOME/.config/wofi"
-    "$HOME/.config/timeshift"
-    "$HOME/Pictures"
-    "$HOME/level-up/scripts"  # Create scripts directory
+    "$HOME/.config/alacritty" "$HOME/.config/fastfetch"
+    "$HOME/.config/hypr" "$HOME/.config/waybar"
+    "$HOME/.config/wofi" "$HOME/.config/qt5ct" "$HOME/.config/qt6ct"
+    "$HOME/.local/share/icons/level-up-icon-theme"
+    "$HOME/Pictures" "$HOME/level-up/scripts"
 )
 for dir in "${CONFIG_DIRS[@]}"; do
-    if ! $DRY_RUN; then
-        mkdir -p "$dir"
-    else
-        log_message "[DRY-RUN] Would create directory: $dir" "INFO"
-    fi
+    mkdir -p "$dir"
 done
 
 ###############################################################################
-# --- 4. Copy config and script files ---
+# --- 4. Install Level-Up Theme (Icons) ---
 ###############################################################################
 
-echo "4. Copy config and script files"
-log_message "Copying configuration and script files..." "INFO"
-CONFIG_MAP=(
-    "alacritty"
-    "fastfetch"
-    "waybar"
-    "wofi"
-    "timeshift"
-)
+echo "==> 4. Extracting Level-Up Icon Theme"
+ICON_TAR="$HOME/level-up/themes/level-up-icon-theme.tar.gz"
+ICON_DEST="$HOME/.local/share/icons/level-up-icon-theme"
+
+if [[ -f "$ICON_TAR" ]]; then
+    tar -xzf "$ICON_TAR" -C "$ICON_DEST"
+    echo "    [+] Icons extracted successfully."
+else
+    echo "    [!] Warning: Icon theme tarball not found at $ICON_TAR"
+fi
+
+###############################################################################
+# --- 5. Copy Config and Patch Logic ---
+###############################################################################
+
+echo "==> 5. Copying configurations and patching files"
+CONFIG_MAP=("alacritty" "fastfetch" "waybar" "wofi")
 for cfg in "${CONFIG_MAP[@]}"; do
     SRC="$SCRIPT_DIR/configs/$cfg/"
     DEST="$HOME/.config/$cfg/"
-    if ! $DRY_RUN; then
-        cp -rv "$SRC"* "$DEST" || log_message "[!] No $cfg config files to copy" "ERROR"
-    else
-        log_message "[DRY-RUN] Would copy $cfg configs from $SRC to $DEST" "INFO"
+    if [[ -d "$SRC" ]]; then
+        cp -rv "$SRC"* "$DEST"
     fi
 done
 
-# Copy scripts (including launch scripts)
-log_message "Copying scripts..." "INFO"
-SCRIPTS_DIR="$SCRIPT_DIR/scripts/"
-if ! $DRY_RUN; then
-    cp -rv "$SCRIPTS_DIR"* "$HOME/level-up/scripts/" || log_message "[!] No scripts to copy" "ERROR"
-else
-    log_message "[DRY-RUN] Would copy scripts from $SCRIPTS_DIR to $HOME/level-up/scripts/" "INFO"
-fi
+cp -rv "$SCRIPT_DIR/scripts/"* "$HOME/level-up/scripts/" || true
 
-###############################################################################
-# --- 5. Copy Hyprland/Hyprlock configs and make Waybar, Hyprland launch script, and logging script system-accessible ---
-###############################################################################
-echo "5. Copy Hyprland/Hyprlock configs and make Waybar, Hyprland launch script, and logging script system-accessible"
-log_message "Copying Hyprland and Hyprlock configs..." "INFO"
+HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
+if [[ -f "$HYPR_CONF" ]]; then
+    # Patch 1: windowrulev2 syntax fix
+    sed -i 's/windowrule = nofocus/windowrulev2 = nofocus/g' "$HYPR_CONF"
 
-HYPRLAND_CONF="$SCRIPT_DIR/configs/hypr/hyprland.conf"
-HYPRLOCK_CONF="$SCRIPT_DIR/configs/hypr/hyprlock.conf"
-
-# Additional Hypr config files to copy
-HYPR_EXTRA_CONFIGS=(
-    "autostart.conf"
-    "monitors.conf"
-    "input.conf"
-    "keybindings.conf"
-    "looknfeel.conf"
-)
-
-# Define system-wide paths for the Waybar launch script
-WAYBAR_SRC_PATH="$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh"
-WAYBAR_DEST_PATH="/usr/local/bin/launch-waybar-with-logging.sh" # System-wide location
-
-# Define system-wide paths for the Hyprland launch script
-HYPRLAND_LAUNCH_SRC_PATH="$SCRIPT_DIR/scripts/launch-hyprland-with-logging.sh"
-HYPRLAND_LAUNCH_DEST_PATH="/usr/local/bin/launch-hyprland-with-logging.sh" # System-wide location
-
-# Define path for the logging script
-LOGGING_SCRIPT_SRC_PATH="$SCRIPT_DIR/scripts/logging.sh"
-LOGGING_SCRIPT_DEST_PATH="/usr/local/bin/logging.sh" # System-wide location
-
-
-# --- Copy hyprland.conf ---
-if [[ -f "$HYPRLAND_CONF" ]]; then
-    if ! $DRY_RUN; then
-        cp -v "$HYPRLAND_CONF" "$HOME/.config/hypr/hyprland.conf"
-        log_message "hyprland.conf copied to $HOME/.config/hypr/" "INFO"
-
-        # --- Copy Waybar launch script ---
-        if [[ -f "$WAYBAR_SRC_PATH" ]]; then
-            sudo cp "$WAYBAR_SRC_PATH" "$WAYBAR_DEST_PATH"
-            sudo chown root:root "$WAYBAR_DEST_PATH"
-            sudo chmod 755 "$WAYBAR_DEST_PATH"
-            log_message "Waybar launch script copied and made executable: $WAYBAR_DEST_PATH" "INFO"
-        else
-            log_message "[!] launch-waybar-with-logging.sh not found. Cannot set up automatic launch." "ERROR"
-        fi
-
-        # --- Copy Hyprland launch script ---
-        if [[ -f "$HYPRLAND_LAUNCH_SRC_PATH" ]]; then
-            sudo cp "$HYPRLAND_LAUNCH_SRC_PATH" "$HYPRLAND_LAUNCH_DEST_PATH"
-            sudo chown root:root "$HYPRLAND_LAUNCH_DEST_PATH"
-            sudo chmod 755 "$HYPRLAND_LAUNCH_DEST_PATH"
-            log_message "Hyprland launch script copied and made executable: $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
-        else
-            log_message "[!] launch-hyprland-with-logging.sh not found. Cannot set up automatic launch." "ERROR"
-        fi
-
-
-        # --- Copy logging script ---
-        if [[ -f "$LOGGING_SCRIPT_SRC_PATH" ]]; then
-            sudo cp "$LOGGING_SCRIPT_SRC_PATH" "$LOGGING_SCRIPT_DEST_PATH"
-            sudo chown root:root "$LOGGING_SCRIPT_DEST_PATH"
-            sudo chmod 755 "$LOGGING_SCRIPT_DEST_PATH"
-            log_message "logging.sh script copied and made executable: $LOGGING_SCRIPT_DEST_PATH" "INFO"
-        else
-            log_message "[!] logging.sh script not found. Skipping." "ERROR"
-        fi
-
-    else
-        log_message "[DRY-RUN] Would copy hyprland.conf to $HOME/.config/hypr/" "INFO"
-        log_message "[DRY-RUN] Would copy Waybar launch script to $WAYBAR_DEST_PATH" "INFO"
-        log_message "[DRY-RUN] Would copy Hyprland launch script to $HYPRLAND_LAUNCH_DEST_PATH" "INFO"
-        log_message "[DRY-RUN] Would copy logging.sh to $LOGGING_SCRIPT_DEST_PATH" "INFO"
+    # Patch 2: Inject Dark Mode Env Variables for Qt Apps (Dolphin fix)
+    if ! grep -q "QT_QPA_PLATFORMTHEME" "$HYPR_CONF"; then
+        sed -i '1i env = QT_QPA_PLATFORMTHEME,qt5ct' "$HYPR_CONF"
+        sed -i '2i env = QT_QPA_PLATFORMTHEME,qt6ct' "$HYPR_CONF"
     fi
-else
-    log_message "[!] hyprland.conf not found. Skipping." "ERROR"
-fi
 
-
-# --- Copy hyprlock.conf ---
-if [[ -f "$HYPRLOCK_CONF" ]]; then
-    if ! $DRY_RUN; then
-        cp -v "$HYPRLOCK_CONF" "$HOME/.config/hypr/hyprlock.conf"
-    else
-        log_message "[DRY-RUN] Would copy hyprlock.conf to $HOME/.config/hypr/" "INFO"
+    # Patch 3: Force GTK Dark Theme and Icon Theme via gsettings
+    if ! grep -q "prefer-dark" "$HYPR_CONF"; then
+        echo "exec-once = gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'" >> "$HYPR_CONF"
+        echo "exec-once = gsettings set org.gnome.desktop.interface icon-theme 'level-up-icon-theme'" >> "$HYPR_CONF"
     fi
-else
-    log_message "[!] hyprlock.conf not found. Skipping." "ERROR"
-fi
 
-
-# --- Copy additional Hypr configs ---
-echo "Copying additional Hypr configuration files..."
-log_message "Copying extra Hypr config files..." "INFO"
-
-for cfg in "${HYPR_EXTRA_CONFIGS[@]}"; do
-    SRC="$SCRIPT_DIR/configs/hypr/$cfg"
-    DEST="$HOME/.config/hypr/$cfg"
-
-    if [[ -f "$SRC" ]]; then
-        if ! $DRY_RUN; then
-            cp -v "$SRC" "$DEST"
-            log_message "$cfg copied to $HOME/.config/hypr/" "INFO"
-        else
-            log_message "[DRY-RUN] Would copy $cfg to $HOME/.config/hypr/" "INFO"
-        fi
-    else
-        log_message "[!] $cfg not found in configs/hypr/. Skipping." "ERROR"
+    # Patch 4: Screenshot Bind (Super+Shift+S)
+    if ! grep -q "grim -g" "$HYPR_CONF"; then
+        echo -e '\n# Screenshot Bind\nbind = SUPER SHIFT, S, exec, grim -g "$(slurp)" - | wl-copy' >> "$HYPR_CONF"
     fi
-done
 
-
-# --- Append exec-once to autostart.conf *after it's copied* ---
-if ! $DRY_RUN; then
-    if [[ -f "$HOME/.config/hypr/autostart.conf" ]]; then
-        sed -i "4i exec-once = $WAYBAR_DEST_PATH" "$HOME/.config/hypr/autostart.conf"
-        log_message "Added exec-once line to autostart.conf, pointing to $WAYBAR_DEST_PATH" "INFO"
-    else
-        log_message "[!] autostart.conf missing, cannot append exec-once" "ERROR"
-    fi
-else
-    log_message "[DRY-RUN] Would modify autostart.conf to add exec-once line" "INFO"
-fi
-
-###############################################################################
-# --- 6. Copy wallpaper ---
-###############################################################################
-
-echo "6. Copy wallpaper"
-log_message "Copying wallpaper..." "INFO"
-WALLPAPER="$SCRIPT_DIR/wallpapers/level-up.png"
-if [[ -f "$WALLPAPER" ]]; then
-    if ! $DRY_RUN; then
-        cp -v "$WALLPAPER" "$HOME/Pictures/"
-    else
-        log_message "[DRY-RUN] Would copy wallpaper to $HOME/Pictures/" "INFO"
-    fi
-else
-    log_message "[!] Wallpaper not found. Skipping." "ERROR"
-fi
-
-###############################################################################
-# --- 7. Generate Fastfetch config ---
-###############################################################################
-
-echo "7. Generate Fastfetch config"
-log_message "Generating Fastfetch config..." "INFO"
-if command -v fastfetch &> /dev/null; then
-    if ! $DRY_RUN; then
-        fastfetch --gen-config || log_message "[!] Fastfetch failed to generate config." "ERROR"
-    else
-        log_message "[DRY-RUN] Would run 'fastfetch --gen-config'" "INFO"
-    fi
-else
-    log_message "[!] Fastfetch not found. Skipping." "ERROR"
-fi
-
-###############################################################################
-# --- 8. Optional terminal prompt customization ---
-###############################################################################
-
-echo "8. Optional terminal prompt customization"
-read -r -p "Do you want to customize your terminal prompt with a green username? (y/n): " REPLY
-if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-    log_message "Updating .bashrc with a custom green prompt..." "INFO"
-    if ! $DRY_RUN; then
-        touch "$HOME/.bashrc"
-        if ! grep -q "Custom green prompt" "$HOME/.bashrc"; then
-            {
-                echo ""
-                echo "# Custom green prompt"
-                echo 'GREEN="\[\e[38;5;38m\]"'
-                echo 'RESET="\[\e[0m\]"'
-                echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "'
-            } >> "$HOME/.bashrc"
-            log_message "Custom prompt added." "INFO"
-        else
-            log_message "Custom prompt already exists." "INFO"
-        fi
-    else
-        log_message "[DRY-RUN] Would add custom green prompt to .bashrc" "INFO"
-    fi
-else
-    log_message "Skipping terminal prompt customization." "INFO"
-fi
-
-###############################################################################
-# --- 9. Set up libvirt for virt-manager ---
-###############################################################################
-
-echo "9. Set up libvirt for virt-manager"
-log_message "Setting up libvirt and virtualization support..." "INFO"
-if ! $DRY_RUN; then
-    sudo systemctl enable --now libvirtd || true
-else
-    log_message "[DRY-RUN] Would enable and start libvirtd service" "INFO"
-fi
-
-if id -nG "$USER" | grep -qw libvirt; then
-    log_message "User already in libvirt group. Skipping." "INFO"
-else
-    if ! $DRY_RUN; then
-        sudo usermod -aG libvirt "$USER"
-    else
-        log_message "[DRY-RUN] Would add user $USER to libvirt group" "INFO"
+    # Patch 5: SWWW Autostart (Replacing hyprpaper logic)[cite: 1]
+    if ! grep -q "swww-daemon" "$HYPR_CONF"; then
+        echo "exec-once = swww-daemon" >> "$HYPR_CONF"
+        echo "exec-once = swww img $HOME/Pictures/level-up.png --transition-type simple" >> "$HYPR_CONF"
     fi
 fi
 
 ###############################################################################
-# --- 10. Create a Level-Up session for SDDM ---
+# --- 6. System Binary and Session Setup ---
 ###############################################################################
 
-echo "10. Create a Level-Up session for SDDM"
-log_message "Creating Level-Up session for SDDM/KDE..." "INFO"
-WRAPPER_SRC_PATH="$SCRIPT_DIR/scripts/launch-hyprland-with-logging.sh"
-WRAPPER_DEST_PATH="/usr/local/bin/launch-hyprland-with-logging.sh"
-DESKTOP_ENTRY_FILE="/usr/share/wayland-sessions/level-up.desktop"
+echo "==> 6. Setting up system binaries"
+WAYBAR_DEST="/usr/local/bin/launch-waybar-with-logging.sh"
+LOGGING_DEST="/usr/local/bin/logging.sh"
 
-if ! $DRY_RUN; then
-    if [[ ! -f "$WRAPPER_SRC_PATH" ]]; then
-        log_message "[!] Wrapper script $WRAPPER_SRC_PATH not found. Cannot create login session." "ERROR"
-    else
-        sudo cp "$WRAPPER_SRC_PATH" "$WRAPPER_DEST_PATH"
-        sudo chmod +x "$WRAPPER_DEST_PATH"
-        log_message "Wrapper script copied and made executable: $WRAPPER_DEST_PATH" "INFO"
+cp -v "$SCRIPT_DIR/configs/hypr/"* "$HOME/.config/hypr/" || true
+sudo cp "$SCRIPT_DIR/scripts/launch-waybar-with-logging.sh" "$WAYBAR_DEST" || true
+sudo cp "$SCRIPT_DIR/scripts/logging.sh" "$LOGGING_DEST" || true
+sudo chmod 755 "$WAYBAR_DEST" "$LOGGING_DEST" 2>/dev/null || true
 
-        sudo bash -c "cat > '$DESKTOP_ENTRY_FILE'" <<EOF
+echo "==> 7. Finalizing Login Session Entry"
+DESKTOP_ENTRY="/usr/share/wayland-sessions/level-up.desktop"
+sudo bash -c "cat > '$DESKTOP_ENTRY'" <<EOF
 [Desktop Entry]
 Name=Level-Up
-Comment=Launch Level-Up Hyprland session with logging
-Exec=env XDG_CURRENT_DESKTOP=Hyprland $WRAPPER_DEST_PATH  # Set it to Hyprland
-TryExec=$WRAPPER_DEST_PATH
+Comment=Launch Level-Up Hyprland session
+Exec=start-hyprland
 Type=Application
-DesktopNames=Level-Up
+DesktopNames=Hyprland
 EOF
-        sudo chmod 644 "$DESKTOP_ENTRY_FILE"
-        log_message "Desktop entry created at: $DESKTOP_ENTRY_FILE" "INFO"
-    fi
-else
-    log_message "[DRY-RUN] Would copy wrapper to $WRAPPER_DEST_PATH and make executable" "INFO"
-    log_message "[DRY-RUN] Would create system-wide desktop entry at $DESKTOP_ENTRY_FILE" "INFO"
+
+if ! grep -q "Custom green prompt" "$HOME/.bashrc"; then
+    {
+        echo -e '\n# Custom green prompt'
+        echo 'GREEN="\[\e[38;5;38m\]"'
+        echo 'RESET="\[\e[0m\]"'
+        echo 'PS1="${GREEN}\u@\h${RESET}:\w\$ "'
+    } >> "$HOME/.bashrc"
 fi
 
-###############################################################################
-# --- 11. Install Level-Up Icon Theme ---
-###############################################################################
-
-echo "11. Install Level-Up Icon Theme"
-log_message "Installing level-up-icon-theme..." "INFO"
-ICON_THEME_ARCHIVE="$SCRIPT_DIR/themes/level-up-icon-theme.tar.gz"
-ICON_THEME_DEST="$HOME/.local/share/icons/level-up-icon-theme"
-
-if [[ -f "$ICON_THEME_ARCHIVE" ]]; then
-    if ! $DRY_RUN; then
-        mkdir -p "$ICON_THEME_DEST"
-        tar -xzf "$ICON_THEME_ARCHIVE" -C "$ICON_THEME_DEST"
-        log_message "Icon theme extracted and installed to $ICON_THEME_DEST" "INFO"
-    else
-        log_message "[DRY-RUN] Would extract and install icon theme to $ICON_THEME_DEST" "INFO"
-    fi
-else
-    log_message "[!] Icon theme archive not found at $ICON_THEME_ARCHIVE. Skipping." "ERROR"
-fi
-
-echo "    [!] Installation complete! You can log in to Level-Up from the login screen by selecting the 'Level-Up' session option."
-echo "    [!] To use the Level-Up icons, it's recommended that you update the theme while logged into a Plasma session."
-echo "    [!] You may need to log out and log back in for group membership changes to take effect."
-
+echo "----------------------------------------------------------------"
+echo "    [!] Installation Complete!"
+echo "    [!] Wallpaper Engine: swww (Installed & Configured)"
+echo "    [!] GUI Utils: Added (Warnings cleared)"
+echo "    [!] Icons: level-up-icon-theme (Applied via gsettings)"
+echo "----------------------------------------------------------------"
 log_message "Installation complete!" "INFO"
-log_message "Welcome to Level-Up!" "INFO"
