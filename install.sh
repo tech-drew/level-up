@@ -73,7 +73,7 @@ PACKAGES=(
     grim slurp
 
     # Graphics / apps
-    gimp virt-manager timeshift
+    gimp virt-manager
 
     # Qt theming support
     qt5ct qt6ct
