@@ -11,7 +11,7 @@ sudo dnf install git -y
 Next, clone the repository and run the installation script:
 
 ```bash
-git clone https://github.com/Always-Growing/level-up.git
+git clone https://github.com/tech-drew/level-up.git
 cd level-up
 chmod +x install.sh
 ./install.sh
